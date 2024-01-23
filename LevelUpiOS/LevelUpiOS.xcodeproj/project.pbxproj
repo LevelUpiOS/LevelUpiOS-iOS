@@ -26,6 +26,8 @@
 		C0EA8F332B5F9C450073C1D4 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0EA8F302B5F9C450073C1D4 /* Pretendard-Bold.ttf */; };
 		C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F342B5F9C5E0073C1D4 /* UIFont+.swift */; };
 		C0EA8F372B5F9C6F0073C1D4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F362B5F9C6F0073C1D4 /* Font.swift */; };
+		C0EA8F3A2B5F9D570073C1D4 /* Carbon in Frameworks */ = {isa = PBXBuildFile; productRef = C0EA8F392B5F9D570073C1D4 /* Carbon */; };
+		C0EA8F3D2B5F9D620073C1D4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C0EA8F3C2B5F9D620073C1D4 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0EA8F3A2B5F9D570073C1D4 /* Carbon in Frameworks */,
+				C0EA8F3D2B5F9D620073C1D4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +193,10 @@
 			dependencies = (
 			);
 			name = LevelUpiOS;
+			packageProductDependencies = (
+				C0EA8F392B5F9D570073C1D4 /* Carbon */,
+				C0EA8F3C2B5F9D620073C1D4 /* SnapKit */,
+			);
 			productName = LevelUpiOS;
 			productReference = C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */;
 			productType = "com.apple.product-type.application";
@@ -261,6 +269,10 @@
 				Base,
 			);
 			mainGroup = C0EA8EEA2B5F996B0073C1D4;
+			packageReferences = (
+				C0EA8F382B5F9D570073C1D4 /* XCRemoteSwiftPackageReference "Carbon" */,
+				C0EA8F3B2B5F9D620073C1D4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = C0EA8EF42B5F996B0073C1D4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -663,6 +675,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C0EA8F382B5F9D570073C1D4 /* XCRemoteSwiftPackageReference "Carbon" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ra1028/Carbon";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		C0EA8F3B2B5F9D620073C1D4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C0EA8F392B5F9D570073C1D4 /* Carbon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0EA8F382B5F9D570073C1D4 /* XCRemoteSwiftPackageReference "Carbon" */;
+			productName = Carbon;
+		};
+		C0EA8F3C2B5F9D620073C1D4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0EA8F3B2B5F9D620073C1D4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C0EA8EEB2B5F996B0073C1D4 /* Project object */;
 }

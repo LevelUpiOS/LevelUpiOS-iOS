@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "carbon",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ra1028/Carbon",
+      "state" : {
+        "branch" : "master",
+        "revision" : "9e572593e02ce77e54932d46d130054a13e2a056"
+      }
+    },
+    {
+      "identity" : "differencekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ra1028/DifferenceKit.git",
+      "state" : {
+        "revision" : "14c66681e12a38b81045f44c6c29724a0d4b0e72",
+        "version" : "1.1.5"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "e74fe2a978d1216c3602b129447c7301573cc2d8",
+        "version" : "5.7.0"
+      }
+    }
+  ],
+  "version" : 2
+}
