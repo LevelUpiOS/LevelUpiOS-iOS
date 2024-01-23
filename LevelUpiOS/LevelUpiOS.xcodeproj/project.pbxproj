@@ -21,6 +21,11 @@
 		C0EA8F282B5F9A4E0073C1D4 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F272B5F9A4E0073C1D4 /* Palette.swift */; };
 		C0EA8F2A2B5F9B3E0073C1D4 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F292B5F9B3E0073C1D4 /* CGColor+.swift */; };
 		C0EA8F2C2B5F9B4A0073C1D4 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F2B2B5F9B4A0073C1D4 /* UIColor+.swift */; };
+		C0EA8F312B5F9C450073C1D4 /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0EA8F2E2B5F9C450073C1D4 /* Pretendard-SemiBold.ttf */; };
+		C0EA8F322B5F9C450073C1D4 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0EA8F2F2B5F9C450073C1D4 /* Pretendard-Regular.ttf */; };
+		C0EA8F332B5F9C450073C1D4 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0EA8F302B5F9C450073C1D4 /* Pretendard-Bold.ttf */; };
+		C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F342B5F9C5E0073C1D4 /* UIFont+.swift */; };
+		C0EA8F372B5F9C6F0073C1D4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F362B5F9C6F0073C1D4 /* Font.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,11 @@
 		C0EA8F272B5F9A4E0073C1D4 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		C0EA8F292B5F9B3E0073C1D4 /* CGColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
 		C0EA8F2B2B5F9B4A0073C1D4 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		C0EA8F2E2B5F9C450073C1D4 /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
+		C0EA8F2F2B5F9C450073C1D4 /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
+		C0EA8F302B5F9C450073C1D4 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
+		C0EA8F342B5F9C5E0073C1D4 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		C0EA8F362B5F9C6F0073C1D4 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +119,7 @@
 		C0EA8EF52B5F996B0073C1D4 /* LevelUpiOS */ = {
 			isa = PBXGroup;
 			children = (
+				C0EA8F2D2B5F9C2C0073C1D4 /* Fonts */,
 				C0EA8F262B5F9A430073C1D4 /* Colors */,
 				C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */,
 				C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */,
@@ -148,6 +159,18 @@
 				C0EA8F2B2B5F9B4A0073C1D4 /* UIColor+.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		C0EA8F2D2B5F9C2C0073C1D4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C0EA8F302B5F9C450073C1D4 /* Pretendard-Bold.ttf */,
+				C0EA8F2F2B5F9C450073C1D4 /* Pretendard-Regular.ttf */,
+				C0EA8F2E2B5F9C450073C1D4 /* Pretendard-SemiBold.ttf */,
+				C0EA8F342B5F9C5E0073C1D4 /* UIFont+.swift */,
+				C0EA8F362B5F9C6F0073C1D4 /* Font.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +277,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0EA8F312B5F9C450073C1D4 /* Pretendard-SemiBold.ttf in Resources */,
+				C0EA8F332B5F9C450073C1D4 /* Pretendard-Bold.ttf in Resources */,
 				C0EA8F032B5F996C0073C1D4 /* LaunchScreen.storyboard in Resources */,
+				C0EA8F322B5F9C450073C1D4 /* Pretendard-Regular.ttf in Resources */,
 				C0EA8F002B5F996C0073C1D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,7 +307,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0EA8F2A2B5F9B3E0073C1D4 /* CGColor+.swift in Sources */,
+				C0EA8F372B5F9C6F0073C1D4 /* Font.swift in Sources */,
 				B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */,
+				C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */,
 				C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */,
 				B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */,
 				C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */,
@@ -462,7 +490,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AXN37CP9B9;
+				DEVELOPMENT_TEAM = Z225784MRD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LevelUpiOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -494,7 +522,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AXN37CP9B9;
+				DEVELOPMENT_TEAM = Z225784MRD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LevelUpiOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
