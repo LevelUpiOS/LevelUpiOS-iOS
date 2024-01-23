@@ -15,6 +15,9 @@
 		C0EA8F0E2B5F996C0073C1D4 /* LevelUpiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F0D2B5F996C0073C1D4 /* LevelUpiOSTests.swift */; };
 		C0EA8F182B5F996C0073C1D4 /* LevelUpiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F172B5F996C0073C1D4 /* LevelUpiOSUITests.swift */; };
 		C0EA8F1A2B5F996C0073C1D4 /* LevelUpiOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F192B5F996C0073C1D4 /* LevelUpiOSUITestsLaunchTests.swift */; };
+		C0EA8F282B5F9A4E0073C1D4 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F272B5F9A4E0073C1D4 /* Palette.swift */; };
+		C0EA8F2A2B5F9B3E0073C1D4 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F292B5F9B3E0073C1D4 /* CGColor+.swift */; };
+		C0EA8F2C2B5F9B4A0073C1D4 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8F2B2B5F9B4A0073C1D4 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		C0EA8F132B5F996C0073C1D4 /* LevelUpiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LevelUpiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EA8F172B5F996C0073C1D4 /* LevelUpiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpiOSUITests.swift; sourceTree = "<group>"; };
 		C0EA8F192B5F996C0073C1D4 /* LevelUpiOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpiOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C0EA8F272B5F9A4E0073C1D4 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		C0EA8F292B5F9B3E0073C1D4 /* CGColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
+		C0EA8F2B2B5F9B4A0073C1D4 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		C0EA8EF52B5F996B0073C1D4 /* LevelUpiOS */ = {
 			isa = PBXGroup;
 			children = (
+				C0EA8F262B5F9A430073C1D4 /* Colors */,
 				C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */,
 				C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */,
 				C0EA8EFA2B5F996B0073C1D4 /* ViewController.swift */,
@@ -122,6 +129,16 @@
 				C0EA8F192B5F996C0073C1D4 /* LevelUpiOSUITestsLaunchTests.swift */,
 			);
 			path = LevelUpiOSUITests;
+			sourceTree = "<group>";
+		};
+		C0EA8F262B5F9A430073C1D4 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				C0EA8F272B5F9A4E0073C1D4 /* Palette.swift */,
+				C0EA8F292B5F9B3E0073C1D4 /* CGColor+.swift */,
+				C0EA8F2B2B5F9B4A0073C1D4 /* UIColor+.swift */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0EA8F2A2B5F9B3E0073C1D4 /* CGColor+.swift in Sources */,
 				C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */,
 				C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */,
 				C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */,
+				C0EA8F282B5F9A4E0073C1D4 /* Palette.swift in Sources */,
+				C0EA8F2C2B5F9B4A0073C1D4 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
