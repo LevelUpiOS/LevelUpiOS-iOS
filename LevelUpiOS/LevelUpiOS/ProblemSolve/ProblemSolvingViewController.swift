@@ -93,36 +93,7 @@ final class ProblemSolvingViewController: UIViewController {
         setHierarchy()
         setLayout()
         setAddTarget()
-        let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
-                                                     viewwillAppearSubject: viewwillAppearSubject))
-        
-        output.viewwillAppearPublisher
-            .sink { [weak self] subject, description in
-                self?.title = subject
-                self?.quizDescription.text = description
-                self?.problemSolvingProgressBar.setProgress(0, animated: true)
-            }
-            .store(in: &cancelBag)
-        
-        output.userAnswerPublisher
-            .sink { [weak self] state in
-                self?.quizNumberLable.text = "Quiz\(state.quizIndex)"
-                self?.quizDescription.text = state.description
-                self?.problemSolvingProgressBar.setProgress(state.percentage, animated: true)
-            }
-            .store(in: &cancelBag)
-        
-        output.lastAnwerPublisher
-            .sink { [weak self] _ in
-                let alert = UIAlertController(title: "답안제출", message: "답안 내용은 분석을 위해 저장됩니다, 결과를 확인하세요", preferredStyle: .alert)
-                let confirm = UIAlertAction(title: "결과보러가기", style: .default) { _ in
-                    self?.view.isUserInteractionEnabled = false
-                    print("결과보러가기")
-                }
-                alert.addAction(confirm)
-                self?.present(alert, animated: true)
-            }
-            .store(in: &cancelBag)
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,9 +104,7 @@ final class ProblemSolvingViewController: UIViewController {
 
 private extension ProblemSolvingViewController {
     func setUI() {
-        self.title = "Optional"
         self.view.backgroundColor = .designSystem(.background)
-
     }
     
     func setHierarchy() {
@@ -208,5 +177,48 @@ private extension ProblemSolvingViewController {
     
     @objc func falseButtonTapped() {
         userAnswerSubject.send(false)
+    }
+    
+    func bind() {
+        let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
+                                                     viewwillAppearSubject: viewwillAppearSubject))
+        output.viewwillAppearPublisher
+            .sink { [weak self] subject, description in
+                self?.title = subject
+                self?.quizDescription.text = description
+                self?.problemSolvingProgressBar.setProgress(0, animated: true)
+            }
+            .store(in: &cancelBag)
+        
+        output.userAnswerPublisher
+            .sink { [weak self] state in
+                self?.quizNumberLable.text = "Quiz\(state.quizIndex)"
+                self?.quizDescription.text = state.description
+                self?.problemSolvingProgressBar.setProgress(state.percentage, animated: true)
+            }
+            .store(in: &cancelBag)
+        
+        output.lastAnwerPublisher
+            .sink { [weak self] _ in
+                let alert = UIAlertController.subminQuizAlert { 
+                    self?.view.isUserInteractionEnabled = false
+                    print("제출했어요~")
+                }
+                self?.present(alert, animated: true)
+            }
+            .store(in: &cancelBag)
+    }
+}
+
+extension UIAlertController {
+    static func subminQuizAlert(completionHandler: @escaping () -> Void) -> UIAlertController {
+        let alert = UIAlertController(title: "답안제출",
+                                      message: "답안 내용은 분석을 위해 저장됩니다, 결과를 확인하세요",
+                                      preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "결과보러가기", style: .default) { _ in
+            completionHandler()
+        }
+        alert.addAction(confirm)
+        return alert
     }
 }
