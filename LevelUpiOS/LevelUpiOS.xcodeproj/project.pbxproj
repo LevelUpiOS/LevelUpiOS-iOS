@@ -14,6 +14,7 @@
 		C0C63FB72B6A010500771E55 /* ProblemSolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */; };
 		C0C63FB92B6A15B000771E55 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FB82B6A15B000771E55 /* Problem.swift */; };
 		C0C63FBB2B6A16DE00771E55 /* ProblemSolvingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */; };
+		C0C63FBE2B6A2C4500771E55 /* ProblemSolvingManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FBD2B6A2C4500771E55 /* ProblemSolvingManagerStub.swift */; };
 		C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */; };
 		C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */; };
 		C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EFA2B5F996B0073C1D4 /* ViewController.swift */; };
@@ -58,6 +59,8 @@
 		C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSolvingViewController.swift; sourceTree = "<group>"; };
 		C0C63FB82B6A15B000771E55 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
 		C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSolvingViewModel.swift; sourceTree = "<group>"; };
+		C0C63FBD2B6A2C4500771E55 /* ProblemSolvingManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSolvingManagerStub.swift; sourceTree = "<group>"; };
+		C0C63FC12B6A351900771E55 /* LevelUpiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LevelUpiOS.xctestplan; sourceTree = "<group>"; };
 		C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LevelUpiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,9 +121,18 @@
 			path = ProblemSolve;
 			sourceTree = "<group>";
 		};
+		C0C63FBC2B6A2C3100771E55 /* ProblemSolvingTest */ = {
+			isa = PBXGroup;
+			children = (
+				C0C63FBD2B6A2C4500771E55 /* ProblemSolvingManagerStub.swift */,
+			);
+			path = ProblemSolvingTest;
+			sourceTree = "<group>";
+		};
 		C0EA8EEA2B5F996B0073C1D4 = {
 			isa = PBXGroup;
 			children = (
+				C0C63FC12B6A351900771E55 /* LevelUpiOS.xctestplan */,
 				C0EA8EF52B5F996B0073C1D4 /* LevelUpiOS */,
 				C0EA8F0C2B5F996C0073C1D4 /* LevelUpiOSTests */,
 				C0EA8F162B5F996C0073C1D4 /* LevelUpiOSUITests */,
@@ -160,6 +172,7 @@
 		C0EA8F0C2B5F996C0073C1D4 /* LevelUpiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				C0C63FBC2B6A2C3100771E55 /* ProblemSolvingTest */,
 				C0EA8F0D2B5F996C0073C1D4 /* LevelUpiOSTests.swift */,
 			);
 			path = LevelUpiOSTests;
@@ -360,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C63FBE2B6A2C4500771E55 /* ProblemSolvingManagerStub.swift in Sources */,
 				C0EA8F0E2B5F996C0073C1D4 /* LevelUpiOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

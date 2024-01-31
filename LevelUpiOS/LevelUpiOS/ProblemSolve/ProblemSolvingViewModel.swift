@@ -8,12 +8,32 @@
 import Foundation
 import Combine
 
+enum ProblemSolvingError: Error {
+    case emptyData
+}
+
+struct CurrentQuizState {
+    var description: String?
+    var percentage: Float
+    var quizIndex: Int
+}
+
+protocol ProblemSolvingManager {
+    func getQuiz(from subjectId: Int) async throws -> Problem
+}
+
+struct ProblemSolvingManagerImpl: ProblemSolvingManager {
+    func getQuiz(from subjectId: Int) async throws -> Problem {
+        return Problem.mockData
+    }
+}
+
 final class ProblemSolvingViewModel {
     
-    struct CurrentQuizState {
-        var description: String?
-        var percentage: Float
-        var quizIndex: Int
+    let manager: ProblemSolvingManager
+    
+    init(manager: ProblemSolvingManager) {
+        self.manager = manager
     }
     
     var lastQuiz: Bool {
@@ -28,7 +48,7 @@ final class ProblemSolvingViewModel {
     var problemCount = 0
     var userAnswers: [Bool] = []
     
-    var datas = Problem.mockData
+    var datas: Problem = .empty
     
     struct Input {
         let userAnswerSubject: PassthroughSubject<Bool, Never>
@@ -44,16 +64,28 @@ final class ProblemSolvingViewModel {
     let lastAnwerPublisher = PassthroughSubject<Void, Never>()
     
     func transform(from input: Input) -> Output {
-        let viewillAppearPublisher = input.viewwillAppearSubject
-            .map { _ in
-                self.problemCount = 0
-                return (self.datas.subject, self.datas.descriptions[0])
+        let viewwillAppearSubject = input.viewwillAppearSubject
+            .flatMap { _ -> AnyPublisher<(String, String), Never> in
+                return Future<(String, String), Error> { promise in
+                    Task {
+                        do {
+                            let inputData = try await self.manager.getQuiz(from: 1)
+                            self.datas = inputData
+                            promise(.success((inputData.subject, inputData.descriptions[0])))
+                        } catch {
+                            promise(.failure(error))
+                        }
+                    }
+                }
+                .catch { _ in
+                    return Just(("실패", "실패1"))
+                }
+                .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
         
         let userAnswerPublisher = input.userAnswerSubject
             .map { type in
-                
                 self.userAnswers.append(type)
                 self.problemCount += 1
                 
@@ -70,7 +102,7 @@ final class ProblemSolvingViewModel {
             }
             .eraseToAnyPublisher()
         
-        return Output(viewwillAppearPublisher: viewillAppearPublisher,
+        return Output(viewwillAppearPublisher: viewwillAppearSubject,
                       userAnswerPublisher: userAnswerPublisher,
                       lastAnwerPublisher: lastAnwerPublisher)
     }

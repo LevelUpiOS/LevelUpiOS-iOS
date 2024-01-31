@@ -13,6 +13,10 @@ struct Problem {
 }
 
 extension Problem {
+    static var empty: Self {
+        return .init(subject: "", descriptions: [])
+    }
+    
     static let mockData: Self = .init(subject: "Optional", descriptions: [
         "1번 문제의 description입니다",
         "2번 문제의 description입니다",

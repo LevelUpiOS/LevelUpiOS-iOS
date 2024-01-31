@@ -13,7 +13,15 @@ import SnapKit
 
 final class ProblemSolvingViewController: UIViewController {
     
-    let viewModel = ProblemSolvingViewModel()
+    let viewModel: ProblemSolvingViewModel
+    init(viewModel: ProblemSolvingViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var cancelBag = Set<AnyCancellable>()
     let userAnswerSubject = PassthroughSubject<Bool, Never>()
@@ -183,6 +191,7 @@ private extension ProblemSolvingViewController {
         let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
                                                      viewwillAppearSubject: viewwillAppearSubject))
         output.viewwillAppearPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] subject, description in
                 self?.title = subject
                 self?.quizDescription.text = description
@@ -191,6 +200,7 @@ private extension ProblemSolvingViewController {
             .store(in: &cancelBag)
         
         output.userAnswerPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 self?.quizNumberLable.text = "Quiz\(state.quizIndex)"
                 self?.quizDescription.text = state.description
@@ -199,6 +209,7 @@ private extension ProblemSolvingViewController {
             .store(in: &cancelBag)
         
         output.lastAnwerPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 let alert = UIAlertController.subminQuizAlert { 
                     self?.view.isUserInteractionEnabled = false
