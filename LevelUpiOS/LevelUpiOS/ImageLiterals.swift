@@ -13,6 +13,7 @@ enum ImageLiterals {
         static var mainBackground: UIImage { .load(named: "main_background") }
         static var checkedCircle: UIImage { .load(named: "ic_checked") }
         static var uncheckedCircle: UIImage { .load(named: "ic_unchecked") }
+        static var icRightArrow: UIImage { .load(named: "ic_right_arrow") }
     }
     
     enum Question {
