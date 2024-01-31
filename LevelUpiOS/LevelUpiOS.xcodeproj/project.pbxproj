@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B546B5332B6A008D00AFA3EA /* 2MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5322B6A008D00AFA3EA /* 2MainViewController.swift */; };
 		B546B5392B6A02B200AFA3EA /* TopicHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5382B6A02B200AFA3EA /* TopicHeaderComponent.swift */; };
 		B546B53B2B6A034B00AFA3EA /* TopicHeaderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B53A2B6A034B00AFA3EA /* TopicHeaderContent.swift */; };
 		B546B53F2B6A119600AFA3EA /* ChapterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B53E2B6A119600AFA3EA /* ChapterComponent.swift */; };
@@ -61,7 +60,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B546B5322B6A008D00AFA3EA /* 2MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = 2MainViewController.swift; path = "../../../../Daangn-PhotoPicker/Daangn-PhotoPicker/Daangn-PhotoPicker/2MainViewController.swift"; sourceTree = "<group>"; };
 		B546B5382B6A02B200AFA3EA /* TopicHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHeaderComponent.swift; sourceTree = "<group>"; };
 		B546B53A2B6A034B00AFA3EA /* TopicHeaderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHeaderContent.swift; sourceTree = "<group>"; };
 		B546B53E2B6A119600AFA3EA /* ChapterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterComponent.swift; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 				B546B54C2B6A377800AFA3EA /* Chapter */,
 				B546B54B2B6A376100AFA3EA /* TopicSectionHeader */,
 				B546B5442B6A223900AFA3EA /* MainHeader */,
-				B546B5322B6A008D00AFA3EA /* 2MainViewController.swift */,
 				B546B5512B6A3AA400AFA3EA /* MainViewModel.swift */,
 				B546B5562B6A573800AFA3EA /* MainViewModelImpl.swift */,
 				B546B5582B6A583300AFA3EA /* MainViewController.swift */,
@@ -397,7 +394,6 @@
 				B546B5392B6A02B200AFA3EA /* TopicHeaderComponent.swift in Sources */,
 				B546B5482B6A225D00AFA3EA /* ReviewBoxView.swift in Sources */,
 				B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */,
-				B546B5332B6A008D00AFA3EA /* 2MainViewController.swift in Sources */,
 				C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */,
 				B546B53F2B6A119600AFA3EA /* ChapterComponent.swift in Sources */,
 				B546B53B2B6A034B00AFA3EA /* TopicHeaderContent.swift in Sources */,
