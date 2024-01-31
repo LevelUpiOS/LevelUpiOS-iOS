@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B546B5332B6A008D00AFA3EA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5322B6A008D00AFA3EA /* MainViewController.swift */; };
+		B546B5392B6A02B200AFA3EA /* TopicHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5382B6A02B200AFA3EA /* TopicHeaderComponent.swift */; };
+		B546B53B2B6A034B00AFA3EA /* TopicHeaderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B53A2B6A034B00AFA3EA /* TopicHeaderContent.swift */; };
+		B546B53F2B6A119600AFA3EA /* ChapterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B53E2B6A119600AFA3EA /* ChapterComponent.swift */; };
+		B546B5412B6A1BB300AFA3EA /* ChapterContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5402B6A1BB300AFA3EA /* ChapterContent.swift */; };
+		B546B5432B6A214E00AFA3EA /* MainHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5422B6A214E00AFA3EA /* MainHeaderComponent.swift */; };
+		B546B5462B6A225000AFA3EA /* ProgressBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5452B6A225000AFA3EA /* ProgressBoxView.swift */; };
+		B546B5482B6A225D00AFA3EA /* ReviewBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5472B6A225D00AFA3EA /* ReviewBoxView.swift */; };
+		B546B54A2B6A23EA00AFA3EA /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5492B6A23EA00AFA3EA /* CircularProgressBarView.swift */; };
 		B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6EE2B5F9A59009014AA /* ImageLiterals.swift */; };
 		B551B6F12B5F9A71009014AA /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F02B5F9A71009014AA /* Questions.swift */; };
 		B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F22B5F9A83009014AA /* StringLiterals.swift */; };
@@ -49,6 +58,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B546B5322B6A008D00AFA3EA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "../../../../Daangn-PhotoPicker/Daangn-PhotoPicker/Daangn-PhotoPicker/MainViewController.swift"; sourceTree = "<group>"; };
+		B546B5382B6A02B200AFA3EA /* TopicHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHeaderComponent.swift; sourceTree = "<group>"; };
+		B546B53A2B6A034B00AFA3EA /* TopicHeaderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHeaderContent.swift; sourceTree = "<group>"; };
+		B546B53E2B6A119600AFA3EA /* ChapterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterComponent.swift; sourceTree = "<group>"; };
+		B546B5402B6A1BB300AFA3EA /* ChapterContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterContent.swift; sourceTree = "<group>"; };
+		B546B5422B6A214E00AFA3EA /* MainHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderComponent.swift; sourceTree = "<group>"; };
+		B546B5452B6A225000AFA3EA /* ProgressBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBoxView.swift; sourceTree = "<group>"; };
+		B546B5472B6A225D00AFA3EA /* ReviewBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewBoxView.swift; sourceTree = "<group>"; };
+		B546B5492B6A23EA00AFA3EA /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		B551B6EE2B5F9A59009014AA /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		B551B6F02B5F9A71009014AA /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		B551B6F22B5F9A83009014AA /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
@@ -102,6 +120,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B546B5312B6A006400AFA3EA /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B546B54C2B6A377800AFA3EA /* Chapter */,
+				B546B54B2B6A376100AFA3EA /* TopicSectionHeader */,
+				B546B5442B6A223900AFA3EA /* MainHeader */,
+				B546B5322B6A008D00AFA3EA /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B546B5442B6A223900AFA3EA /* MainHeader */ = {
+			isa = PBXGroup;
+			children = (
+				B546B5422B6A214E00AFA3EA /* MainHeaderComponent.swift */,
+				B546B5452B6A225000AFA3EA /* ProgressBoxView.swift */,
+				B546B5472B6A225D00AFA3EA /* ReviewBoxView.swift */,
+				B546B5492B6A23EA00AFA3EA /* CircularProgressBarView.swift */,
+			);
+			path = MainHeader;
+			sourceTree = "<group>";
+		};
+		B546B54B2B6A376100AFA3EA /* TopicSectionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				B546B5382B6A02B200AFA3EA /* TopicHeaderComponent.swift */,
+				B546B53A2B6A034B00AFA3EA /* TopicHeaderContent.swift */,
+			);
+			path = TopicSectionHeader;
+			sourceTree = "<group>";
+		};
+		B546B54C2B6A377800AFA3EA /* Chapter */ = {
+			isa = PBXGroup;
+			children = (
+				B546B53E2B6A119600AFA3EA /* ChapterComponent.swift */,
+				B546B5402B6A1BB300AFA3EA /* ChapterContent.swift */,
+			);
+			path = Chapter;
+			sourceTree = "<group>";
+		};
 		C0EA8EEA2B5F996B0073C1D4 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +183,7 @@
 		C0EA8EF52B5F996B0073C1D4 /* LevelUpiOS */ = {
 			isa = PBXGroup;
 			children = (
+				B546B5312B6A006400AFA3EA /* Main */,
 				C0EA8F2D2B5F9C2C0073C1D4 /* Fonts */,
 				C0EA8F262B5F9A430073C1D4 /* Colors */,
 				C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */,
@@ -323,14 +382,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0EA8F2A2B5F9B3E0073C1D4 /* CGColor+.swift in Sources */,
+				B546B5412B6A1BB300AFA3EA /* ChapterContent.swift in Sources */,
 				C0EA8F372B5F9C6F0073C1D4 /* Font.swift in Sources */,
+				B546B5392B6A02B200AFA3EA /* TopicHeaderComponent.swift in Sources */,
+				B546B5482B6A225D00AFA3EA /* ReviewBoxView.swift in Sources */,
 				B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */,
+				B546B5332B6A008D00AFA3EA /* MainViewController.swift in Sources */,
 				C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */,
+				B546B53F2B6A119600AFA3EA /* ChapterComponent.swift in Sources */,
+				B546B53B2B6A034B00AFA3EA /* TopicHeaderContent.swift in Sources */,
+				B546B5462B6A225000AFA3EA /* ProgressBoxView.swift in Sources */,
 				C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */,
 				B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */,
 				C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */,
+				B546B54A2B6A23EA00AFA3EA /* CircularProgressBarView.swift in Sources */,
 				B551B6F12B5F9A71009014AA /* Questions.swift in Sources */,
 				C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */,
+				B546B5432B6A214E00AFA3EA /* MainHeaderComponent.swift in Sources */,
 				C0EA8F282B5F9A4E0073C1D4 /* Palette.swift in Sources */,
 				C0EA8F2C2B5F9B4A0073C1D4 /* UIColor+.swift in Sources */,
 			);
