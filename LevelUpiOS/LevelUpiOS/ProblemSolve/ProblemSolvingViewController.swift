@@ -13,9 +13,14 @@ import SnapKit
 
 final class ProblemSolvingViewController: UIViewController {
     
+    let viewModel = ProblemSolvingViewModel()
+    
+    var cancelBag = Set<AnyCancellable>()
+    let userAnswerSubject = PassthroughSubject<Bool, Never>()
+    let viewwillAppearSubject = PassthroughSubject<Void, Never>()
+    
     let problemSolvingProgressBar: UIProgressView = {
         let pb = UIProgressView(progressViewStyle: .bar)
-        pb.setProgress(0.5, animated: true)
         pb.trackTintColor = .designSystem(.background)
         pb.progressTintColor = .designSystem(.mainOrange)
         return pb
@@ -36,7 +41,6 @@ final class ProblemSolvingViewController: UIViewController {
         label.textColor = .designSystem(.black)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.text = "MVC 패턴에서 View는 사용자의 입력을 받아 처리하고, 해당 입력을 Model에 전달하는 역할을 한다."
         return label
     }()
     
@@ -89,6 +93,41 @@ final class ProblemSolvingViewController: UIViewController {
         setHierarchy()
         setLayout()
         setAddTarget()
+        let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
+                                                     viewwillAppearSubject: viewwillAppearSubject))
+        
+        output.viewwillAppearPublisher
+            .sink { [weak self] subject, description in
+                self?.title = subject
+                self?.quizDescription.text = description
+                self?.problemSolvingProgressBar.setProgress(0, animated: true)
+            }
+            .store(in: &cancelBag)
+        
+        output.userAnswerPublisher
+            .sink { [weak self] state in
+                self?.quizNumberLable.text = "Quiz\(state.quizIndex)"
+                self?.quizDescription.text = state.description
+                self?.problemSolvingProgressBar.setProgress(state.percentage, animated: true)
+            }
+            .store(in: &cancelBag)
+        
+        output.lastAnwerPublisher
+            .sink { [weak self] _ in
+                let alert = UIAlertController(title: "답안제출", message: "답안 내용은 분석을 위해 저장됩니다, 결과를 확인하세요", preferredStyle: .alert)
+                let confirm = UIAlertAction(title: "결과보러가기", style: .default) { _ in
+                    self?.view.isUserInteractionEnabled = false
+                    print("결과보러가기")
+                }
+                alert.addAction(confirm)
+                self?.present(alert, animated: true)
+            }
+            .store(in: &cancelBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewwillAppearSubject.send(())
     }
 }
 
@@ -163,15 +202,11 @@ private extension ProblemSolvingViewController {
         falseButton.addTarget(self, action: #selector(falseButtonTapped), for: .touchUpInside)
     }
     
-    func setDelegate() {
-        
-    }
-    
     @objc func trueButtonTapped() {
-        print("O버튼 눌림")
+        userAnswerSubject.send(true)
     }
     
     @objc func falseButtonTapped() {
-        print("X버튼 눌림")
+        userAnswerSubject.send(false)
     }
 }

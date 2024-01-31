@@ -12,6 +12,8 @@
 		B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F22B5F9A83009014AA /* StringLiterals.swift */; };
 		C0C63FB22B69FDFC00771E55 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C0C63FB12B69FDFC00771E55 /* Alamofire */; };
 		C0C63FB72B6A010500771E55 /* ProblemSolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */; };
+		C0C63FB92B6A15B000771E55 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FB82B6A15B000771E55 /* Problem.swift */; };
+		C0C63FBB2B6A16DE00771E55 /* ProblemSolvingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */; };
 		C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */; };
 		C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */; };
 		C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EFA2B5F996B0073C1D4 /* ViewController.swift */; };
@@ -54,6 +56,8 @@
 		B551B6F02B5F9A71009014AA /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		B551B6F22B5F9A83009014AA /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSolvingViewController.swift; sourceTree = "<group>"; };
+		C0C63FB82B6A15B000771E55 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
+		C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSolvingViewModel.swift; sourceTree = "<group>"; };
 		C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LevelUpiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */,
+				C0C63FB82B6A15B000771E55 /* Problem.swift */,
+				C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */,
 			);
 			path = ProblemSolve;
 			sourceTree = "<group>";
@@ -340,6 +346,8 @@
 				C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */,
 				B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */,
 				C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */,
+				C0C63FBB2B6A16DE00771E55 /* ProblemSolvingViewModel.swift in Sources */,
+				C0C63FB92B6A15B000771E55 /* Problem.swift in Sources */,
 				C0C63FB72B6A010500771E55 /* ProblemSolvingViewController.swift in Sources */,
 				B551B6F12B5F9A71009014AA /* Questions.swift in Sources */,
 				C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */,
