@@ -10,6 +10,7 @@
 		B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6EE2B5F9A59009014AA /* ImageLiterals.swift */; };
 		B551B6F12B5F9A71009014AA /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F02B5F9A71009014AA /* Questions.swift */; };
 		B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F22B5F9A83009014AA /* StringLiterals.swift */; };
+		C0C63FB22B69FDFC00771E55 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C0C63FB12B69FDFC00771E55 /* Alamofire */; };
 		C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */; };
 		C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */; };
 		C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EFA2B5F996B0073C1D4 /* ViewController.swift */; };
@@ -78,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C63FB22B69FDFC00771E55 /* Alamofire in Frameworks */,
 				C0EA8F3A2B5F9D570073C1D4 /* Carbon in Frameworks */,
 				C0EA8F3D2B5F9D620073C1D4 /* SnapKit in Frameworks */,
 			);
@@ -196,6 +198,7 @@
 			packageProductDependencies = (
 				C0EA8F392B5F9D570073C1D4 /* Carbon */,
 				C0EA8F3C2B5F9D620073C1D4 /* SnapKit */,
+				C0C63FB12B69FDFC00771E55 /* Alamofire */,
 			);
 			productName = LevelUpiOS;
 			productReference = C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */;
@@ -272,6 +275,7 @@
 			packageReferences = (
 				C0EA8F382B5F9D570073C1D4 /* XCRemoteSwiftPackageReference "Carbon" */,
 				C0EA8F3B2B5F9D620073C1D4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C0C63FB02B69FDFC00771E55 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = C0EA8EF42B5F996B0073C1D4 /* Products */;
 			projectDirPath = "";
@@ -677,6 +681,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C0C63FB02B69FDFC00771E55 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
 		C0EA8F382B5F9D570073C1D4 /* XCRemoteSwiftPackageReference "Carbon" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ra1028/Carbon";
@@ -696,6 +708,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C0C63FB12B69FDFC00771E55 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0C63FB02B69FDFC00771E55 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		C0EA8F392B5F9D570073C1D4 /* Carbon */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C0EA8F382B5F9D570073C1D4 /* XCRemoteSwiftPackageReference "Carbon" */;
