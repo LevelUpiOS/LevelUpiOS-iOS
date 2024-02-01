@@ -10,6 +10,12 @@
 		B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6EE2B5F9A59009014AA /* ImageLiterals.swift */; };
 		B551B6F12B5F9A71009014AA /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F02B5F9A71009014AA /* Questions.swift */; };
 		B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F22B5F9A83009014AA /* StringLiterals.swift */; };
+		C01DD17F2B6B7D0D00BE0F18 /* ExamResultComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01DD17E2B6B7D0D00BE0F18 /* ExamResultComponent.swift */; };
+		C01DD1812B6B7D9200BE0F18 /* ExamResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01DD1802B6B7D9200BE0F18 /* ExamResultViewController.swift */; };
+		C01DD1832B6B82F800BE0F18 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01DD1822B6B82F800BE0F18 /* PaddingLabel.swift */; };
+		C01DD18D2B6B876400BE0F18 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01DD18C2B6B876400BE0F18 /* Spacing.swift */; };
+		C01DD18F2B6B8B0C00BE0F18 /* ExampleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01DD18E2B6B8B0C00BE0F18 /* ExampleResult.swift */; };
+		C01DD1912B6B985500BE0F18 /* GradingResultComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01DD1902B6B985500BE0F18 /* GradingResultComponent.swift */; };
 		C0C63FB22B69FDFC00771E55 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C0C63FB12B69FDFC00771E55 /* Alamofire */; };
 		C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */; };
 		C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */; };
@@ -52,6 +58,12 @@
 		B551B6EE2B5F9A59009014AA /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		B551B6F02B5F9A71009014AA /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		B551B6F22B5F9A83009014AA /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
+		C01DD17E2B6B7D0D00BE0F18 /* ExamResultComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultComponent.swift; sourceTree = "<group>"; };
+		C01DD1802B6B7D9200BE0F18 /* ExamResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultViewController.swift; sourceTree = "<group>"; };
+		C01DD1822B6B82F800BE0F18 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		C01DD18C2B6B876400BE0F18 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		C01DD18E2B6B8B0C00BE0F18 /* ExampleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleResult.swift; sourceTree = "<group>"; };
+		C01DD1902B6B985500BE0F18 /* GradingResultComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingResultComponent.swift; sourceTree = "<group>"; };
 		C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LevelUpiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +114,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C01DD17D2B6B7CD500BE0F18 /* ExamResult */ = {
+			isa = PBXGroup;
+			children = (
+				C01DD17E2B6B7D0D00BE0F18 /* ExamResultComponent.swift */,
+				C01DD1802B6B7D9200BE0F18 /* ExamResultViewController.swift */,
+				C01DD1822B6B82F800BE0F18 /* PaddingLabel.swift */,
+				C01DD18C2B6B876400BE0F18 /* Spacing.swift */,
+				C01DD18E2B6B8B0C00BE0F18 /* ExampleResult.swift */,
+				C01DD1902B6B985500BE0F18 /* GradingResultComponent.swift */,
+			);
+			path = ExamResult;
+			sourceTree = "<group>";
+		};
 		C0EA8EEA2B5F996B0073C1D4 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +150,7 @@
 		C0EA8EF52B5F996B0073C1D4 /* LevelUpiOS */ = {
 			isa = PBXGroup;
 			children = (
+				C01DD17D2B6B7CD500BE0F18 /* ExamResult */,
 				C0EA8F2D2B5F9C2C0073C1D4 /* Fonts */,
 				C0EA8F262B5F9A430073C1D4 /* Colors */,
 				C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */,
@@ -323,13 +349,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0EA8F2A2B5F9B3E0073C1D4 /* CGColor+.swift in Sources */,
+				C01DD1912B6B985500BE0F18 /* GradingResultComponent.swift in Sources */,
 				C0EA8F372B5F9C6F0073C1D4 /* Font.swift in Sources */,
+				C01DD18D2B6B876400BE0F18 /* Spacing.swift in Sources */,
 				B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */,
 				C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */,
 				C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */,
 				B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */,
+				C01DD1812B6B7D9200BE0F18 /* ExamResultViewController.swift in Sources */,
 				C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */,
+				C01DD18F2B6B8B0C00BE0F18 /* ExampleResult.swift in Sources */,
+				C01DD1832B6B82F800BE0F18 /* PaddingLabel.swift in Sources */,
 				B551B6F12B5F9A71009014AA /* Questions.swift in Sources */,
+				C01DD17F2B6B7D0D00BE0F18 /* ExamResultComponent.swift in Sources */,
 				C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */,
 				C0EA8F282B5F9A4E0073C1D4 /* Palette.swift in Sources */,
 				C0EA8F2C2B5F9B4A0073C1D4 /* UIColor+.swift in Sources */,
