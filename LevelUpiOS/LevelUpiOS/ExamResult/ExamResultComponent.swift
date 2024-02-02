@@ -132,6 +132,8 @@ private extension ExamResultComponent {
     
     func setHierarchy() {
         self.addSubview(container)
+        questionLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        infoLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         container.addSubview(questionNumberLabel)
         container.addSubview(checkImage)
         container.addSubview(bookmarkButton)
@@ -150,10 +152,12 @@ private extension ExamResultComponent {
         
         questionNumberLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(20)
+            make.height.equalTo(30)
         }
         
         checkImage.snp.makeConstraints { make in
-            make.center.equalTo(questionNumberLabel.snp.center)
+            make.centerX.equalTo(questionNumberLabel.snp.centerX)
+            make.centerY.equalTo(questionNumberLabel.snp.centerY)
             make.size.equalTo(50)
         }
         
@@ -164,13 +168,14 @@ private extension ExamResultComponent {
         
         questionLabel.snp.makeConstraints { make in
             make.top.equalTo(questionNumberLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
+            make.bottom.equalTo(infoLabel.snp.top).offset(-15)
             make.leading.trailing.equalToSuperview().inset(15)
         }
         
         infoLabel.snp.makeConstraints { make in
             make.top.equalTo(questionLabel.snp.bottom).offset(15)
             make.centerX.equalToSuperview()
+//            make.height.equalTo(20)
         }
         
         answerImageView.snp.makeConstraints { make in
