@@ -11,60 +11,40 @@ import UIKit
 import Carbon
 import SnapKit
 
-struct Bookmark {
-    var question: String
-    var answer: Bool
-    var description: String
-    var source: String
-}
-
-extension Bookmark {
-    static let mock: [Bookmark] = [
-        .init(question: "1번문제", answer: true, description: "1번문제해답", source: "swift > optional"),
-        .init(question: "2번문제", answer: false, description: "2번문제해답", source: "메모리관리 > ARC"),
-        .init(question: "3번문제", answer: true, description: "3번문제해답", source: "FRP > Combine")
-    ]
-}
-
 final class BookmarkViewController: UIViewController {
     
-    let bookmarkView = UITableView(frame: .zero, style: .grouped)
+    var datas: [Bookmark] = Bookmark.mock {
+        didSet {
+            render()
+        }
+    }
     
+    let bookmarkView = UITableView(frame: .zero, style: .grouped)
     let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
     
-
     public override func viewDidLoad() {
         super.viewDidLoad()
-        // MARK: - 컴포넌트 설정
         setUI()
-        
-        renderer.target = bookmarkView
-        self.view.addSubview(bookmarkView)
-        bookmarkView.snp.makeConstraints { make in
-            make.bottom.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-        }
-        
+        setTableView()
         render()
-        
-        // MARK: - addsubView
         setHierarchy()
-        
-        // MARK: - autolayout설정
         setLayout()
-        
-        // MARK: - button의 addtarget설정
         setAddTarget()
-        
-        // MARK: - delegate설정
         setDelegate()
-
     }
     
     func render() {
         renderer.render {
-            Group(of: Bookmark.mock) { bookmark in
-                BookmarkItem(question: bookmark.question, source: bookmark.source)
+            Group(of: datas.enumerated()) { index, bookmark in
+                BookmarkItem(question: bookmark.question, source: bookmark.source) {
+                    print("해당문제의 답은")
+                    print("\(bookmark.answer)")
+                    print("\(bookmark.description)")
+                } bookmarkTap: {
+                    print("누른 북마크 인덱스")
+                    print("\(index)")
+                    self.datas.remove(at: index)
+                }
             }
         }
     }
@@ -72,15 +52,18 @@ final class BookmarkViewController: UIViewController {
 
 private extension BookmarkViewController {
     func setUI() {
-        
+        self.view.backgroundColor = .designSystem(.background)
     }
     
     func setHierarchy() {
-        
+        self.view.addSubview(bookmarkView)
     }
     
     func setLayout() {
-        
+        bookmarkView.snp.makeConstraints { make in
+            make.bottom.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+        }
     }
     
     func setAddTarget() {
@@ -89,5 +72,11 @@ private extension BookmarkViewController {
     
     func setDelegate() {
         
+    }
+    
+    func setTableView() {
+        bookmarkView.backgroundColor = .designSystem(.background)
+        bookmarkView.separatorStyle = .none
+        renderer.target = bookmarkView
     }
 }

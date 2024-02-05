@@ -13,6 +13,8 @@ import SnapKit
 struct BookmarkItem: IdentifiableComponent {
     var question: String
     var source: String
+    var tap: (()->Void)
+    var bookmarkTap: (()-> Void)
     
     var id: String {
         return question
@@ -25,15 +27,24 @@ struct BookmarkItem: IdentifiableComponent {
     func render(in content: BookmarkComponent) {
         content.questionLabel.text = question
         content.sourceLabel.text = source
+        content.tapped = tap
+        content.bookmarkTapped = bookmarkTap
     }
-    
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        .init(width: bounds.width, height: bounds.height)
-    }
-    
 }
 
 final class BookmarkComponent: UIView {
+    
+    var tapped: (() -> Void)?
+    var bookmarkTapped: (() -> Void)?
+    
+    let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .designSystem(.white)
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 0.5
+        view.layer.borderColor = .designSystem(.gray777)
+        return view
+    }()
     
     let questionTypeLabel: UILabel = {
         let label = UILabel()
@@ -41,6 +52,14 @@ final class BookmarkComponent: UIView {
         label.textColor = .designSystem(.mainOrange)
         label.backgroundColor = .designSystem(.subOrange)
         return label
+    }()
+    
+    lazy var bookmarkButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        button.tintColor = .designSystem(.mainOrange)
+        button.addTarget(self, action: #selector(bookmarkButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     let questionLabel: UILabel = {
@@ -68,23 +87,33 @@ final class BookmarkComponent: UIView {
     
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .red
-        self.addSubview(sideDecoratedView)
-        self.addSubview(questionTypeLabel)
-        self.addSubview(questionLabel)
-        self.addSubview(sourceLabel)
- 
+        self.addSubview(containerView)
+        containerView.addSubview(sideDecoratedView)
+        containerView.addSubview(questionTypeLabel)
+        containerView.addSubview(questionLabel)
+        containerView.addSubview(sourceLabel)
+        containerView.addSubview(bookmarkButton)
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(10)
+        }
+        questionTypeLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         questionTypeLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(20)
             make.height.equalTo(20)
         }
         
+        bookmarkButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(10)
+            make.trailing.equalTo(sideDecoratedView.snp.leading).offset(-10)
+            make.size.equalTo(30)
+        }
+        
         questionLabel.snp.makeConstraints { make in
             make.top.equalTo(questionTypeLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview()
+            make.trailing.equalTo(sideDecoratedView.snp.leading).offset(-10)
         }
-        
+        sourceLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         sourceLabel.snp.makeConstraints { make in
             make.top.equalTo(questionLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().inset(20)
@@ -95,6 +124,17 @@ final class BookmarkComponent: UIView {
             make.trailing.top.bottom.equalToSuperview()
             make.width.equalTo(10)
         }
+        
+        let bookmarkCellTapGesture = UITapGestureRecognizer(target: self, action: #selector(bookmarkCellTapped))
+        containerView.addGestureRecognizer(bookmarkCellTapGesture)
+    }
+    
+    @objc func bookmarkCellTapped() {
+        self.tapped?()
+    }
+    
+    @objc func bookmarkButtonTapped() {
+        self.bookmarkTapped?()
     }
     
     required init?(coder: NSCoder) {

@@ -12,6 +12,7 @@
 		B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F22B5F9A83009014AA /* StringLiterals.swift */; };
 		C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C962B70B6A100780707 /* BookmarkViewController.swift */; };
 		C0771C992B70B77D00780707 /* BookmarkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C982B70B77D00780707 /* BookmarkItem.swift */; };
+		C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C9E2B70C8E800780707 /* Bookmark.swift */; };
 		C0C63FB22B69FDFC00771E55 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C0C63FB12B69FDFC00771E55 /* Alamofire */; };
 		C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */; };
 		C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */; };
@@ -56,6 +57,7 @@
 		B551B6F22B5F9A83009014AA /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		C0771C962B70B6A100780707 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		C0771C982B70B77D00780707 /* BookmarkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkItem.swift; sourceTree = "<group>"; };
+		C0771C9E2B70C8E800780707 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LevelUpiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				C0771C962B70B6A100780707 /* BookmarkViewController.swift */,
 				C0771C982B70B77D00780707 /* BookmarkItem.swift */,
+				C0771C9E2B70C8E800780707 /* Bookmark.swift */,
 			);
 			path = Bookmark;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */,
 				C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */,
 				C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */,
+				C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */,
 				C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */,
 				B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */,
 				C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */,
