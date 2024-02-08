@@ -11,6 +11,11 @@ import Carbon
 
 struct MainHeaderComponent: IdentifiableComponent {
     
+    private enum Size {
+        static let screenHeight = UIScreen.main.bounds.height
+        static let headerHeight = screenHeight * (330/875)
+    }
+    
     var totalCount: Int
     var solvedCount: Int
     
@@ -32,12 +37,18 @@ struct MainHeaderComponent: IdentifiableComponent {
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 330)
+        return CGSize(width: bounds.width, height: Size.headerHeight)
     }
     
 }
 
 final class MainHeaderContent: UIView {
+    
+    private enum Size {
+        static let screenHeight = UIScreen.main.bounds.height
+        static let backgroundImageheight = screenHeight * (200/875)
+    }
+    
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -60,11 +71,22 @@ final class MainHeaderContent: UIView {
     }()
     
     private let progressBoxView: ProgressBoxView = {
-        let view = ProgressBoxView()
+       let view = ProgressBoxView()
+        view.layer.shadowColor = .designSystem(.black)
+        view.layer.shadowOpacity = 0.25
+        view.layer.shadowOffset = .init(width: 0, height: 4)
+        view.layer.shadowRadius = 5
         return view
     }()
     
-    private let reviewBoxView = ReviewBoxView()
+    private let reviewBoxView: ReviewBoxView = {
+        let view = ReviewBoxView()
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.25
+        view.layer.shadowOffset = .init(width: 0, height: 4)
+        view.layer.shadowRadius = 5
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,7 +107,7 @@ final class MainHeaderContent: UIView {
     private func setLayout() {
         backgroundImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(Size.backgroundImageheight)
         }
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(32)
@@ -100,7 +122,8 @@ final class MainHeaderContent: UIView {
             make.top.equalTo(subtitleLabel.snp.bottom).offset(17)
             make.leading.equalTo(subtitleLabel)
             make.width.equalTo(147)
-            make.height.equalTo(137)
+            make.height.equalTo(progressBoxView.snp.width)
+                .multipliedBy(137.0/147.0)
         }
         
         reviewBoxView.snp.makeConstraints { make in

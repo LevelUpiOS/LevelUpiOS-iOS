@@ -49,7 +49,6 @@ final class ReviewBoxView: UIView {
     private func setUI() {
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
-        self.layer.masksToBounds = true
     }
     
     private func setHirerachy() {

@@ -33,7 +33,7 @@ final class MainViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        cv.backgroundColor = .lightGray
+        cv.backgroundColor = .designSystem(.white)
         return cv
     }()
     

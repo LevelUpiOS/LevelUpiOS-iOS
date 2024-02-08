@@ -9,7 +9,7 @@ import UIKit
 
 final class ProgressBoxView: UIView {
 
-    let progressBarView = CircularProgressView()
+    let progressBarView = CircularProgressBarView(frame: .init(x: 0, y: 0, width: 85, height: 85))
     
     private let completeCountLabel: UILabel = {
         let label = UILabel()
@@ -32,7 +32,6 @@ final class ProgressBoxView: UIView {
     private func setUI() {
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
-        self.layer.masksToBounds = true
     }
     
     private func setHirerachy() {
@@ -44,14 +43,13 @@ final class ProgressBoxView: UIView {
     private func setLayout() {
         progressBarView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(31)
             make.top.equalToSuperview().inset(14)
-            make.width.equalTo(85)
-            make.height.equalTo(85)
         }
         
         completeCountLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(progressBarView.snp.bottom).offset(10)
+            make.centerX.equalTo(progressBarView)
+            make.top.equalTo(progressBarView.snp.bottom).offset(15)
             make.bottom.equalToSuperview().inset(14)
         }
     }
@@ -59,9 +57,6 @@ final class ProgressBoxView: UIView {
     func configProgressView(totalCount: Int, solvedCount: Int) {
         let percent = CGFloat(solvedCount) / CGFloat(totalCount) * 100
         completeCountLabel.text = "\(totalCount)개 중에 \(solvedCount)개 완료"
-        progressBarView.setProgress(
-            progressBarView.bounds,
-            value: percent
-        )
+        progressBarView.setProgressWithAnimation(duration: 1.5, value: 0.4)
     }
 }
