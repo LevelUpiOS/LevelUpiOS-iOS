@@ -1,0 +1,12 @@
+//
+//  Development.xcconfig
+//  LevelUpiOS
+//
+//  Created by 김민재 on 2/8/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// URL
+BASE_URL = http:/$()/43.200.77.79/api
