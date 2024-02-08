@@ -90,14 +90,9 @@ final class ProblemSolvingViewModel {
             .map { type in
                 self.userAnswers.append(type)
                 self.problemCount += 1
-                
-                if self.lastQuiz {
-                    lastAnwerPublisher.send(())
-                }
-
+                if self.lastQuiz { lastAnwerPublisher.send(()) }
                 let descriptionIndex = min(self.datas.descriptions.count-1, self.problemCount)
                 let quizIndex = min(self.datas.descriptions.count, self.problemCount+1)
-
                 return CurrentQuizState(description: self.datas.descriptions[descriptionIndex],
                                         percentage: self.percentage,
                                         quizIndex: quizIndex)
