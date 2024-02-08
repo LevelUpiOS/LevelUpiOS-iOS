@@ -26,6 +26,37 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:LevelUpiOS.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C0EA8F082B5F996C0073C1D4"
+               BuildableName = "LevelUpiOSTests.xctest"
+               BlueprintName = "LevelUpiOSTests"
+               ReferencedContainer = "container:LevelUpiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C0EA8F122B5F996C0073C1D4"
+               BuildableName = "LevelUpiOSUITests.xctest"
+               BlueprintName = "LevelUpiOSUITests"
+               ReferencedContainer = "container:LevelUpiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
    </TestAction>
