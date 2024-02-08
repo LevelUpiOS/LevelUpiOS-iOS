@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "4DF7EC18-34EC-4738-835B-211C2F1015D0",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:LevelUpiOS.xcodeproj",
+      "identifier" : "C0EA8EF22B5F996B0073C1D4",
+      "name" : "LevelUpiOS"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:LevelUpiOS.xcodeproj",
+        "identifier" : "C0EA8F082B5F996C0073C1D4",
+        "name" : "LevelUpiOSTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:LevelUpiOS.xcodeproj",
+        "identifier" : "C0EA8F122B5F996C0073C1D4",
+        "name" : "LevelUpiOSUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

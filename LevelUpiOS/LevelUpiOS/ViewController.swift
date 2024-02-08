@@ -22,8 +22,5 @@ class ViewController: UIViewController {
             make.center.equalToSuperview()
         }
         progressBarView.setProgressWithAnimation(duration: 1, value: 0.6)
-        
     }
-
-
 }
