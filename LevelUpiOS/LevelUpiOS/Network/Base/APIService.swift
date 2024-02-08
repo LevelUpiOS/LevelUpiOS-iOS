@@ -10,7 +10,7 @@ import Combine
 
 import Alamofire
 
-final class APIRequestLoader {
+final class APIService {
     private let configuration: URLSessionConfiguration
     private let apiLogger: APIEventLogger
     private let session: Session
@@ -24,8 +24,7 @@ final class APIRequestLoader {
         self.session = Session(configuration: configuration, interceptor: BaseInterceptor(), eventMonitors: [apiLogger])
     }
     
-    
-    
+
     func request<M: Decodable>(target: TargetType) async throws -> (M, Int) {
         let dataTask = self.session
             .request(target)
