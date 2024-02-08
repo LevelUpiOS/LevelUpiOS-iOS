@@ -12,6 +12,12 @@
 		B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B551B6F22B5F9A83009014AA /* StringLiterals.swift */; };
 		C013E90F2B746B74003EB996 /* BookmarkAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E90E2B746B74003EB996 /* BookmarkAnswerViewController.swift */; };
 		C013E9122B748EA1003EB996 /* ProblemSolvingManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9112B748EA1003EB996 /* ProblemSolvingManagerStub.swift */; };
+		C013E91A2B748FB5003EB996 /* ExamResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9142B748FB5003EB996 /* ExamResultViewController.swift */; };
+		C013E91B2B748FB5003EB996 /* ExamResultComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9152B748FB5003EB996 /* ExamResultComponent.swift */; };
+		C013E91C2B748FB5003EB996 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9162B748FB5003EB996 /* Spacing.swift */; };
+		C013E91D2B748FB5003EB996 /* GradingResultComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9172B748FB5003EB996 /* GradingResultComponent.swift */; };
+		C013E91E2B748FB5003EB996 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9182B748FB5003EB996 /* PaddingLabel.swift */; };
+		C013E91F2B748FB5003EB996 /* ExampleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9192B748FB5003EB996 /* ExampleResult.swift */; };
 		C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C962B70B6A100780707 /* BookmarkViewController.swift */; };
 		C0771C992B70B77D00780707 /* BookmarkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C982B70B77D00780707 /* BookmarkItem.swift */; };
 		C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C9E2B70C8E800780707 /* Bookmark.swift */; };
@@ -62,6 +68,12 @@
 		B551B6F22B5F9A83009014AA /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		C013E90E2B746B74003EB996 /* BookmarkAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkAnswerViewController.swift; sourceTree = "<group>"; };
 		C013E9112B748EA1003EB996 /* ProblemSolvingManagerStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemSolvingManagerStub.swift; sourceTree = "<group>"; };
+		C013E9142B748FB5003EB996 /* ExamResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamResultViewController.swift; sourceTree = "<group>"; };
+		C013E9152B748FB5003EB996 /* ExamResultComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamResultComponent.swift; sourceTree = "<group>"; };
+		C013E9162B748FB5003EB996 /* Spacing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		C013E9172B748FB5003EB996 /* GradingResultComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingResultComponent.swift; sourceTree = "<group>"; };
+		C013E9182B748FB5003EB996 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		C013E9192B748FB5003EB996 /* ExampleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleResult.swift; sourceTree = "<group>"; };
 		C0771C962B70B6A100780707 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		C0771C982B70B77D00780707 /* BookmarkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkItem.swift; sourceTree = "<group>"; };
 		C0771C9E2B70C8E800780707 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
@@ -127,6 +139,19 @@
 			path = ProblemSolvingTest;
 			sourceTree = "<group>";
 		};
+		C013E9132B748FB5003EB996 /* ExamResult */ = {
+			isa = PBXGroup;
+			children = (
+				C013E9142B748FB5003EB996 /* ExamResultViewController.swift */,
+				C013E9152B748FB5003EB996 /* ExamResultComponent.swift */,
+				C013E9162B748FB5003EB996 /* Spacing.swift */,
+				C013E9172B748FB5003EB996 /* GradingResultComponent.swift */,
+				C013E9182B748FB5003EB996 /* PaddingLabel.swift */,
+				C013E9192B748FB5003EB996 /* ExampleResult.swift */,
+			);
+			path = ExamResult;
+			sourceTree = "<group>";
+		};
 		C0771C952B70B69300780707 /* Bookmark */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +197,7 @@
 		C0EA8EF52B5F996B0073C1D4 /* LevelUpiOS */ = {
 			isa = PBXGroup;
 			children = (
+				C013E9132B748FB5003EB996 /* ExamResult */,
 				C0C63FB32B6A008C00771E55 /* ProblemSolve */,
 				C0771C952B70B69300780707 /* Bookmark */,
 				C0EA8F2D2B5F9C2C0073C1D4 /* Fonts */,
@@ -377,14 +403,20 @@
 				B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */,
 				C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */,
 				C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */,
+				C013E91B2B748FB5003EB996 /* ExamResultComponent.swift in Sources */,
 				C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */,
 				C0EA8EFB2B5F996B0073C1D4 /* ViewController.swift in Sources */,
 				C013E90F2B746B74003EB996 /* BookmarkAnswerViewController.swift in Sources */,
 				B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */,
+				C013E91D2B748FB5003EB996 /* GradingResultComponent.swift in Sources */,
 				C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */,
+				C013E91F2B748FB5003EB996 /* ExampleResult.swift in Sources */,
+				C013E91A2B748FB5003EB996 /* ExamResultViewController.swift in Sources */,
 				C0C63FBB2B6A16DE00771E55 /* ProblemSolvingViewModel.swift in Sources */,
 				C0C63FB92B6A15B000771E55 /* Problem.swift in Sources */,
+				C013E91E2B748FB5003EB996 /* PaddingLabel.swift in Sources */,
 				C0C63FB72B6A010500771E55 /* ProblemSolvingViewController.swift in Sources */,
+				C013E91C2B748FB5003EB996 /* Spacing.swift in Sources */,
 				C0771C992B70B77D00780707 /* BookmarkItem.swift in Sources */,
 				B551B6F12B5F9A71009014AA /* Questions.swift in Sources */,
 				C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */,
