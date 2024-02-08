@@ -9,20 +9,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let testLabel: UILabel = {
-        let label = UILabel()
-        label.font = .pretendard(.bold, ._30)
-        label.textColor = .designSystem(.white)
-        label.text = "테스트입니다"
-        return label
+    private let progressBarView: CircularProgressBarView = {
+        let view = CircularProgressBarView(frame: .init(x: 0, y: 0, width: 85, height: 85))
+        return view
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .designSystem(.black)
-        testLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(testLabel)
-        testLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        testLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.backgroundColor = .designSystem(.white)
+        view.addSubview(progressBarView)
+        progressBarView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        progressBarView.setProgressWithAnimation(duration: 1, value: 0.6)
     }
 }
