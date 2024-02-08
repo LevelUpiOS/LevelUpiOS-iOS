@@ -57,6 +57,8 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
