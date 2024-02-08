@@ -49,7 +49,7 @@ final class ProblemSolvingViewModel {
     var userAnswers: [Bool] = []
     
     var datas: Problem = .empty
-    
+
     struct Input {
         let userAnswerSubject: PassthroughSubject<Bool, Never>
         let viewwillAppearSubject: PassthroughSubject<Void, Never>
@@ -61,8 +61,7 @@ final class ProblemSolvingViewModel {
         let lastAnwerPublisher: PassthroughSubject<Void, Never>
     }
     
-
-    
+    // input이들어왔을떄 네트워킹통신을했는데 stream이 나와야됨
     func transform(from input: Input) -> Output {
         let lastAnwerPublisher = PassthroughSubject<Void, Never>()
         

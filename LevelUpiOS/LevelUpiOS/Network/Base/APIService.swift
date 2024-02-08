@@ -24,46 +24,40 @@ final class APIRequestLoader {
         self.session = Session(configuration: configuration, interceptor: BaseInterceptor(), eventMonitors: [apiLogger])
     }
     
-
     
-    func request<M: Decodable>(target: TargetType) -> AnyPublisher<(M, Int), LevelUpError> {
-        return Future { promise in
-            Task {
-                let dataTask = self.session
-                    .request(target)
-                    .serializingData()
-                    
-                switch await dataTask.result {
-                case .success(let value):
-                    guard let response = await dataTask.response.response else {
-                        promise(.failure(LevelUpError.serverNoResponse))
-                        return
-                    }
-                    
-                    do {
-                        switch response.statusCode {
-                        case 200..<300:
-                            let decoder = JSONDecoder()
-                            let decodedData = try decoder.decode(M.self, from: value)
-                            promise(.success((decodedData, response.statusCode)))
-                        case 401:
-                            promise(.failure(.authError))
-                        case 404:
-                            promise(.failure(.noUserError))
-                        case 500...:
-                            promise(.failure(.serverError))
-                        default:
-                            promise(.failure(.unknownError))
-                        }
-                    } catch {
-                        promise(.failure(.decodingError))
-                    }
-                case .failure(let error):
-                    promise(.failure(LevelUpError.requestError(error: error)))
-                }
+    
+    func request<M: Decodable>(target: TargetType) async throws -> (M, Int) {
+        let dataTask = self.session
+            .request(target)
+            .serializingData()
+        
+        switch await dataTask.result {
+        case .success(let value):
+            guard let response = await dataTask.response.response else {
+                throw LevelUpError.serverNoResponse
             }
+            
+            do {
+                switch response.statusCode {
+                case 200..<300:
+                    let decoder = JSONDecoder()
+                    let decodedData = try decoder.decode(M.self, from: value)
+                    return (decodedData, response.statusCode)
+                case 401:
+                    throw LevelUpError.authError
+                case 404:
+                    throw LevelUpError.noUserError
+                case 500...:
+                    throw LevelUpError.serverError
+                default:
+                    throw LevelUpError.unknownError
+                }
+            } catch {
+                throw LevelUpError.decodingError
+            }
+        case .failure(let error):
+            throw LevelUpError.requestError(error: error)
         }
-        .eraseToAnyPublisher()
     }
 }
 
