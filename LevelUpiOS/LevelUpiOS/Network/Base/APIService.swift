@@ -24,12 +24,7 @@ class APIRequestLoader<T: TargetType> {
         self.session = Session(configuration: configuration, eventMonitors: [apiLogger])
     }
     
-//    func fetchData<M: Decodable>(
-//      target: T,
-//      completion: @escaping (NetworkResult<M>) -> Void
-//    )
-    
-    func request<M: Decodable>(target: T) -> AnyPublisher<M, LevelUpError> {
+    func request<M: Decodable>(target: T) -> AnyPublisher<(M, Int), LevelUpError> {
         
         return Future { promise in
             Task {
@@ -44,11 +39,22 @@ class APIRequestLoader<T: TargetType> {
                         return
                     }
                     
-                    // response status code 500번 -> server code
+                    switch response.statusCode {
+                    case 200..<300:
+                        promise(.success((value, response.statusCode)))
+                    case 400:
+                        promise(.failure(.requsetError))
+                    case 401:
+                        promise(.failure(.authError))
+                    case 404:
+                        promise(.failure(.noUserError))
+                    case 500...:
+                        promise(.failure(.serverError))
+                    default:
+                        promise(.failure(.unknownError))
+                    }
                     
-                    // 200 ~ 404
-                    
-                    promise(.success(value))
+
                 case .failure:
                     promise(.failure(LevelUpError.decodeError))
                 }
@@ -60,11 +66,15 @@ class APIRequestLoader<T: TargetType> {
     }
 }
 
-
 enum LevelUpError: Error, CustomStringConvertible {
+    case unknownError
+    case requsetError
+    case authError
+    case noUserError
     case decodeError
     case inValidStatusCode(code: Int)
     case serverNoResponse
+    case serverError
     
     var description: String {
         switch self {
@@ -74,6 +84,16 @@ enum LevelUpError: Error, CustomStringConvertible {
             return "\(code)"
         case .decodeError:
             return "decoding error"
+        case .unknownError:
+            return "명시되지 않은 오류"
+        case .requsetError:
+            return "클라에서 뭘빼먹고 요청함"
+        case .authError:
+            return "인증오류"
+        case .noUserError:
+            return "유저가 없음"
+        case .serverError:
+            return "서버오류"
         }
     }
 }
