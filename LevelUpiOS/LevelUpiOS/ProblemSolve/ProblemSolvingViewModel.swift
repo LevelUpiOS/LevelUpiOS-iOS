@@ -61,9 +61,11 @@ final class ProblemSolvingViewModel {
         let lastAnwerPublisher: PassthroughSubject<Void, Never>
     }
     
-    let lastAnwerPublisher = PassthroughSubject<Void, Never>()
+
     
     func transform(from input: Input) -> Output {
+        let lastAnwerPublisher = PassthroughSubject<Void, Never>()
+        
         let viewwillAppearSubject = input.viewwillAppearSubject
             .flatMap { _ -> AnyPublisher<(String, String), Never> in
                 return Future<(String, String), Error> { promise in
@@ -90,15 +92,15 @@ final class ProblemSolvingViewModel {
                 self.problemCount += 1
                 
                 if self.lastQuiz {
-                    self.lastAnwerPublisher.send(())
-                    return CurrentQuizState(description: self.datas.descriptions.last,
-                                            percentage: self.percentage,
-                                            quizIndex: self.datas.descriptions.count)
+                    lastAnwerPublisher.send(())
                 }
 
-                return CurrentQuizState(description: self.datas.descriptions[self.problemCount],
+                let descriptionIndex = min(self.datas.descriptions.count-1, self.problemCount)
+                let quizIndex = min(self.datas.descriptions.count, self.problemCount+1)
+
+                return CurrentQuizState(description: self.datas.descriptions[descriptionIndex],
                                         percentage: self.percentage,
-                                        quizIndex: self.problemCount+1)
+                                        quizIndex: quizIndex)
             }
             .eraseToAnyPublisher()
         
