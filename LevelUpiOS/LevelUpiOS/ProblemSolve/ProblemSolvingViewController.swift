@@ -12,7 +12,7 @@ import Combine
 import SnapKit
 
 final class ProblemSolvingViewController: UIViewController {
-    
+    let examService = ExamService()
     let viewModel: ProblemSolvingViewModel
     init(viewModel: ProblemSolvingViewModel) {
         self.viewModel = viewModel
@@ -102,6 +102,17 @@ final class ProblemSolvingViewController: UIViewController {
         setLayout()
         setAddTarget()
         bind()
+        
+        Task {
+            do {
+                guard let results = try? await examService.solveExamQuestions(id: 1, answers: [true, true]) else {
+                    return
+                }
+                print(results.0)
+                
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import Alamofire
 
 struct CategoryDatas: Decodable {
