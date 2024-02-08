@@ -37,12 +37,18 @@ final class BookmarkViewController: UIViewController {
         renderer.render {
             Group(of: datas.enumerated()) { index, bookmark in
                 BookmarkItem(question: bookmark.question, source: bookmark.source) {
-                    print("해당문제의 답은")
-                    print("\(bookmark.answer)")
-                    print("\(bookmark.description)")
+                    let answerViewController = BookmarkAnswerViewController()
+                    answerViewController.configureUI(question: bookmark.question, answer: bookmark.description, isCorrect: true)
+                    if let sheet = answerViewController.sheetPresentationController {
+                        sheet.detents = [.medium()]
+                        sheet.prefersScrollingExpandsWhenScrolledToEdge = false  // true 기본값
+                        sheet.prefersEdgeAttachedInCompactHeight = true // false 기본값
+                        sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true // false 기본값
+                        sheet.preferredCornerRadius = 20
+                        sheet.prefersGrabberVisible = true
+                    }
+                    self.present(answerViewController, animated: true)
                 } bookmarkTap: {
-                    print("누른 북마크 인덱스")
-                    print("\(index)")
                     self.datas.remove(at: index)
                 }
             }
@@ -52,6 +58,7 @@ final class BookmarkViewController: UIViewController {
 
 private extension BookmarkViewController {
     func setUI() {
+        self.title = "복습 노트"
         self.view.backgroundColor = .designSystem(.background)
     }
     

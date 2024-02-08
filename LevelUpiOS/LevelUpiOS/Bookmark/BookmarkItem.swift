@@ -93,12 +93,11 @@ final class BookmarkComponent: UIView {
         containerView.addSubview(questionLabel)
         containerView.addSubview(sourceLabel)
         containerView.addSubview(bookmarkButton)
-        containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(10)
-        }
-        questionTypeLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+
+
         questionTypeLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(20)
+            make.width.equalTo(60)
             make.height.equalTo(20)
         }
         
@@ -107,22 +106,29 @@ final class BookmarkComponent: UIView {
             make.trailing.equalTo(sideDecoratedView.snp.leading).offset(-10)
             make.size.equalTo(30)
         }
-        
+
         questionLabel.snp.makeConstraints { make in
             make.top.equalTo(questionTypeLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalTo(sideDecoratedView.snp.leading).offset(-10)
+            make.bottom.equalTo(sourceLabel.snp.top).offset(-20)
         }
-        sourceLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+
         sourceLabel.snp.makeConstraints { make in
-            make.top.equalTo(questionLabel.snp.bottom).offset(20)
-            make.leading.equalToSuperview().inset(20)
+            make.height.equalTo(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(20)
         }
         
         sideDecoratedView.snp.makeConstraints { make in
             make.trailing.top.bottom.equalToSuperview()
             make.width.equalTo(10)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview()
         }
         
         let bookmarkCellTapGesture = UITapGestureRecognizer(target: self, action: #selector(bookmarkCellTapped))
