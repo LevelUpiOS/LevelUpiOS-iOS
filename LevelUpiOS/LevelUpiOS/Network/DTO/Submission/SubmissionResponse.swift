@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+
+struct SubmissionResponse: Decodable {
+    let submissions: [Submission]
+}
+
+struct Submission: Decodable {
+    let id: Int
+    let examId: Int
+    let score: Int
+}

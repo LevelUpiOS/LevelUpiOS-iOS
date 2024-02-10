@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+final class SubmissionService {
+    
+    private let apiService: APIService
+    
+    init(apiService: APIService) {
+        self.apiService = apiService
+    }
+    
+    func getSubmissions() async throws -> DecodedResponse<SubmissionResponse> {
+        return try await apiService.request(target: SubmissionRouter.getSubmissions)
+    }
+    
+}

@@ -6,3 +6,32 @@
 //
 
 import Foundation
+
+import Alamofire
+
+enum SubmissionRouter {
+    case getSubmissions
+}
+
+extension SubmissionRouter: TargetType {
+    var method: HTTPMethod {
+        switch self {
+        case .getSubmissions:
+            return .get
+        }
+    }
+    
+    var path: String {
+        switch self {
+        case .getSubmissions:
+            "/v1/submissions"
+        }
+    }
+    
+    var parameters: RequestParams {
+        switch self {
+        case .getSubmissions:
+            return .requestPlain
+        }
+    }
+}
