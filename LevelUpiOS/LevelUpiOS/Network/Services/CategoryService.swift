@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+
+final class CategoryService {
+    
+    private let apiService: APIService
+    
+    init(apiService: APIService) {
+        self.apiService = apiService
+    }
+    
+    func getCategories() async throws -> DecodedResponse<Categories> {
+        return try await apiService.request(target: CategoryRouter.getCategory)
+    }
+    
+}
