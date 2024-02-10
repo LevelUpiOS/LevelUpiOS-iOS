@@ -14,7 +14,7 @@ final class CircularProgressBarView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        createCircularPath()
+        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -22,13 +22,15 @@ final class CircularProgressBarView: UIView {
         fatalError("code based")
     }
     
-    private func createCircularPath() {
+    func createCircularPath() {
         // 원형 경로 설정
+        let lineWidth: CGFloat = 15
+        let radius: CGFloat = (min(frame.size.width, frame.size.height) - lineWidth) / 2
         let circlePath = UIBezierPath(
             arcCenter: CGPoint(
                 x: frame.size.width / 2.0,
                 y: frame.size.height / 2.0),
-            radius: (frame.size.width - 1.5) / 2,
+            radius: radius,
             startAngle: -CGFloat.pi / 2,
             endAngle: CGFloat.pi * 1.5,
             clockwise: true
@@ -54,13 +56,13 @@ final class CircularProgressBarView: UIView {
     }
     
     // 프로그레스 바 업데이트 함수
-    func setProgressWithAnimation(duration: TimeInterval, value: Float) {
+    func setProgressWithAnimation(duration: TimeInterval, value: CGFloat) {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = duration
         animation.fromValue = 0
         animation.toValue = value
         animation.timingFunction = CAMediaTimingFunction(name: .linear)
-        progressLayer.strokeEnd = CGFloat(value)
+        progressLayer.strokeEnd = value
         progressLayer.add(animation, forKey: "animateprogress")
     }
 }

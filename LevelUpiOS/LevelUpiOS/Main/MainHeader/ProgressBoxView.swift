@@ -9,7 +9,7 @@ import UIKit
 
 final class ProgressBoxView: UIView {
 
-    let progressBarView = CircularProgressBarView(frame: .init(x: 0, y: 0, width: 85, height: 85))
+    private let progressBarView = CircularProgressBarView()
     
     private let completeCountLabel: UILabel = {
         let label = UILabel()
@@ -55,8 +55,9 @@ final class ProgressBoxView: UIView {
     }
     
     func configProgressView(totalCount: Int, solvedCount: Int) {
-        let percent = CGFloat(solvedCount) / CGFloat(totalCount) * 100
+        let percent = CGFloat(solvedCount) / CGFloat(totalCount)
         completeCountLabel.text = "\(totalCount)개 중에 \(solvedCount)개 완료"
-        progressBarView.setProgressWithAnimation(duration: 1.5, value: 0.4)
+        progressBarView.createCircularPath()
+        progressBarView.setProgressWithAnimation(duration: 1.5, value: percent)
     }
 }
