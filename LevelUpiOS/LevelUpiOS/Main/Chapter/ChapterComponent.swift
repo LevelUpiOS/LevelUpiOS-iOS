@@ -11,14 +11,17 @@ import Carbon
 
 struct ChapterComponent: IdentifiableComponent {
     
-    let chapter: Chapter
+    private let chapter: Chapter
+    
+    var onSelect: () -> Void
     
     var id: String {
         return chapter.name
     }
     
-    init(chapter: Chapter) {
+    init(chapter: Chapter, onSelect: @escaping () -> Void) {
         self.chapter = chapter
+        self.onSelect = onSelect
     }
     
     func renderContent() -> ChapterContent {
@@ -27,6 +30,7 @@ struct ChapterComponent: IdentifiableComponent {
     
     func render(in content: ChapterContent) {
         content.configChapterContent(chapter: chapter)
+        content.onSelect = onSelect
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {
