@@ -25,7 +25,7 @@ final class APIService {
     }
     
 
-    func request<M: Decodable>(target: TargetType) async throws -> (M, Int) {
+    func request<M: Decodable>(target: TargetType) async throws -> DecodedResponse<M> {
         let dataTask = self.session
             .request(target)
             .serializingData()
@@ -41,7 +41,10 @@ final class APIService {
                 case 200..<300:
                     let decoder = JSONDecoder()
                     let decodedData = try decoder.decode(M.self, from: value)
-                    return (decodedData, response.statusCode)
+                    return DecodedResponse(
+                        decodedData: decodedData,
+                        statusCode: response.statusCode
+                    )
                 case 401:
                     throw LevelUpError.authError
                 case 404:

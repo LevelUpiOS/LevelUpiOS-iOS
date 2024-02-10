@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+struct DecodedResponse<T: Decodable> {
+    let decodedData: T
+    let statusCode: Int
+}
+
