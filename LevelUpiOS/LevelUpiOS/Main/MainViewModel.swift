@@ -20,11 +20,13 @@ protocol MainViewModel: ViewModel where Input == MainViewModelInput, Output == M
 
 struct MainViewModelInput {
     let viewWillAppear: PassthroughSubject<Void, Never>
-    let receiveButtonDidTap: PassthroughSubject<Void, Never>
-    let chapterDidTap: PassthroughSubject<Void, Never>
+    let reviewButtonDidTap: PassthroughSubject<Void, Never>
+    let chapterDidTap: PassthroughSubject<Int, Never>
 }
 
 struct MainViewModelOutput {
-    let topicsAndChapters: AnyPublisher<Subject, Never>
+    let topics: AnyPublisher<Subject, Never>
+    let chapterDidTap: AnyPublisher<Int, Never>
+    let reviewButtonDidTap: AnyPublisher<Void, Never>
 }
 

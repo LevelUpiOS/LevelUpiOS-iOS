@@ -10,16 +10,29 @@ import Combine
 
 
 final class MainViewModelImpl: MainViewModel {
-    func transform(input: MainViewModelInput) -> MainViewModelOutput {
-        let subject = input.viewWillAppear
-            .map { _ in
-                return Subject.dummy
-            }
-            .eraseToAnyPublisher()
-        
-        
-        return Output(topicsAndChapters: subject)
+    
+    private let mainServiceManager: MainServiceManager
+    
+    init(mainServiceManager: MainServiceManager) {
+        self.mainServiceManager = mainServiceManager
     }
     
+    func transform(input: MainViewModelInput) -> MainViewModelOutput {
+        let topics: AnyPublisher<Subject, Never> = input.viewWillAppear
+            .requestAPI(failure: .empty) { _ in
+                let topics = try await self.mainServiceManager.getChapters()
+                
+                return topics
+            } errorHandler: { error in
+                print(error)
+            }
+            .eraseToAnyPublisher()
+
+        return Output(
+            topics: topics,
+            chapterDidTap: input.chapterDidTap.eraseToAnyPublisher(),
+            reviewButtonDidTap: input.reviewButtonDidTap.eraseToAnyPublisher()
+        )
+    }
     
 }
