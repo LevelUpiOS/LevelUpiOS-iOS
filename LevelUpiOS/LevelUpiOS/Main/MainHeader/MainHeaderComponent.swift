@@ -18,17 +18,20 @@ struct MainHeaderComponent: IdentifiableComponent {
     
     var totalCount: Int
     var solvedCount: Int
+    var onReviewButtonSelect: (() -> Void)
     
     var id: String {
         return UUID().uuidString
     }
     
-    init(totalCount: Int, solvedCount: Int) {
+    init(totalCount: Int, solvedCount: Int, onReviewButtonSelect: @escaping () -> Void) {
         self.totalCount = totalCount
         self.solvedCount = solvedCount
+        self.onReviewButtonSelect = onReviewButtonSelect
     }
     
     func render(in content: MainHeaderContent) {
+        content.onReviewButtonSelect = onReviewButtonSelect
         content.configHeaderContent(totalCount: totalCount, solvedCount: solvedCount)
     }
     
@@ -48,6 +51,8 @@ final class MainHeaderContent: UIView {
         static let screenHeight = UIScreen.main.bounds.height
         static let backgroundImageheight = screenHeight * (200/875)
     }
+    
+    var onReviewButtonSelect: (() -> Void)?
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -92,6 +97,7 @@ final class MainHeaderContent: UIView {
         super.init(frame: frame)
         setHirerachy()
         setLayout()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -132,6 +138,14 @@ final class MainHeaderContent: UIView {
             make.top.equalTo(progressBoxView)
             make.bottom.equalTo(progressBoxView)
         }
+    }
+    
+    private func setAddTarget() {
+        reviewBoxView.reviewButton.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
+    }
+    
+    @objc func handleTap() {
+        onReviewButtonSelect?()
     }
     
     func configHeaderContent(totalCount: Int, solvedCount: Int) {

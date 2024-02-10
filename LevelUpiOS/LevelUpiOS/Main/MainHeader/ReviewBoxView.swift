@@ -23,7 +23,7 @@ final class ReviewBoxView: UIView {
         return label
     }()
     
-    private let reviewButton: UIButton = {
+    let reviewButton: UIButton = {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = .mainOrange
         config.baseForegroundColor = .white
