@@ -19,8 +19,8 @@ final class MainViewController: UIViewController {
     }
     
     private let viewWillAppear: PassthroughSubject<Void, Never> = .init()
-    private let receiveButtonDidTap: PassthroughSubject<Void, Never> = .init()
-    private let chapterDidTap: PassthroughSubject<Void, Never> = .init()
+    private let reviewButtonDidTap: PassthroughSubject<Void, Never> = .init()
+    private let chapterDidTap: PassthroughSubject<Int, Never> = .init()
     
     private let viewModel: any MainViewModel
     
@@ -62,15 +62,36 @@ final class MainViewController: UIViewController {
     private func bind() {
         let input = MainViewModelInput(
             viewWillAppear: self.viewWillAppear,
-            receiveButtonDidTap: self.receiveButtonDidTap,
+            reviewButtonDidTap: self.reviewButtonDidTap,
             chapterDidTap: self.chapterDidTap
         )
+        
         let output = viewModel.transform(input: input)
-        output.topicsAndChapters
+        output.topics
             .receive(on: DispatchQueue.main)
             .sink { [weak self] subject in
                 guard let self else { return }
                 self.render(subject: subject)
+            }
+            .store(in: &cancelBag)
+        
+        output.chapterDidTap
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] chapterId in
+                guard let self else { return }
+                print(chapterId)
+//                let problemViewController = ProblemSolvingViewController(viewModel: .init(manager: ProblemSolvingManagerImpl()))
+                //TODO: - id넘겨주기
+//                self.navigationController?.pushViewController(problemViewController, animated: true)
+            }
+            .store(in: &cancelBag)
+        
+        output.reviewButtonDidTap
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                //TODO: - 복습하러가기 로 넘어가기
+                print("Review Button Tapped!")
             }
             .store(in: &cancelBag)
     }
@@ -94,7 +115,12 @@ extension MainViewController {
 
     func render(subject: Subject) {
         renderer.render {
-            Section(id: ID.top, header: MainHeaderComponent(totalCount: 7, solvedCount: 4))
+            Section(id: ID.top, header: MainHeaderComponent(
+                totalCount: subject.totalCount,
+                solvedCount: subject.solvedCount) {
+                    self.reviewButtonDidTap.send(())
+                }
+            )
             
             Group(of: subject.topics) { topic in
                 Section(
@@ -104,7 +130,9 @@ extension MainViewController {
                         subtitle: topic.subname
                     )) {
                         Group(of: topic.chapters) { chapter in
-                            ChapterComponent(chapter: chapter)
+                            ChapterComponent(chapter: chapter) {
+                                self.chapterDidTap.send(chapter.id)
+                            }
                         }
                     }
             }
