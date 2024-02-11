@@ -9,10 +9,11 @@
 import UIKit
 import Combine
 
+import Alamofire
 import SnapKit
 
 final class ProblemSolvingViewController: UIViewController {
-    
+    let examService = ExamService()
     let viewModel: ProblemSolvingViewModel
     init(viewModel: ProblemSolvingViewModel) {
         self.viewModel = viewModel
@@ -101,7 +102,7 @@ final class ProblemSolvingViewController: UIViewController {
         setHierarchy()
         setLayout()
         setAddTarget()
-        bind()
+        bind()        
     }
     
     override func viewWillAppear(_ animated: Bool) {

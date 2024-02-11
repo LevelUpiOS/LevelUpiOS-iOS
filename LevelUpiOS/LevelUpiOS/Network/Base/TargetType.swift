@@ -31,12 +31,9 @@ extension TargetType {
             method: method
         )
 
-        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-
         switch parameters {
         case .requestWithBody(let request):
             let params = request?.toDictionary() ?? [:]
-
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
         case .requestQuery(let request):
             let params = request?.toDictionary()
@@ -64,6 +61,7 @@ extension TargetType {
         case .requestPlain:
             break
         }
+
         return urlRequest
     }
 }
