@@ -37,10 +37,10 @@ extension ExamRouter: TargetType {
         case .getExamQuestions:
             return .requestPlain
         case .solveExamQuestions(_, answers: let answers):
-            struct Answers: Encodable {
+            struct AnswersRequest: Encodable {
                 var answers: [Bool]
             }
-            return .requestWithBody(Answers(answers: answers))
+            return .requestWithBody(AnswersRequest(answers: answers))
         }
     }
 }
