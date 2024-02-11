@@ -33,7 +33,6 @@
 		C013E91C2B748FB5003EB996 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9162B748FB5003EB996 /* Spacing.swift */; };
 		C013E91D2B748FB5003EB996 /* GradingResultComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9172B748FB5003EB996 /* GradingResultComponent.swift */; };
 		C013E91E2B748FB5003EB996 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9182B748FB5003EB996 /* PaddingLabel.swift */; };
-		C013E91F2B748FB5003EB996 /* ExampleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9192B748FB5003EB996 /* ExampleResult.swift */; };
 		C013E9232B74AACC003EB996 /* CategoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9222B74AACC003EB996 /* CategoryRouter.swift */; };
 		C013E9252B74AF45003EB996 /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9242B74AF45003EB996 /* BaseInterceptor.swift */; };
 		C013E9282B74E6DE003EB996 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9272B74E6DE003EB996 /* Publisher+.swift */; };
@@ -119,7 +118,6 @@
 		C013E9162B748FB5003EB996 /* Spacing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		C013E9172B748FB5003EB996 /* GradingResultComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingResultComponent.swift; sourceTree = "<group>"; };
 		C013E9182B748FB5003EB996 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
-		C013E9192B748FB5003EB996 /* ExampleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleResult.swift; sourceTree = "<group>"; };
 		C013E9222B74AACC003EB996 /* CategoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRouter.swift; sourceTree = "<group>"; };
 		C013E9242B74AF45003EB996 /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
 		C013E9272B74E6DE003EB996 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
@@ -236,6 +234,7 @@
 		B546B5612B7491F600AFA3EA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C013E94C2B78D891003EB996 /* DTO */,
 				C013E9382B785DE1003EB996 /* Response */,
 				C013E92D2B74EF2A003EB996 /* ExamService */,
 				C013E9212B74AAA5003EB996 /* Router */,
@@ -273,7 +272,6 @@
 				C013E9162B748FB5003EB996 /* Spacing.swift */,
 				C013E9172B748FB5003EB996 /* GradingResultComponent.swift */,
 				C013E9182B748FB5003EB996 /* PaddingLabel.swift */,
-				C013E9192B748FB5003EB996 /* ExampleResult.swift */,
 			);
 			path = ExamResult;
 			sourceTree = "<group>";
@@ -316,6 +314,15 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		C013E94C2B78D891003EB996 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				C0C63FB82B6A15B000771E55 /* ExamQuestionInquiryDTO.swift */,
+				C013E9482B78D3DE003EB996 /* ExamResultDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
 		C0771C952B70B69300780707 /* Bookmark */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,10 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */,
-				C0C63FB82B6A15B000771E55 /* ExamQuestionInquiryDTO.swift */,
 				C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */,
 				C013E9462B78D3B6003EB996 /* ProblemSolvingManagerImpl.swift */,
-				C013E9482B78D3DE003EB996 /* ExamResultDTO.swift */,
 				C013E94A2B78D402003EB996 /* CurrentQuizState.swift */,
 			);
 			path = ProblemSolve;
@@ -603,7 +608,6 @@
 				C013E94B2B78D402003EB996 /* CurrentQuizState.swift in Sources */,
 				C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */,
 				B546B5682B7492B300AFA3EA /* Config.swift in Sources */,
-				C013E91F2B748FB5003EB996 /* ExampleResult.swift in Sources */,
 				C013E91A2B748FB5003EB996 /* ExamResultViewController.swift in Sources */,
 				C0C63FBB2B6A16DE00771E55 /* ProblemSolvingViewModel.swift in Sources */,
 				C013E9282B74E6DE003EB996 /* Publisher+.swift in Sources */,
