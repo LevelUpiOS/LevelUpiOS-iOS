@@ -33,6 +33,7 @@
 		B5D40C4C2B772595009684CF /* SubmissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D40C4B2B772595009684CF /* SubmissionResponse.swift */; };
 		B5D40C4E2B7725FC009684CF /* SubmissionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D40C4D2B7725FC009684CF /* SubmissionRouter.swift */; };
 		B5D40C502B7726DF009684CF /* MainServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D40C4F2B7726DF009684CF /* MainServiceManager.swift */; };
+		B5D40C552B777214009684CF /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D40C542B777214009684CF /* UserDefaultsManager.swift */; };
 		B5D40C582B7772AC009684CF /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D40C572B7772AC009684CF /* AuthResponse.swift */; };
 		B5D40C5A2B7772C1009684CF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D40C592B7772C1009684CF /* AuthService.swift */; };
 		B5D40C5C2B7772D0009684CF /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D40C5B2B7772D0009684CF /* AuthRouter.swift */; };
@@ -118,6 +119,7 @@
 		B5D40C4B2B772595009684CF /* SubmissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionResponse.swift; sourceTree = "<group>"; };
 		B5D40C4D2B7725FC009684CF /* SubmissionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionRouter.swift; sourceTree = "<group>"; };
 		B5D40C4F2B7726DF009684CF /* MainServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainServiceManager.swift; sourceTree = "<group>"; };
+		B5D40C542B777214009684CF /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		B5D40C572B7772AC009684CF /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		B5D40C592B7772C1009684CF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B5D40C5B2B7772D0009684CF /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				B551B6F02B5F9A71009014AA /* Questions.swift */,
 				B551B6F22B5F9A83009014AA /* StringLiterals.swift */,
 				B546B5692B74934200AFA3EA /* Development.xcconfig */,
+				B5D40C542B777214009684CF /* UserDefaultsManager.swift */,
 			);
 			path = LevelUpiOS;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				B546B5642B74925D00AFA3EA /* TargetType.swift in Sources */,
 				C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */,
 				C013E91B2B748FB5003EB996 /* ExamResultComponent.swift in Sources */,
+				B5D40C552B777214009684CF /* UserDefaultsManager.swift in Sources */,
 				C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */,
 				C013E90F2B746B74003EB996 /* BookmarkAnswerViewController.swift in Sources */,
 				C013E9252B74AF45003EB996 /* BaseInterceptor.swift in Sources */,
