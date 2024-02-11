@@ -50,7 +50,7 @@
 		C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C9E2B70C8E800780707 /* Bookmark.swift */; };
 		C0C63FB22B69FDFC00771E55 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C0C63FB12B69FDFC00771E55 /* Alamofire */; };
 		C0C63FB72B6A010500771E55 /* ProblemSolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */; };
-		C0C63FB92B6A15B000771E55 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FB82B6A15B000771E55 /* Problem.swift */; };
+		C0C63FB92B6A15B000771E55 /* ExamQuestionInquiryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FB82B6A15B000771E55 /* ExamQuestionInquiryDTO.swift */; };
 		C0C63FBB2B6A16DE00771E55 /* ProblemSolvingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */; };
 		C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */; };
 		C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */; };
@@ -132,7 +132,7 @@
 		C0771C982B70B77D00780707 /* BookmarkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkItem.swift; sourceTree = "<group>"; };
 		C0771C9E2B70C8E800780707 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSolvingViewController.swift; sourceTree = "<group>"; };
-		C0C63FB82B6A15B000771E55 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
+		C0C63FB82B6A15B000771E55 /* ExamQuestionInquiryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamQuestionInquiryDTO.swift; sourceTree = "<group>"; };
 		C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSolvingViewModel.swift; sourceTree = "<group>"; };
 		C0C63FC12B6A351900771E55 /* LevelUpiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LevelUpiOS.xctestplan; sourceTree = "<group>"; };
 		C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LevelUpiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,7 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				C0C63FB62B6A010500771E55 /* ProblemSolvingViewController.swift */,
-				C0C63FB82B6A15B000771E55 /* Problem.swift */,
+				C0C63FB82B6A15B000771E55 /* ExamQuestionInquiryDTO.swift */,
 				C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */,
 			);
 			path = ProblemSolve;
@@ -597,7 +597,7 @@
 				C013E91A2B748FB5003EB996 /* ExamResultViewController.swift in Sources */,
 				C0C63FBB2B6A16DE00771E55 /* ProblemSolvingViewModel.swift in Sources */,
 				C013E9282B74E6DE003EB996 /* Publisher+.swift in Sources */,
-				C0C63FB92B6A15B000771E55 /* Problem.swift in Sources */,
+				C0C63FB92B6A15B000771E55 /* ExamQuestionInquiryDTO.swift in Sources */,
 				C013E91E2B748FB5003EB996 /* PaddingLabel.swift in Sources */,
 				C0C63FB72B6A010500771E55 /* ProblemSolvingViewController.swift in Sources */,
 				C013E91C2B748FB5003EB996 /* Spacing.swift in Sources */,

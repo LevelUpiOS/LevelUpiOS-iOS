@@ -8,47 +8,54 @@
 import Foundation
 import Combine
 
-enum ProblemSolvingError: Error {
-    case emptyData
-}
-
 struct CurrentQuizState {
     var description: String?
     var percentage: Float
     var quizIndex: Int
 }
 
-protocol ProblemSolvingManager {
-    func getQuiz(from subjectId: Int) async throws -> Problem
-}
+//struct examResultDTO {
+//    
+//}
 
-struct ProblemSolvingManagerImpl: ProblemSolvingManager {
-    func getQuiz(from subjectId: Int) async throws -> Problem {
-        return Problem.mockData
+struct ProblemSolvingManagerImpl {
+    
+    let examService = ExamService()
+    
+    func getQuiz(from subjectId: Int) async throws -> ExamQuestionInquiryDTO {
+        return try await examService.getExamQuestions(examID: subjectId).0.toDTO()
     }
+    
+//    func solveQuiz(from subjectId: Int, answers: [Bool]) async throws ->
 }
 
 final class ProblemSolvingViewModel {
     
-    let manager: ProblemSolvingManager
-    
-    init(manager: ProblemSolvingManager) {
-        self.manager = manager
-    }
-    
+    var manager = ProblemSolvingManagerImpl()
+
     var lastQuiz: Bool {
-        return self.problemCount == self.datas.descriptions.count
+        return self.problemCount == self.datas.count
     }
     
     var percentage: Float {
-        return Float(self.problemCount)/Float(self.datas.descriptions.count)
+        return Float(self.problemCount)/Float(self.datas.count)
+    }
+    
+    var currentDescription: String {
+        return self.datas[min(self.datas.count-1, self.problemCount)]
+    }
+    
+    var currentQuizIndex: Int {
+        return min(self.datas.count, self.problemCount+1)
     }
     
     var cancelBag = Set<AnyCancellable>()
+    
     var problemCount = 0
     var userAnswers: [Bool] = []
-    
-    var datas: Problem = .empty
+    var subjectId: Int?
+    var bookmarks: [Bool]?
+    var datas: [String] = []
 
     struct Input {
         let userAnswerSubject: PassthroughSubject<Bool, Never>
@@ -56,32 +63,25 @@ final class ProblemSolvingViewModel {
     }
     
     struct Output {
-        let viewwillAppearPublisher: AnyPublisher<(String, String), Never>
+        let viewwillAppearPublisher: AnyPublisher<String, Never>
         let userAnswerPublisher: AnyPublisher<CurrentQuizState, Never>
         let lastAnwerPublisher: PassthroughSubject<Void, Never>
+        let titlePublisher: PassthroughSubject<String, Never>
     }
     
-    // input이들어왔을떄 네트워킹통신을했는데 stream이 나와야됨
     func transform(from input: Input) -> Output {
         let lastAnwerPublisher = PassthroughSubject<Void, Never>()
+        let titlePublisher = PassthroughSubject<String, Never>()
         
-        let viewwillAppearSubject = input.viewwillAppearSubject
-            .flatMap { _ -> AnyPublisher<(String, String), Never> in
-                return Future<(String, String), Error> { promise in
-                    Task {
-                        do {
-                            let inputData = try await self.manager.getQuiz(from: 1)
-                            self.datas = inputData
-                            promise(.success((inputData.subject, inputData.descriptions[0])))
-                        } catch {
-                            promise(.failure(error))
-                        }
-                    }
-                }
-                .catch { _ in
-                    return Just(("실패", "실패1"))
-                }
-                .eraseToAnyPublisher()
+        let viewwillAppearSubject: AnyPublisher<String, Never> = input.viewwillAppearSubject
+            .requestAPI(failure: "오류발생") { _ in
+                let inputData = try await self.manager.getQuiz(from: 1)
+                self.datas = inputData.questions.map { $0.paragraph }
+                self.bookmarks = inputData.questions.map { $0.bookmark }
+                titlePublisher.send(inputData.name)
+                return self.datas[0]
+            } errorHandler: { error in
+                print(error)
             }
             .eraseToAnyPublisher()
         
@@ -90,16 +90,15 @@ final class ProblemSolvingViewModel {
                 self.userAnswers.append(type)
                 self.problemCount += 1
                 if self.lastQuiz { lastAnwerPublisher.send(()) }
-                let descriptionIndex = min(self.datas.descriptions.count-1, self.problemCount)
-                let quizIndex = min(self.datas.descriptions.count, self.problemCount+1)
-                return CurrentQuizState(description: self.datas.descriptions[descriptionIndex],
+                return CurrentQuizState(description: self.currentDescription,
                                         percentage: self.percentage,
-                                        quizIndex: quizIndex)
+                                        quizIndex: self.currentQuizIndex)
             }
             .eraseToAnyPublisher()
         
         return Output(viewwillAppearPublisher: viewwillAppearSubject,
                       userAnswerPublisher: userAnswerPublisher,
-                      lastAnwerPublisher: lastAnwerPublisher)
+                      lastAnwerPublisher: lastAnwerPublisher,
+                      titlePublisher: titlePublisher)
     }
 }

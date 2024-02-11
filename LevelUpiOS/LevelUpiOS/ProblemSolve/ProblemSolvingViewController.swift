@@ -191,10 +191,15 @@ private extension ProblemSolvingViewController {
     func bind() {
         let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
                                                      viewwillAppearSubject: viewwillAppearSubject))
+        output.titlePublisher
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] in self?.title = $0 }
+            .store(in: &cancelBag)
+        
+        
         output.viewwillAppearPublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] subject, description in
-                self?.title = subject
+            .sink { [weak self] description in
                 self?.quizDescription.text = description
                 self?.problemSolvingProgressBar.setProgress(0, animated: true)
             }
@@ -214,7 +219,6 @@ private extension ProblemSolvingViewController {
             .sink { [weak self] _ in
                 let alert = UIAlertController.subminQuizAlert { 
                     self?.view.isUserInteractionEnabled = false
-                    print("제출했어요~")
                 }
                 self?.present(alert, animated: true)
             }
