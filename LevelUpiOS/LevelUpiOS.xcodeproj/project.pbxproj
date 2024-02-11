@@ -42,6 +42,9 @@
 		C013E93A2B785DEB003EB996 /* CategoryInquiryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9392B785DEB003EB996 /* CategoryInquiryResponse.swift */; };
 		C013E93C2B785E28003EB996 /* ExamQuestionInquiryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E93B2B785E28003EB996 /* ExamQuestionInquiryResponse.swift */; };
 		C013E93F2B785E61003EB996 /* ExamQuestionSolvingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E93E2B785E61003EB996 /* ExamQuestionSolvingResponse.swift */; };
+		C013E9412B787849003EB996 /* BookmarkListInquiryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9402B787849003EB996 /* BookmarkListInquiryResponse.swift */; };
+		C013E9432B787933003EB996 /* BookmarkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9422B787933003EB996 /* BookmarkRouter.swift */; };
+		C013E9452B787A42003EB996 /* BookmarkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9442B787A42003EB996 /* BookmarkService.swift */; };
 		C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C962B70B6A100780707 /* BookmarkViewController.swift */; };
 		C0771C992B70B77D00780707 /* BookmarkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C982B70B77D00780707 /* BookmarkItem.swift */; };
 		C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C9E2B70C8E800780707 /* Bookmark.swift */; };
@@ -122,6 +125,9 @@
 		C013E9392B785DEB003EB996 /* CategoryInquiryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInquiryResponse.swift; sourceTree = "<group>"; };
 		C013E93B2B785E28003EB996 /* ExamQuestionInquiryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamQuestionInquiryResponse.swift; sourceTree = "<group>"; };
 		C013E93E2B785E61003EB996 /* ExamQuestionSolvingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamQuestionSolvingResponse.swift; sourceTree = "<group>"; };
+		C013E9402B787849003EB996 /* BookmarkListInquiryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListInquiryResponse.swift; sourceTree = "<group>"; };
+		C013E9422B787933003EB996 /* BookmarkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRouter.swift; sourceTree = "<group>"; };
+		C013E9442B787A42003EB996 /* BookmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkService.swift; sourceTree = "<group>"; };
 		C0771C962B70B6A100780707 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		C0771C982B70B77D00780707 /* BookmarkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkItem.swift; sourceTree = "<group>"; };
 		C0771C9E2B70C8E800780707 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
@@ -271,6 +277,7 @@
 			children = (
 				C013E9222B74AACC003EB996 /* CategoryRouter.swift */,
 				C013E92E2B74EF50003EB996 /* ExamRouter.swift */,
+				C013E9422B787933003EB996 /* BookmarkRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -287,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				C013E9332B74F17B003EB996 /* ExamService.swift */,
+				C013E9442B787A42003EB996 /* BookmarkService.swift */,
 			);
 			path = ExamService;
 			sourceTree = "<group>";
@@ -297,6 +305,7 @@
 				C013E9392B785DEB003EB996 /* CategoryInquiryResponse.swift */,
 				C013E93B2B785E28003EB996 /* ExamQuestionInquiryResponse.swift */,
 				C013E93E2B785E61003EB996 /* ExamQuestionSolvingResponse.swift */,
+				C013E9402B787849003EB996 /* BookmarkListInquiryResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -551,8 +560,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B546B5602B74914500AFA3EA /* ChapterComponent.swift in Sources */,
+				C013E9452B787A42003EB996 /* BookmarkService.swift in Sources */,
 				C0EA8F2A2B5F9B3E0073C1D4 /* CGColor+.swift in Sources */,
 				B546B55B2B747F8D00AFA3EA /* CircularProgressBarView.swift in Sources */,
+				C013E9432B787933003EB996 /* BookmarkRouter.swift in Sources */,
 				C013E93F2B785E61003EB996 /* ExamQuestionSolvingResponse.swift in Sources */,
 				B546B5592B6A583300AFA3EA /* MainViewController.swift in Sources */,
 				C0EA8F372B5F9C6F0073C1D4 /* Font.swift in Sources */,
@@ -560,6 +571,7 @@
 				B546B56D2B74956400AFA3EA /* APIService.swift in Sources */,
 				B546B5482B6A225D00AFA3EA /* ReviewBoxView.swift in Sources */,
 				B551B6F32B5F9A83009014AA /* StringLiterals.swift in Sources */,
+				C013E9412B787849003EB996 /* BookmarkListInquiryResponse.swift in Sources */,
 				C013E9232B74AACC003EB996 /* CategoryRouter.swift in Sources */,
 				C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */,
 				B546B55F2B74914500AFA3EA /* ChapterContent.swift in Sources */,
