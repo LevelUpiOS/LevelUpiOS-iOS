@@ -38,8 +38,10 @@
 		C013E9252B74AF45003EB996 /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9242B74AF45003EB996 /* BaseInterceptor.swift */; };
 		C013E9282B74E6DE003EB996 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9272B74E6DE003EB996 /* Publisher+.swift */; };
 		C013E92F2B74EF50003EB996 /* ExamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E92E2B74EF50003EB996 /* ExamRouter.swift */; };
-		C013E9312B74F02D003EB996 /* ExamQuestionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9302B74F02D003EB996 /* ExamQuestionInfo.swift */; };
 		C013E9342B74F17B003EB996 /* ExamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9332B74F17B003EB996 /* ExamService.swift */; };
+		C013E93A2B785DEB003EB996 /* CategoryInquiryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9392B785DEB003EB996 /* CategoryInquiryResponse.swift */; };
+		C013E93C2B785E28003EB996 /* ExamQuestionInquiryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E93B2B785E28003EB996 /* ExamQuestionInquiryResponse.swift */; };
+		C013E93F2B785E61003EB996 /* ExamQuestionSolvingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E93E2B785E61003EB996 /* ExamQuestionSolvingResponse.swift */; };
 		C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C962B70B6A100780707 /* BookmarkViewController.swift */; };
 		C0771C992B70B77D00780707 /* BookmarkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C982B70B77D00780707 /* BookmarkItem.swift */; };
 		C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C9E2B70C8E800780707 /* Bookmark.swift */; };
@@ -116,8 +118,10 @@
 		C013E9242B74AF45003EB996 /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
 		C013E9272B74E6DE003EB996 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
 		C013E92E2B74EF50003EB996 /* ExamRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamRouter.swift; sourceTree = "<group>"; };
-		C013E9302B74F02D003EB996 /* ExamQuestionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamQuestionInfo.swift; sourceTree = "<group>"; };
 		C013E9332B74F17B003EB996 /* ExamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamService.swift; sourceTree = "<group>"; };
+		C013E9392B785DEB003EB996 /* CategoryInquiryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInquiryResponse.swift; sourceTree = "<group>"; };
+		C013E93B2B785E28003EB996 /* ExamQuestionInquiryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamQuestionInquiryResponse.swift; sourceTree = "<group>"; };
+		C013E93E2B785E61003EB996 /* ExamQuestionSolvingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamQuestionSolvingResponse.swift; sourceTree = "<group>"; };
 		C0771C962B70B6A100780707 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		C0771C982B70B77D00780707 /* BookmarkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkItem.swift; sourceTree = "<group>"; };
 		C0771C9E2B70C8E800780707 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
@@ -220,9 +224,9 @@
 		B546B5612B7491F600AFA3EA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C013E9382B785DE1003EB996 /* Response */,
 				C013E92D2B74EF2A003EB996 /* ExamService */,
 				C013E9212B74AAA5003EB996 /* Router */,
-				C013E9202B74AA78003EB996 /* CategoryService */,
 				B546B5622B74925500AFA3EA /* Base */,
 			);
 			path = Network;
@@ -262,13 +266,6 @@
 			path = ExamResult;
 			sourceTree = "<group>";
 		};
-		C013E9202B74AA78003EB996 /* CategoryService */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CategoryService;
-			sourceTree = "<group>";
-		};
 		C013E9212B74AAA5003EB996 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,10 +286,19 @@
 		C013E92D2B74EF2A003EB996 /* ExamService */ = {
 			isa = PBXGroup;
 			children = (
-				C013E9302B74F02D003EB996 /* ExamQuestionInfo.swift */,
 				C013E9332B74F17B003EB996 /* ExamService.swift */,
 			);
 			path = ExamService;
+			sourceTree = "<group>";
+		};
+		C013E9382B785DE1003EB996 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C013E9392B785DEB003EB996 /* CategoryInquiryResponse.swift */,
+				C013E93B2B785E28003EB996 /* ExamQuestionInquiryResponse.swift */,
+				C013E93E2B785E61003EB996 /* ExamQuestionSolvingResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		C0771C952B70B69300780707 /* Bookmark */ = {
@@ -544,10 +550,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C013E9312B74F02D003EB996 /* ExamQuestionInfo.swift in Sources */,
 				B546B5602B74914500AFA3EA /* ChapterComponent.swift in Sources */,
 				C0EA8F2A2B5F9B3E0073C1D4 /* CGColor+.swift in Sources */,
 				B546B55B2B747F8D00AFA3EA /* CircularProgressBarView.swift in Sources */,
+				C013E93F2B785E61003EB996 /* ExamQuestionSolvingResponse.swift in Sources */,
 				B546B5592B6A583300AFA3EA /* MainViewController.swift in Sources */,
 				C0EA8F372B5F9C6F0073C1D4 /* Font.swift in Sources */,
 				B546B5392B6A02B200AFA3EA /* TopicHeaderComponent.swift in Sources */,
@@ -557,6 +563,7 @@
 				C013E9232B74AACC003EB996 /* CategoryRouter.swift in Sources */,
 				C0EA8F352B5F9C5E0073C1D4 /* UIFont+.swift in Sources */,
 				B546B55F2B74914500AFA3EA /* ChapterContent.swift in Sources */,
+				C013E93C2B785E28003EB996 /* ExamQuestionInquiryResponse.swift in Sources */,
 				B546B53B2B6A034B00AFA3EA /* TopicHeaderContent.swift in Sources */,
 				B546B5462B6A225000AFA3EA /* ProgressBoxView.swift in Sources */,
 				C013E92F2B74EF50003EB996 /* ExamRouter.swift in Sources */,
@@ -582,6 +589,7 @@
 				C013E91E2B748FB5003EB996 /* PaddingLabel.swift in Sources */,
 				C0C63FB72B6A010500771E55 /* ProblemSolvingViewController.swift in Sources */,
 				C013E91C2B748FB5003EB996 /* Spacing.swift in Sources */,
+				C013E93A2B785DEB003EB996 /* CategoryInquiryResponse.swift in Sources */,
 				C0771C992B70B77D00780707 /* BookmarkItem.swift in Sources */,
 				B551B6F12B5F9A71009014AA /* Questions.swift in Sources */,
 				C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */,

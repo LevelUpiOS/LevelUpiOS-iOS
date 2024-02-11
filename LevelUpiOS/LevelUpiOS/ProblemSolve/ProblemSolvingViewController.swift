@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 
+import Alamofire
 import SnapKit
 
 final class ProblemSolvingViewController: UIViewController {
@@ -101,18 +102,7 @@ final class ProblemSolvingViewController: UIViewController {
         setHierarchy()
         setLayout()
         setAddTarget()
-        bind()
-        
-        Task {
-            do {
-                guard let results = try? await examService.solveExamQuestions(id: 1, answers: [true, true]) else {
-                    return
-                }
-                print(results.0)
-                
-            }
-        }
-        
+        bind()        
     }
     
     override func viewWillAppear(_ animated: Bool) {

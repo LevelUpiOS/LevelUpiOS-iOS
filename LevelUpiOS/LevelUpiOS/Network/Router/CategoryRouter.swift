@@ -8,27 +8,12 @@
 import Foundation
 import Alamofire
 
-struct CategoryDatas: Decodable {
-    var categsories: [CategoryData]
-}
-
-struct CategoryData: Decodable {
-    var id: Int
-    var name: String
-    var description: String
-    var exams: [Exam]
-}
-
-struct Exam: Decodable {
-    var id: Int
-    var name: String
-}
-
 enum CategoryRouter {
     case getCategory
 }
 
 extension CategoryRouter: TargetType {
+    
     var method: HTTPMethod {
         switch self {
         case .getCategory:

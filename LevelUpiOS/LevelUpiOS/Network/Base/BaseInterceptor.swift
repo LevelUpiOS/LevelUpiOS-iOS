@@ -11,18 +11,10 @@ import Alamofire
 final class BaseInterceptor: RequestInterceptor {
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var request = urlRequest
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
+
+        request.addValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         request.addValue("X_AUTH_TOKEN=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MDczNzQzMDN9.AcOnVzuM7GGom4WFrIW6fRGFt4xXHXTbsSbefemjZcY", forHTTPHeaderField: "cookie")
-        let dict: [String:String] = [:]
-        
-        do {
-            request = try URLEncodedFormParameterEncoder().encode(dict, into: request)
-        } catch {
-            print(error)
-        }
-        
+
         completion(.success(request))
     }
 }
