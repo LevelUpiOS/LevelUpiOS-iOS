@@ -226,6 +226,14 @@ private extension ProblemSolvingViewController {
                 self?.present(alert, animated: true)
             }
             .store(in: &cancelBag)
+        
+        output.submitAnswerSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                let resultVC = ExamResultViewController(data: data)
+                self?.navigationController?.pushViewController(resultVC, animated: true)
+            }
+            .store(in: &cancelBag)
     }
 }
 

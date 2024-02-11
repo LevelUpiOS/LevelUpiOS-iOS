@@ -13,7 +13,7 @@ import SnapKit
 
 struct ExamResultItem: IdentifiableComponent {
     var questionNumber: Int
-    var result: ExamResult
+    var result: ExamResultDTO.ExamResultPerQuiz
     var id: Int {
         return questionNumber
     }
@@ -24,9 +24,9 @@ struct ExamResultItem: IdentifiableComponent {
     func render(in content: ExamResultComponent) {
         let questionNumberString = "\(questionNumber)."
         content.questionNumberLabel.text = questionNumberString
-        content.questionLabel.text = result.question
+        content.questionLabel.text = result.description
         content.checkImage.image = .init(named: result.isCorrect ? "rightChecker" : "wrongChecker")
-        content.explanationLabel.text = result.explaination
+        content.explanationLabel.text = result.explanation
         content.answerImageView.image = .init(named: result.answer ? "ic_true" : "ic_false")
     }
 }
