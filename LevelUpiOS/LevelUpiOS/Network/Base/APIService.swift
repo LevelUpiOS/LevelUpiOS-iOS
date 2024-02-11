@@ -66,7 +66,7 @@ final class APIService {
             .serializingData()
         
         switch await dataTask.result {
-        case .success(let value):
+        case .success:
             guard let response = await dataTask.response.response else {
                 throw LevelUpError.serverNoResponse
             }
