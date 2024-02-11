@@ -14,9 +14,21 @@ struct CurrentQuizState {
     var quizIndex: Int
 }
 
-//struct examResultDTO {
-//    
-//}
+struct ExamResultDTO {
+    var id: Int
+    var examId: Int
+    var score: Int
+    var results: [ExamResultPerQuiz]
+    
+    struct ExamResultPerQuiz {
+        var id: Int
+        var description: String
+        var userAnser: Bool
+        var answer: Bool
+        var isCorrect: Bool
+        var isBookmarked: Bool
+    }
+}
 
 struct ProblemSolvingManagerImpl {
     
@@ -26,13 +38,25 @@ struct ProblemSolvingManagerImpl {
         return try await examService.getExamQuestions(examID: subjectId).0.toDTO()
     }
     
-//    func solveQuiz(from subjectId: Int, answers: [Bool]) async throws ->
+    func solveQuiz(from subjectId: Int, answers: [Bool], bookmarkData: [Bool], ids: [Int]) async throws -> ExamResultDTO {
+        let resultResponse = try await examService.solveExamQuestions(id: subjectId, answers: answers).0
+        return .init(id: resultResponse.id,
+                     examId: resultResponse.examId,
+                     score: resultResponse.score,
+                     results: resultResponse.results.enumerated().map { .init(id: ids[$0],
+                                                                              description: $1.question,
+                                                                              userAnser: answers[$0],
+                                                                              answer: $1.answer,
+                                                                              isCorrect: $1.isCorrect,
+                                                                              isBookmarked: bookmarkData[$0])
+        })
+    }
 }
 
 final class ProblemSolvingViewModel {
     
     var manager = ProblemSolvingManagerImpl()
-
+    
     var lastQuiz: Bool {
         return self.problemCount == self.datas.count
     }
@@ -55,11 +79,13 @@ final class ProblemSolvingViewModel {
     var userAnswers: [Bool] = []
     var subjectId: Int?
     var bookmarks: [Bool]?
+    var quizIDs: [Int]?
     var datas: [String] = []
-
+    
     struct Input {
         let userAnswerSubject: PassthroughSubject<Bool, Never>
         let viewwillAppearSubject: PassthroughSubject<Void, Never>
+        let submitAnswerSubject: PassthroughSubject<Void, Never>
     }
     
     struct Output {
@@ -70,7 +96,7 @@ final class ProblemSolvingViewModel {
     }
     
     func transform(from input: Input) -> Output {
-        let lastAnwerPublisher = PassthroughSubject<Void, Never>()
+        let lastAnswerPublisher = PassthroughSubject<Void, Never>()
         let titlePublisher = PassthroughSubject<String, Never>()
         
         let viewwillAppearSubject: AnyPublisher<String, Never> = input.viewwillAppearSubject
@@ -78,6 +104,8 @@ final class ProblemSolvingViewModel {
                 let inputData = try await self.manager.getQuiz(from: 1)
                 self.datas = inputData.questions.map { $0.paragraph }
                 self.bookmarks = inputData.questions.map { $0.bookmark }
+                self.subjectId = inputData.id
+                self.quizIDs = inputData.questions.map { $0.id }
                 titlePublisher.send(inputData.name)
                 return self.datas[0]
             } errorHandler: { error in
@@ -89,16 +117,31 @@ final class ProblemSolvingViewModel {
             .map { type in
                 self.userAnswers.append(type)
                 self.problemCount += 1
-                if self.lastQuiz { lastAnwerPublisher.send(()) }
+                if self.lastQuiz { lastAnswerPublisher.send(()) }
                 return CurrentQuizState(description: self.currentDescription,
                                         percentage: self.percentage,
                                         quizIndex: self.currentQuizIndex)
             }
             .eraseToAnyPublisher()
         
+        input.submitAnswerSubject.sink { _ in
+            Task {
+                do {
+                    guard let bookmarks = self.bookmarks,
+                          let quizIDs = self.quizIDs,
+                          let subjectId = self.subjectId else { return }
+                    let results = try await self.manager.solveQuiz(from: subjectId, answers: self.userAnswers, bookmarkData: bookmarks, ids: quizIDs)
+                    dump(results)
+                } catch {
+                    print(error as! LevelUpError)
+                }
+            }
+        }
+        .store(in: &cancelBag)
+        
         return Output(viewwillAppearPublisher: viewwillAppearSubject,
                       userAnswerPublisher: userAnswerPublisher,
-                      lastAnwerPublisher: lastAnwerPublisher,
+                      lastAnwerPublisher: lastAnswerPublisher,
                       titlePublisher: titlePublisher)
     }
 }

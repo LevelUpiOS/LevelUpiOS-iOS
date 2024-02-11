@@ -27,6 +27,7 @@ final class ProblemSolvingViewController: UIViewController {
     var cancelBag = Set<AnyCancellable>()
     let userAnswerSubject = PassthroughSubject<Bool, Never>()
     let viewwillAppearSubject = PassthroughSubject<Void, Never>()
+    let submitAnswerSubject = PassthroughSubject<Void, Never>()
     
     let problemSolvingProgressBar: UIProgressView = {
         let pb = UIProgressView(progressViewStyle: .bar)
@@ -190,7 +191,8 @@ private extension ProblemSolvingViewController {
     
     func bind() {
         let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
-                                                     viewwillAppearSubject: viewwillAppearSubject))
+                                                     viewwillAppearSubject: viewwillAppearSubject,
+                                                     submitAnswerSubject: submitAnswerSubject))
         output.titlePublisher
             .receive(on: DispatchQueue.main)
             .sink {[weak self] in self?.title = $0 }
@@ -219,6 +221,7 @@ private extension ProblemSolvingViewController {
             .sink { [weak self] _ in
                 let alert = UIAlertController.subminQuizAlert { 
                     self?.view.isUserInteractionEnabled = false
+                    self?.submitAnswerSubject.send(())
                 }
                 self?.present(alert, animated: true)
             }
