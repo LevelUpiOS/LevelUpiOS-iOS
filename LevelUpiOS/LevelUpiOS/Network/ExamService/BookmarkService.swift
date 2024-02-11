@@ -10,8 +10,8 @@ import Foundation
 final class BookmarkService {
     let apiService = APIService()
     
-    func getBookmakrList() async throws -> (BookmarkListInquiryResponse, Int) {
-        let router = BookmarkRouter.getBookmarks
+    func getBookmakrList(isBookmared: Bool = true) async throws -> (BookmarkListInquiryResponse, Int) {
+        let router = BookmarkRouter.getBookmarks(isBookmared: isBookmared)
         return try await apiService.request(target: router)
     }
     

@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum BookmarkRouter {
-    case getBookmarks
+    case getBookmarks(isBookmared: Bool = true)
     case makeBookmark(id: Int)
     case deleteBookmark(id: Int)
 }
@@ -19,9 +19,9 @@ extension BookmarkRouter: TargetType {
         switch self {
         case .getBookmarks:
             return .get
-        case .makeBookmark(let id):
+        case .makeBookmark:
             return .post
-        case .deleteBookmark(let id):
+        case .deleteBookmark:
             return .delete
         }
     }
@@ -39,11 +39,11 @@ extension BookmarkRouter: TargetType {
     
     var parameters: RequestParams {
         switch self {
-        case .getBookmarks:
+        case .getBookmarks(let isBookmared):
             struct GetBookmarkRequest: Encodable {
                 var bookmarkOnly: Bool
             }
-            return .requestQuery(GetBookmarkRequest(bookmarkOnly: true))
+            return .requestQuery(GetBookmarkRequest(bookmarkOnly: isBookmared))
         case .makeBookmark, .deleteBookmark:
             return .requestPlain
         }
