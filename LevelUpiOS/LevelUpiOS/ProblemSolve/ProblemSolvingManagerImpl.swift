@@ -15,18 +15,13 @@ final class ProblemSolvingManagerImpl {
         return try await examService.getExamQuestions(examID: subjectId).0.toDTO()
     }
     
-    func solveQuiz(from subjectId: Int, answers: [Bool], bookmarkData: [Bool], ids: [Int]) async throws -> ExamResultDTO {
-        let resultResponse = try await examService.solveExamQuestions(id: subjectId, answers: answers).0
-        return .init(id: resultResponse.id,
-                     examId: resultResponse.examId,
-                     score: resultResponse.score,
-                     results: resultResponse.results.enumerated().map { .init(id: ids[$0],
-                                                                              description: $1.question,
-                                                                              explanation: $1.explanation,
-                                                                              userAnser: answers[$0],
-                                                                              answer: $1.answer,
-                                                                              isCorrect: $1.isCorrect,
-                                                                              isBookmarked: bookmarkData[$0])
-        })
+    func solveQuiz(from subjectId: Int, answers: [Bool]) async throws -> ExamResultDTO {
+        let response = try await examService.solveExamQuestions(id: subjectId, answers: answers).0
+        let resultDTO = response.results.map { ExamResultDTO.ExamResultPerQuiz(description: $0.question,
+                                                                               explanation: $0.explanation,
+                                                                               userAnswer: $0.guess,
+                                                                               answer: $0.answer,
+                                                                               isCorrect: $0.isCorrect) }
+        return .init(id: response.id, examId: response.examId, score: response.score, results: resultDTO)
     }
 }

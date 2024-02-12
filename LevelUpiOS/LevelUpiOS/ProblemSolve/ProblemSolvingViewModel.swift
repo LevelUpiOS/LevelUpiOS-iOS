@@ -11,32 +11,17 @@ import Combine
 final class ProblemSolvingViewModel {
     
     var manager = ProblemSolvingManagerImpl()
-    
-    var lastQuiz: Bool {
-        return self.problemCount == self.descriptions.count
-    }
-    
-    var percentage: Float {
-        return Float(self.problemCount)/Float(self.descriptions.count)
-    }
-    
-    var currentDescription: String {
-        return self.descriptions[min(self.descriptions.count-1, self.problemCount)]
-    }
-    
-    var currentQuizIndex: Int {
-        return min(self.descriptions.count, self.problemCount+1)
-    }
-    
     var cancelBag = Set<AnyCancellable>()
     
     var problemCount = 0
     var userAnswers: [Bool] = []
     var descriptions: [String] = []
     
-    var subjectId: Int?
-    var bookmarks: [Bool]?
-    var quizIDs: [Int]?
+    var subjectId: Int
+    
+    init(id: Int) {
+        self.subjectId = id
+    }
     
     struct Input {
         let userAnswerSubject: PassthroughSubject<Bool, Never>
@@ -45,26 +30,22 @@ final class ProblemSolvingViewModel {
     }
     
     struct Output {
-        let viewwillAppearPublisher: AnyPublisher<String, Never>
+        let viewwillAppearPublisher: AnyPublisher<(String, String), Never>
         let userAnswerPublisher: AnyPublisher<CurrentQuizState, Never>
         let lastAnwerPublisher: AnyPublisher<Void, Never>
-        let titlePublisher: AnyPublisher<String, Never>
-        let submitAnswerSubject: AnyPublisher<ExamResultDTO, Never>
+        let resultPublisher: AnyPublisher<ExamResultWithUserInfoDTO, Never>
     }
     
     func transform(from input: Input) -> Output {
         let lastAnswerPublisher = PassthroughSubject<Void, Never>()
-        let titlePublisher = PassthroughSubject<String, Never>()
+        let quizInquiryPublisher = PassthroughSubject<ExamQuestionInquiryDTO, Never>()
         
-        let viewwillAppearSubject: AnyPublisher<String, Never> = input.viewwillAppearSubject
-            .requestAPI(failure: "오류발생") { _ in
-                let inputData = try await self.manager.getQuiz(from: 1)
+        let viewwillAppearSubject: AnyPublisher<(String, String), Never> = input.viewwillAppearSubject
+            .requestAPI(failure: ("오류발생", "오류발생")) { _ in
+                let inputData = try await self.manager.getQuiz(from: self.subjectId)
+                quizInquiryPublisher.send(inputData)
                 self.descriptions = inputData.questions.map { $0.paragraph }
-                self.bookmarks = inputData.questions.map { $0.bookmark }
-                self.subjectId = inputData.id
-                self.quizIDs = inputData.questions.map { $0.id }
-                titlePublisher.send(inputData.name)
-                return self.descriptions[0]
+                return (inputData.questions[0].paragraph, inputData.name)
             } errorHandler: { error in
                 print(error)
             }
@@ -83,19 +64,51 @@ final class ProblemSolvingViewModel {
         
         let submitAnswerSubject: AnyPublisher<ExamResultDTO, Never> = input.submitAnswerSubject
             .requestAPI(failure: .empty) { _ in
-                guard let bookmarks = self.bookmarks,
-                      let quizIDs = self.quizIDs,
-                      let subjectId = self.subjectId else { return .empty }
-                return try await self.manager.solveQuiz(from: subjectId, answers: self.userAnswers, bookmarkData: bookmarks, ids: quizIDs)
+                return try await self.manager.solveQuiz(from: self.subjectId, answers: self.userAnswers)
             } errorHandler: { error in
                 print(error)
             }
             .eraseToAnyPublisher()
         
+        let resultPublisher = quizInquiryPublisher.combineLatest(submitAnswerSubject)
+            .map { return self.mergeExamResult(inquiry: $0, result: $1) }
+            .eraseToAnyPublisher()
+        
         return Output(viewwillAppearPublisher: viewwillAppearSubject,
                       userAnswerPublisher: userAnswerPublisher,
                       lastAnwerPublisher: lastAnswerPublisher.eraseToAnyPublisher(),
-                      titlePublisher: titlePublisher.eraseToAnyPublisher(),
-                      submitAnswerSubject: submitAnswerSubject)
+                      resultPublisher: resultPublisher)
+    }
+}
+
+private extension ProblemSolvingViewModel {
+    var lastQuiz: Bool {
+        return self.problemCount == self.descriptions.count
+    }
+    
+    var percentage: Float {
+        return Float(self.problemCount)/Float(self.descriptions.count)
+    }
+    
+    var currentDescription: String {
+        return self.descriptions[min(self.descriptions.count-1, self.problemCount)]
+    }
+    
+    var currentQuizIndex: Int {
+        return min(self.descriptions.count, self.problemCount+1)
+    }
+    
+    func mergeExamResult(inquiry: ExamQuestionInquiryDTO, result: ExamResultDTO) -> ExamResultWithUserInfoDTO {
+        let examResultPerQuiz = inquiry.questions.enumerated().map {
+            let resultElement = result.results[$0]
+            return ExamResultWithUserInfoDTO.ExamResultWithBookmark(id: $1.id,
+                                                                    description: $1.paragraph,
+                                                                    explanation: resultElement.explanation,
+                                                                    userAnswer: resultElement.userAnswer,
+                                                                    answer: resultElement.answer,
+                                                                    isCorrect: resultElement.isCorrect,
+                                                                    isBookmarked: $1.bookmark)
+        }
+        return .init(id: result.id, examId: result.examId, score: result.score, results: examResultPerQuiz)
     }
 }

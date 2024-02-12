@@ -21,9 +21,9 @@ final class ExamResultViewController: UIViewController {
     }()
     let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
     
-    var data: ExamResultDTO
+    var data: ExamResultWithUserInfoDTO
     
-    init(data: ExamResultDTO) {
+    init(data: ExamResultWithUserInfoDTO) {
         self.data = data
         super.init(nibName: nil, bundle: nil)
     }

@@ -193,16 +193,13 @@ private extension ProblemSolvingViewController {
         let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
                                                      viewwillAppearSubject: viewwillAppearSubject,
                                                      submitAnswerSubject: submitAnswerSubject))
-        output.titlePublisher
-            .receive(on: DispatchQueue.main)
-            .sink {[weak self] in self?.title = $0 }
-            .store(in: &cancelBag)
         
         
         output.viewwillAppearPublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] description in
+            .sink { [weak self] title, description  in
                 self?.quizDescription.text = description
+                self?.title = title
                 self?.problemSolvingProgressBar.setProgress(0, animated: true)
             }
             .store(in: &cancelBag)
@@ -227,7 +224,7 @@ private extension ProblemSolvingViewController {
             }
             .store(in: &cancelBag)
         
-        output.submitAnswerSubject
+        output.resultPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 let resultVC = ExamResultViewController(data: data)

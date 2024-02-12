@@ -14,13 +14,11 @@ struct ExamResultDTO {
     var results: [ExamResultPerQuiz]
     
     struct ExamResultPerQuiz {
-        var id: Int
         var description: String
         var explanation: String
-        var userAnser: Bool
+        var userAnswer: Bool
         var answer: Bool
         var isCorrect: Bool
-        var isBookmarked: Bool
     }
 }
 
