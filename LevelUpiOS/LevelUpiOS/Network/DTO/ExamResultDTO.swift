@@ -14,11 +14,13 @@ struct ExamResultDTO {
     var results: [ExamResultPerQuiz]
     
     struct ExamResultPerQuiz {
+        var questionId: Int
         var description: String
         var explanation: String
         var userAnswer: Bool
         var answer: Bool
         var isCorrect: Bool
+        var bookmark: Bool
     }
 }
 

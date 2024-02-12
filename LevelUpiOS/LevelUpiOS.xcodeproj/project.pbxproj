@@ -47,7 +47,6 @@
 		C013E9472B78D3B6003EB996 /* ProblemSolvingManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9462B78D3B6003EB996 /* ProblemSolvingManagerImpl.swift */; };
 		C013E9492B78D3DE003EB996 /* ExamResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9482B78D3DE003EB996 /* ExamResultDTO.swift */; };
 		C013E94B2B78D402003EB996 /* CurrentQuizState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E94A2B78D402003EB996 /* CurrentQuizState.swift */; };
-		C013E94E2B79CBBE003EB996 /* ExamResultWithUserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E94D2B79CBBE003EB996 /* ExamResultWithUserInfoDTO.swift */; };
 		C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C962B70B6A100780707 /* BookmarkViewController.swift */; };
 		C0771C992B70B77D00780707 /* BookmarkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C982B70B77D00780707 /* BookmarkItem.swift */; };
 		C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C9E2B70C8E800780707 /* Bookmark.swift */; };
@@ -133,7 +132,6 @@
 		C013E9462B78D3B6003EB996 /* ProblemSolvingManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSolvingManagerImpl.swift; sourceTree = "<group>"; };
 		C013E9482B78D3DE003EB996 /* ExamResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultDTO.swift; sourceTree = "<group>"; };
 		C013E94A2B78D402003EB996 /* CurrentQuizState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentQuizState.swift; sourceTree = "<group>"; };
-		C013E94D2B79CBBE003EB996 /* ExamResultWithUserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultWithUserInfoDTO.swift; sourceTree = "<group>"; };
 		C0771C962B70B6A100780707 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		C0771C982B70B77D00780707 /* BookmarkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkItem.swift; sourceTree = "<group>"; };
 		C0771C9E2B70C8E800780707 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 			children = (
 				C0C63FB82B6A15B000771E55 /* ExamQuestionInquiryDTO.swift */,
 				C013E9482B78D3DE003EB996 /* ExamResultDTO.swift */,
-				C013E94D2B79CBBE003EB996 /* ExamResultWithUserInfoDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -626,7 +623,6 @@
 				B546B5432B6A214E00AFA3EA /* MainHeaderComponent.swift in Sources */,
 				B546B5662B74927000AFA3EA /* APIEventLogger.swift in Sources */,
 				C0EA8F282B5F9A4E0073C1D4 /* Palette.swift in Sources */,
-				C013E94E2B79CBBE003EB996 /* ExamResultWithUserInfoDTO.swift in Sources */,
 				C0EA8F2C2B5F9B4A0073C1D4 /* UIColor+.swift in Sources */,
 				C013E9492B78D3DE003EB996 /* ExamResultDTO.swift in Sources */,
 			);

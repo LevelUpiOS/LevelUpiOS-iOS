@@ -21,9 +21,9 @@ final class ExamResultViewController: UIViewController {
     }()
     let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
     
-    var data: ExamResultWithUserInfoDTO
+    var data: ExamResultDTO
     
-    init(data: ExamResultWithUserInfoDTO) {
+    init(data: ExamResultDTO) {
         self.data = data
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,23 +34,11 @@ final class ExamResultViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-  
-
         renderer.target = resultView
-
-        // MARK: - 컴포넌트 설정
         setUI()
-        
-        // MARK: - addsubView
         setHierarchy()
-        
-        // MARK: - autolayout설정
         setLayout()
-        
-        // MARK: - button의 addtarget설정
         setAddTarget()
-        
-        // MARK: - delegate설정
         setDelegate()
         render()
     }

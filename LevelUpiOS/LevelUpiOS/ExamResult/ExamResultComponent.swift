@@ -13,7 +13,7 @@ import SnapKit
 
 struct ExamResultItem: IdentifiableComponent {
     var questionNumber: Int
-    var result: ExamResultWithUserInfoDTO.ExamResultWithBookmark
+    var result: ExamResultDTO.ExamResultPerQuiz
     var id: Int {
         return questionNumber
     }

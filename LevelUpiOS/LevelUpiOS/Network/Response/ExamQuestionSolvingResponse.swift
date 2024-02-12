@@ -14,10 +14,12 @@ struct ExamQuestionSolvingResponse: Decodable {
     var results: [QuestionResult]
     
     struct QuestionResult: Decodable {
+        var questionId: Int
         var question: String
         var guess: Bool
         var answer: Bool
         var isCorrect: Bool
         var explanation: String
+        var bookmark: Bool
     }
 }
