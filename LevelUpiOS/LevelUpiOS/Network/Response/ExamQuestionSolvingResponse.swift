@@ -17,6 +17,7 @@ struct ExamQuestionSolvingResponse: Decodable {
         var question: String
         var guess: Bool
         var answer: Bool
+        var isCorrect: Bool
         var explanation: String
     }
 }

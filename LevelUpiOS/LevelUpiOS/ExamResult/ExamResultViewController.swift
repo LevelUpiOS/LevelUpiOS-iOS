@@ -20,7 +20,18 @@ final class ExamResultViewController: UIViewController {
         return tb
     }()
     let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
-
+    
+    var data: ExamResultWithUserInfoDTO
+    
+    init(data: ExamResultWithUserInfoDTO) {
+        self.data = data
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
   
@@ -46,8 +57,8 @@ final class ExamResultViewController: UIViewController {
     
     func render() {
         renderer.render {
-            GradingResultItem(grade: 70)
-            Group(of: ExamResult.dummy.enumerated()) { index, result in
+            GradingResultItem(grade: data.score)
+            Group(of: data.results.enumerated()) { index, result in
                 ExamResultItem(questionNumber: index+1, result: result)
             }
         }

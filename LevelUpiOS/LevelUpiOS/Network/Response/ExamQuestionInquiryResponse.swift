@@ -18,3 +18,11 @@ struct ExamQuestionInquiryResponse: Decodable {
         var bookmark: Bool
     }
 }
+
+extension ExamQuestionInquiryResponse {
+    func toDTO() -> ExamQuestionInquiryDTO {
+        return .init(id: self.id, name: self.name, questions: self.questions.map {
+            return ExamQuestionInquiryDTO.Question(id: $0.id, paragraph: $0.paragraph, bookmark: $0.bookmark)
+        })
+    }
+}

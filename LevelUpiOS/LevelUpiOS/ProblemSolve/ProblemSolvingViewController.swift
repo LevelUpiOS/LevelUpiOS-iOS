@@ -27,6 +27,7 @@ final class ProblemSolvingViewController: UIViewController {
     var cancelBag = Set<AnyCancellable>()
     let userAnswerSubject = PassthroughSubject<Bool, Never>()
     let viewwillAppearSubject = PassthroughSubject<Void, Never>()
+    let submitAnswerSubject = PassthroughSubject<Void, Never>()
     
     let problemSolvingProgressBar: UIProgressView = {
         let pb = UIProgressView(progressViewStyle: .bar)
@@ -190,12 +191,15 @@ private extension ProblemSolvingViewController {
     
     func bind() {
         let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
-                                                     viewwillAppearSubject: viewwillAppearSubject))
+                                                     viewwillAppearSubject: viewwillAppearSubject,
+                                                     submitAnswerSubject: submitAnswerSubject))
+        
+        
         output.viewwillAppearPublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] subject, description in
-                self?.title = subject
+            .sink { [weak self] title, description  in
                 self?.quizDescription.text = description
+                self?.title = title
                 self?.problemSolvingProgressBar.setProgress(0, animated: true)
             }
             .store(in: &cancelBag)
@@ -214,9 +218,17 @@ private extension ProblemSolvingViewController {
             .sink { [weak self] _ in
                 let alert = UIAlertController.subminQuizAlert { 
                     self?.view.isUserInteractionEnabled = false
-                    print("제출했어요~")
+                    self?.submitAnswerSubject.send(())
                 }
                 self?.present(alert, animated: true)
+            }
+            .store(in: &cancelBag)
+        
+        output.resultPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                let resultVC = ExamResultViewController(data: data)
+                self?.navigationController?.pushViewController(resultVC, animated: true)
             }
             .store(in: &cancelBag)
     }
