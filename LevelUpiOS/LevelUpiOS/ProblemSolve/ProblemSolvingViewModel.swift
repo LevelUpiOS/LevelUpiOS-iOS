@@ -33,17 +33,15 @@ final class ProblemSolvingViewModel {
         let viewwillAppearPublisher: AnyPublisher<(String, String), Never>
         let userAnswerPublisher: AnyPublisher<CurrentQuizState, Never>
         let lastAnwerPublisher: AnyPublisher<Void, Never>
-        let resultPublisher: AnyPublisher<ExamResultWithUserInfoDTO, Never>
+        let resultPublisher: AnyPublisher<ExamResultDTO, Never>
     }
     
     func transform(from input: Input) -> Output {
         let lastAnswerPublisher = PassthroughSubject<Void, Never>()
-        let quizInquiryPublisher = PassthroughSubject<ExamQuestionInquiryDTO, Never>()
         
         let viewwillAppearSubject: AnyPublisher<(String, String), Never> = input.viewwillAppearSubject
             .requestAPI(failure: ("오류발생", "오류발생")) { _ in
                 let inputData = try await self.manager.getQuiz(from: self.subjectId)
-                quizInquiryPublisher.send(inputData)
                 self.descriptions = inputData.questions.map { $0.paragraph }
                 return (inputData.questions[0].paragraph, inputData.name)
             } errorHandler: { error in
@@ -70,14 +68,10 @@ final class ProblemSolvingViewModel {
             }
             .eraseToAnyPublisher()
         
-        let resultPublisher = quizInquiryPublisher.combineLatest(submitAnswerSubject)
-            .map { return self.mergeExamResult(inquiry: $0, result: $1) }
-            .eraseToAnyPublisher()
-        
         return Output(viewwillAppearPublisher: viewwillAppearSubject,
                       userAnswerPublisher: userAnswerPublisher,
                       lastAnwerPublisher: lastAnswerPublisher.eraseToAnyPublisher(),
-                      resultPublisher: resultPublisher)
+                      resultPublisher: submitAnswerSubject)
     }
 }
 
@@ -96,19 +90,5 @@ private extension ProblemSolvingViewModel {
     
     var currentQuizIndex: Int {
         return min(self.descriptions.count, self.problemCount+1)
-    }
-    
-    func mergeExamResult(inquiry: ExamQuestionInquiryDTO, result: ExamResultDTO) -> ExamResultWithUserInfoDTO {
-        let examResultPerQuiz = inquiry.questions.enumerated().map {
-            let resultElement = result.results[$0]
-            return ExamResultWithUserInfoDTO.ExamResultWithBookmark(id: $1.id,
-                                                                    description: $1.paragraph,
-                                                                    explanation: resultElement.explanation,
-                                                                    userAnswer: resultElement.userAnswer,
-                                                                    answer: resultElement.answer,
-                                                                    isCorrect: resultElement.isCorrect,
-                                                                    isBookmarked: $1.bookmark)
-        }
-        return .init(id: result.id, examId: result.examId, score: result.score, results: examResultPerQuiz)
     }
 }

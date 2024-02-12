@@ -197,7 +197,7 @@ private extension ProblemSolvingViewController {
         
         output.viewwillAppearPublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] title, description  in
+            .sink { [weak self] description, title  in
                 self?.quizDescription.text = description
                 self?.title = title
                 self?.problemSolvingProgressBar.setProgress(0, animated: true)
@@ -227,7 +227,7 @@ private extension ProblemSolvingViewController {
         output.resultPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                let resultVC = ExamResultViewController(data: data)
+                let resultVC = ExamResultViewController(viewModel: ExamResultViewModel(data: data))
                 self?.navigationController?.pushViewController(resultVC, animated: true)
             }
             .store(in: &cancelBag)
