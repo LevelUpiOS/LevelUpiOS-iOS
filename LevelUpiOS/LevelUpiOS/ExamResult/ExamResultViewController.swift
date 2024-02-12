@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import Combine
 
 import Carbon
 import SnapKit
 
 final class ExamResultViewController: UIViewController {
+    
+    let bookmarkTap = PassthroughSubject<(Int, Int?), Never>()
+    let viewwillAppearSubject = PassthroughSubject<Void, Never>()
+    var cancelBag = Set<AnyCancellable>()
+    
     let resultView: UITableView = {
         let tb = UITableView()
         tb.showsVerticalScrollIndicator = false
@@ -21,10 +27,9 @@ final class ExamResultViewController: UIViewController {
     }()
     let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
     
-    var data: ExamResultDTO
-    
-    init(data: ExamResultDTO) {
-        self.data = data
+    let viewModel: ExamResultViewModel
+    init(viewModel: ExamResultViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,16 +43,30 @@ final class ExamResultViewController: UIViewController {
         setUI()
         setHierarchy()
         setLayout()
-        setAddTarget()
-        setDelegate()
-        render()
+
+        let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap,
+                                                     viewWillAppearSubject: self.viewwillAppearSubject))
+        
+        output.reloadPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                self?.render(data: data)
+            }
+            .store(in: &cancelBag)
     }
     
-    func render() {
-        renderer.render {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewwillAppearSubject.send(())
+    }
+    
+    func render(data: ExamResultDTO) {
+        self.renderer.render {
             GradingResultItem(grade: data.score)
             Group(of: data.results.enumerated()) { index, result in
-                ExamResultItem(questionNumber: index+1, result: result)
+                ExamResultItem(questionIndex: index+1, result: result) { questionId in
+                    self.bookmarkTap.send((index, questionId))
+                }
             }
         }
     }
@@ -68,13 +87,5 @@ private extension ExamResultViewController {
             make.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
         }
-    }
-    
-    func setAddTarget() {
-        
-    }
-    
-    func setDelegate() {
-        
     }
 }

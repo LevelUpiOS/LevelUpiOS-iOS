@@ -227,7 +227,7 @@ private extension ProblemSolvingViewController {
         output.resultPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                let resultVC = ExamResultViewController(data: data)
+                let resultVC = ExamResultViewController(viewModel: ExamResultViewModel(data: data))
                 self?.navigationController?.pushViewController(resultVC, animated: true)
             }
             .store(in: &cancelBag)
