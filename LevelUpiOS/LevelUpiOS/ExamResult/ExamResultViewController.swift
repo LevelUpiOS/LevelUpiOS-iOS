@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import Combine
 
 import Carbon
 import SnapKit
 
 final class ExamResultViewController: UIViewController {
+    
+    let bookmarkTap = PassthroughSubject<(Int, Int?), Never>()
+    let viewwillAppearSubject = PassthroughSubject<Void, Never>()
+    var cancelBag = Set<AnyCancellable>()
+    
     let resultView: UITableView = {
         let tb = UITableView()
         tb.showsVerticalScrollIndicator = false
@@ -20,35 +26,47 @@ final class ExamResultViewController: UIViewController {
         return tb
     }()
     let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-  
-
-        renderer.target = resultView
-
-        // MARK: - 컴포넌트 설정
-        setUI()
-        
-        // MARK: - addsubView
-        setHierarchy()
-        
-        // MARK: - autolayout설정
-        setLayout()
-        
-        // MARK: - button의 addtarget설정
-        setAddTarget()
-        
-        // MARK: - delegate설정
-        setDelegate()
-        render()
+    
+    let viewModel: ExamResultViewModel
+    init(viewModel: ExamResultViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
     
-    func render() {
-        renderer.render {
-            GradingResultItem(grade: 70)
-            Group(of: ExamResult.dummy.enumerated()) { index, result in
-                ExamResultItem(questionNumber: index+1, result: result)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        renderer.target = resultView
+        setUI()
+        setHierarchy()
+        setLayout()
+
+        let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap,
+                                                     viewWillAppearSubject: self.viewwillAppearSubject))
+        
+        output.reloadPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                self?.render(data: data)
+            }
+            .store(in: &cancelBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewwillAppearSubject.send(())
+    }
+    
+    func render(data: ExamResultDTO) {
+        self.renderer.render {
+            GradingResultItem(grade: data.score)
+            Group(of: data.results.enumerated()) { index, result in
+                ExamResultItem(questionIndex: index+1, result: result) { questionId in
+                    self.bookmarkTap.send((index, questionId))
+                }
             }
         }
     }
@@ -69,13 +87,5 @@ private extension ExamResultViewController {
             make.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
         }
-    }
-    
-    func setAddTarget() {
-        
-    }
-    
-    func setDelegate() {
-        
     }
 }

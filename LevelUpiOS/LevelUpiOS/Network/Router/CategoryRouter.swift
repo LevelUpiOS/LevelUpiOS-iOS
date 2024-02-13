@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import Alamofire
 
 enum CategoryRouter {
@@ -14,6 +13,7 @@ enum CategoryRouter {
 }
 
 extension CategoryRouter: TargetType {
+    
     var method: HTTPMethod {
         switch self {
         case .getCategory:

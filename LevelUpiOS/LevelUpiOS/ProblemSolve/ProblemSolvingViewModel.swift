@@ -8,80 +8,44 @@
 import Foundation
 import Combine
 
-enum ProblemSolvingError: Error {
-    case emptyData
-}
-
-struct CurrentQuizState {
-    var description: String?
-    var percentage: Float
-    var quizIndex: Int
-}
-
-protocol ProblemSolvingManager {
-    func getQuiz(from subjectId: Int) async throws -> Problem
-}
-
-struct ProblemSolvingManagerImpl: ProblemSolvingManager {
-    func getQuiz(from subjectId: Int) async throws -> Problem {
-        return Problem.mockData
-    }
-}
-
 final class ProblemSolvingViewModel {
     
-    let manager: ProblemSolvingManager
-    
-    init(manager: ProblemSolvingManager) {
-        self.manager = manager
-    }
-    
-    var lastQuiz: Bool {
-        return self.problemCount == self.datas.descriptions.count
-    }
-    
-    var percentage: Float {
-        return Float(self.problemCount)/Float(self.datas.descriptions.count)
-    }
-    
+    var manager = ProblemSolvingManagerImpl()
     var cancelBag = Set<AnyCancellable>()
+    
     var problemCount = 0
     var userAnswers: [Bool] = []
+    var descriptions: [String] = []
     
-    var datas: Problem = .empty
-
+    var subjectId: Int
+    
+    init(id: Int) {
+        self.subjectId = id
+    }
+    
     struct Input {
         let userAnswerSubject: PassthroughSubject<Bool, Never>
         let viewwillAppearSubject: PassthroughSubject<Void, Never>
+        let submitAnswerSubject: PassthroughSubject<Void, Never>
     }
     
     struct Output {
         let viewwillAppearPublisher: AnyPublisher<(String, String), Never>
         let userAnswerPublisher: AnyPublisher<CurrentQuizState, Never>
-        let lastAnwerPublisher: PassthroughSubject<Void, Never>
+        let lastAnwerPublisher: AnyPublisher<Void, Never>
+        let resultPublisher: AnyPublisher<ExamResultDTO, Never>
     }
     
-    // input이들어왔을떄 네트워킹통신을했는데 stream이 나와야됨
     func transform(from input: Input) -> Output {
-        let lastAnwerPublisher = PassthroughSubject<Void, Never>()
+        let lastAnswerPublisher = PassthroughSubject<Void, Never>()
         
-        let viewwillAppearSubject = input.viewwillAppearSubject
-            .flatMap { _ -> AnyPublisher<(String, String), Never> in
-                return Future<(String, String), Error> { promise in
-                    Task {
-                        do {
-                            let inputData = try await self.manager.getQuiz(from: 1)
-                            self.datas = inputData
-                            promise(.success((inputData.subject, inputData.descriptions[0])))
-                        } catch {
-                            promise(.failure(error))
-                        }
-                    }
-                }
-                .catch { _ in
-                    return Just(("실패", "실패1"))
-                }
-                .eraseToAnyPublisher()
+        let viewwillAppearSubject: AnyPublisher<(String, String), Never> = input.viewwillAppearSubject
+            .requestAPI(failure: ("오류발생", "오류발생")) { _ in
+                let inputData = try await self.manager.getQuiz(from: self.subjectId)
+                self.descriptions = inputData.questions.map { $0.paragraph }
+                return (inputData.questions[0].paragraph, inputData.name)
+            } errorHandler: { error in
+                print(error)
             }
             .eraseToAnyPublisher()
         
@@ -89,17 +53,42 @@ final class ProblemSolvingViewModel {
             .map { type in
                 self.userAnswers.append(type)
                 self.problemCount += 1
-                if self.lastQuiz { lastAnwerPublisher.send(()) }
-                let descriptionIndex = min(self.datas.descriptions.count-1, self.problemCount)
-                let quizIndex = min(self.datas.descriptions.count, self.problemCount+1)
-                return CurrentQuizState(description: self.datas.descriptions[descriptionIndex],
+                if self.lastQuiz { lastAnswerPublisher.send(()) }
+                return CurrentQuizState(description: self.currentDescription,
                                         percentage: self.percentage,
-                                        quizIndex: quizIndex)
+                                        quizIndex: self.currentQuizIndex)
+            }
+            .eraseToAnyPublisher()
+        
+        let submitAnswerSubject: AnyPublisher<ExamResultDTO, Never> = input.submitAnswerSubject
+            .requestAPI(failure: .empty) { _ in
+                return try await self.manager.solveQuiz(from: self.subjectId, answers: self.userAnswers)
+            } errorHandler: { error in
+                print(error)
             }
             .eraseToAnyPublisher()
         
         return Output(viewwillAppearPublisher: viewwillAppearSubject,
                       userAnswerPublisher: userAnswerPublisher,
-                      lastAnwerPublisher: lastAnwerPublisher)
+                      lastAnwerPublisher: lastAnswerPublisher.eraseToAnyPublisher(),
+                      resultPublisher: submitAnswerSubject)
+    }
+}
+
+private extension ProblemSolvingViewModel {
+    var lastQuiz: Bool {
+        return self.problemCount == self.descriptions.count
+    }
+    
+    var percentage: Float {
+        return Float(self.problemCount)/Float(self.descriptions.count)
+    }
+    
+    var currentDescription: String {
+        return self.descriptions[min(self.descriptions.count-1, self.problemCount)]
+    }
+    
+    var currentQuizIndex: Int {
+        return min(self.descriptions.count, self.problemCount+1)
     }
 }

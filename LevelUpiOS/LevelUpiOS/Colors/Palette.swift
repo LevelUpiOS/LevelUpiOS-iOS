@@ -16,4 +16,5 @@ enum Palette: String {
     case mainBlue = "MainBlue"
     case subBlue = "SubBlue"
     case background = "Background"
+    case grayC4 = "GrayC4C4"
 }
