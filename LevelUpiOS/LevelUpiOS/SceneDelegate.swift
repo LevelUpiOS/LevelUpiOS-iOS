@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         Font.registerFonts()
         self.window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController(rootViewController: BookmarkViewController())
+        let navigationController = UINavigationController(rootViewController: SplashViewController())
+        navigationController.isNavigationBarHidden = true
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
