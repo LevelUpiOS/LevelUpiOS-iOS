@@ -8,7 +8,10 @@
 import UIKit
 
 
-final class ChapterContent: UIView {
+final class ChapterContent: UIControl {
+    
+    var onSelect: (() -> Void)?
+    
     let checkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -36,6 +39,7 @@ final class ChapterContent: UIView {
         super.init(frame: frame)
         setHirerachy()
         setLayout()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -64,6 +68,16 @@ final class ChapterContent: UIView {
             make.centerY.equalTo(chapterTitleLabel)
             make.trailing.equalToSuperview().inset(32).priority(.high)
         }
+    }
+    
+    private func setAddTarget() {
+        addTarget(self, action: #selector(handleSelect), for: .touchUpInside)
+        scoreOrGoQuestionButton.addTarget(self, action: #selector(handleSelect), for: .touchUpInside)
+    }
+    
+    @objc
+    private func handleSelect() {
+        onSelect?()
     }
     
     func configChapterContent(chapter: Chapter) {
