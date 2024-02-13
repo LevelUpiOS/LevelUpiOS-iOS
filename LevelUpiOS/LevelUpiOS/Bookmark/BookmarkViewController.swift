@@ -55,13 +55,18 @@ final class BookmarkViewController: UIViewController {
     
     func render(datas: [BookmarkDTO]) {
         renderer.render {
-            Group(of: datas.enumerated()) { index, bookmark in
-                BookmarkItem(question: bookmark.question, source: bookmark.source) {
-                    self.cellTap.send(index)
-                } bookmarkTap: {
-                    self.bookmarkTap.send((index, bookmark.id))
+            if datas.isEmpty {
+                BookmarkEmptyItem()
+            } else {
+                Group(of: datas.enumerated()) { index, bookmark in
+                    BookmarkItem(question: bookmark.question, source: bookmark.source) {
+                        self.cellTap.send(index)
+                    } bookmarkTap: {
+                        self.bookmarkTap.send((index, bookmark.id))
+                    }
                 }
             }
+
         }
     }
     
