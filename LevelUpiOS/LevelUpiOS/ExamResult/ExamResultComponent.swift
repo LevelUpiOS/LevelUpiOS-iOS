@@ -12,26 +12,34 @@ import Carbon
 import SnapKit
 
 struct ExamResultItem: IdentifiableComponent {
-    var questionNumber: Int
-    var result: ExamResult
+    var questionIndex: Int
+    var result: ExamResultDTO.ExamResultPerQuiz
+    var bookmarkTapped: (Int?) -> Void
     var id: Int {
-        return questionNumber
+        return questionIndex
     }
     func renderContent() -> ExamResultComponent {
         return .init()
     }
     
     func render(in content: ExamResultComponent) {
-        let questionNumberString = "\(questionNumber)."
+        let questionNumberString = "\(questionIndex)."
         content.questionNumberLabel.text = questionNumberString
-        content.questionLabel.text = result.question
+        content.questionLabel.text = result.description
         content.checkImage.image = .init(named: result.isCorrect ? "rightChecker" : "wrongChecker")
-        content.explanationLabel.text = result.explaination
+        content.explanationLabel.text = result.explanation
         content.answerImageView.image = .init(named: result.answer ? "ic_true" : "ic_false")
+        content.bookmarkButton.setImage(.init(systemName: result.bookmark ? "bookmark.fill" : "bookmark"), for: .normal)
+        content.questionId = result.questionId
+        content.bookmarkTapped = bookmarkTapped
     }
 }
 
 final class ExamResultComponent: UIView {
+    
+    var bookmarkTapped: ((Int?) -> Void)?
+    
+    var questionId: Int?
     
     let container: UIView = {
         let view = UIView()
@@ -56,7 +64,7 @@ final class ExamResultComponent: UIView {
     
     lazy var bookmarkButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        button.tintColor = .designSystem(.mainOrange)
         button.addTarget(self, action: #selector(bookmarkButtonTap), for: .touchUpInside)
         return button
     }()
@@ -98,20 +106,9 @@ final class ExamResultComponent: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // MARK: - 컴포넌트 설정
         setUI()
-        
-        // MARK: - addsubView
         setHierarchy()
-        
-        // MARK: - autolayout설정
         setLayout()
-        
-        // MARK: - button의 addtarget설정
-        setAddTarget()
-        
-        // MARK: - delegate설정
-        setDelegate()
     }
     
     @available(*, unavailable)
@@ -120,7 +117,7 @@ final class ExamResultComponent: UIView {
     }
     
     @objc func bookmarkButtonTap() {
-        print("✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅")
+        self.bookmarkTapped?(self.questionId)
     }
 
 }
@@ -163,7 +160,7 @@ private extension ExamResultComponent {
         
         bookmarkButton.snp.makeConstraints { make in
             make.top.trailing.equalToSuperview().inset(20)
-            make.size.equalTo(20)
+            make.size.equalTo(30)
         }
         
         questionLabel.snp.makeConstraints { make in
@@ -175,7 +172,6 @@ private extension ExamResultComponent {
         infoLabel.snp.makeConstraints { make in
             make.top.equalTo(questionLabel.snp.bottom).offset(15)
             make.centerX.equalToSuperview()
-//            make.height.equalTo(20)
         }
         
         answerImageView.snp.makeConstraints { make in
@@ -189,13 +185,5 @@ private extension ExamResultComponent {
             make.leading.trailing.equalToSuperview().inset(15)
             make.bottom.equalToSuperview().inset(20)
         }
-    }
-    
-    func setAddTarget() {
-        
-    }
-    
-    func setDelegate() {
-        
     }
 }

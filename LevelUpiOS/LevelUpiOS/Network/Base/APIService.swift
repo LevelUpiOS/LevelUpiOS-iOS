@@ -61,6 +61,40 @@ final class APIService {
             throw LevelUpError.requestError(error: error)
         }
     }
+    
+    // response가 statuscode만 있는 경우
+    func request(target: TargetType) async throws -> Int {
+        let dataTask = self.session
+            .request(target)
+            .serializingData()
+        
+        switch await dataTask.result {
+        case .success:
+            guard let response = await dataTask.response.response else {
+                throw LevelUpError.serverNoResponse
+            }
+            
+            do {
+                switch response.statusCode {
+                case 200..<300:
+                    return response.statusCode
+                case 401:
+                    throw LevelUpError.authError
+                case 404:
+                    throw LevelUpError.noUserError
+                case 500...:
+                    throw LevelUpError.serverError
+                default:
+                    throw LevelUpError.unknownError
+                }
+            } catch {
+                throw LevelUpError.decodingError
+            }
+        case .failure(let error):
+            throw LevelUpError.requestError(error: error)
+        }
+    }
+    
 }
 
 enum LevelUpError: Error, CustomStringConvertible {
