@@ -62,6 +62,40 @@ final class APIService {
         }
     }
     
+    func request<M: Decodable>(target: TargetType) async throws -> (M, Int) {
+            let dataTask = self.session
+                .request(target)
+                .serializingData()
+            
+            switch await dataTask.result {
+            case .success(let value):
+                guard let response = await dataTask.response.response else {
+                    throw LevelUpError.serverNoResponse
+                }
+                
+                do {
+                    switch response.statusCode {
+                    case 200..<300:
+                        let decoder = JSONDecoder()
+                        let decodedData = try decoder.decode(M.self, from: value)
+                        return (decodedData, response.statusCode)
+                    case 401:
+                        throw LevelUpError.authError
+                    case 404:
+                        throw LevelUpError.noUserError
+                    case 500...:
+                        throw LevelUpError.serverError
+                    default:
+                        throw LevelUpError.unknownError
+                    }
+                } catch {
+                    throw LevelUpError.decodingError
+                }
+            case .failure(let error):
+                throw LevelUpError.requestError(error: error)
+            }
+        }
+    
     // response가 statuscode만 있는 경우
     func request(target: TargetType) async throws -> Int {
         let dataTask = self.session
