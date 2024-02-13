@@ -33,3 +33,12 @@ struct BookmarkListInquiryResponse: Decodable {
         let name: String
     }
 }
+
+extension BookmarkListInquiryResponse {
+    var toDTO: [BookmarkDTO] {
+        return self.questions.map {
+            let source = "\($0.category.name) > \($0.exam.name)"
+            return .init(id: $0.id, question: $0.paragraph, answer: $0.solution.answer, description: $0.solution.explanation, source: source)
+        }
+    }
+}

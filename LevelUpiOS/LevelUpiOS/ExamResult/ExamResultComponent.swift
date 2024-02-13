@@ -64,6 +64,7 @@ final class ExamResultComponent: UIView {
     
     lazy var bookmarkButton: UIButton = {
         let button = UIButton()
+        button.tintColor = .designSystem(.mainOrange)
         button.addTarget(self, action: #selector(bookmarkButtonTap), for: .touchUpInside)
         return button
     }()
@@ -159,7 +160,7 @@ private extension ExamResultComponent {
         
         bookmarkButton.snp.makeConstraints { make in
             make.top.trailing.equalToSuperview().inset(20)
-            make.size.equalTo(20)
+            make.size.equalTo(30)
         }
         
         questionLabel.snp.makeConstraints { make in

@@ -41,8 +41,9 @@ final class BookmarkComponent: UIView {
         let view = UIView()
         view.backgroundColor = .designSystem(.white)
         view.layer.cornerRadius = 10
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = .designSystem(.gray777)
+        view.layer.borderWidth = 0.7
+        view.layer.borderColor = .designSystem(.grayC4)
+        view.clipsToBounds = true
         return view
     }()
     
