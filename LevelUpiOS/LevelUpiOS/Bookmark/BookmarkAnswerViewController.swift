@@ -52,33 +52,21 @@ final class BookmarkAnswerViewController: UIViewController {
         button.setTitleColor(.designSystem(.white), for: .normal)
         button.backgroundColor = .designSystem(.mainOrange)
         button.titleLabel?.font = .pretendard(.semiBold, ._15)
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 25
         return button
     }()
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        // MARK: - 컴포넌트 설정
         setUI()
-        
-        // MARK: - addsubView
         setHierarchy()
-        
-        // MARK: - autolayout설정
         setLayout()
-        
-        // MARK: - button의 addtarget설정
-        setAddTarget()
-        
-        // MARK: - delegate설정
-        setDelegate()
-
     }
     
-    func configureUI(question: String, answer: String, isCorrect: Bool) {
-        self.questionLabel.text = question
-        self.answerLabel.text = answer
-        self.isCorrectImage.image = UIImage(named: isCorrect ? "ic_true" : "ic_false")
+    func configureUI(input: BookmarkViewModel.ProblemDetail) {
+        self.questionLabel.text = input.question
+        self.answerLabel.text = input.explain
+        self.isCorrectImage.image = UIImage(named: input.answer ? "ic_true" : "ic_false")
     }
 }
 
@@ -118,17 +106,9 @@ private extension BookmarkAnswerViewController {
             make.bottom.equalTo(closeButton.snp.top).offset(-20)
         }
         closeButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(60)
+            make.bottom.equalToSuperview().inset(40)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(40)
+            make.height.equalTo(50)
         }
-    }
-    
-    func setAddTarget() {
-        
-    }
-    
-    func setDelegate() {
-        
     }
 }
