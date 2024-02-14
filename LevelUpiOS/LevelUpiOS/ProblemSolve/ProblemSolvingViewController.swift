@@ -108,6 +108,7 @@ final class ProblemSolvingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
         self.viewwillAppearSubject.send(())
     }
 }
@@ -193,13 +194,14 @@ private extension ProblemSolvingViewController {
         let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
                                                      viewwillAppearSubject: viewwillAppearSubject,
                                                      submitAnswerSubject: submitAnswerSubject))
-        
-        
         output.viewwillAppearPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] description, title  in
                 self?.quizDescription.text = description
-                self?.title = title
+                print("✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅")
+                print(title)
+                print("✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅")
+                self?.navigationItem.title = "제목을 바꿔요"
                 self?.problemSolvingProgressBar.setProgress(0, animated: true)
             }
             .store(in: &cancelBag)
