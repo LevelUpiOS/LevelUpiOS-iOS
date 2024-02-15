@@ -49,10 +49,10 @@ final class BookmarkViewModel {
             
         
         let bookmarkTapPublisher: AnyPublisher<[BookmarkDTO], Never> = input.bookmarkTap
-            .throttle(for: 1, scheduler: DispatchQueue.main, latest: false)
+            .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: false)
             .requestAPI(failure: []) { index, id in
-                _ = try await self.manager.deleteBookmark(id: id)
                 self.datas.remove(at: index)
+                _ = try await self.manager.deleteBookmark(id: id)
                 return self.datas
             } errorHandler: { error in
                 print(error)

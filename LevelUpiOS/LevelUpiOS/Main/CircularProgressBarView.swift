@@ -53,7 +53,7 @@ final class CircularProgressBarView: UIView {
         circleLayer.lineCap = .round
         circleLayer.lineWidth = 15
         circleLayer.strokeEnd = 1.0
-        circleLayer.strokeColor = UIColor.white.cgColor
+        circleLayer.strokeColor = .designSystem(.grayC4)
         layer.addSublayer(circleLayer)
         
         // 프로그레스 레이어 설정

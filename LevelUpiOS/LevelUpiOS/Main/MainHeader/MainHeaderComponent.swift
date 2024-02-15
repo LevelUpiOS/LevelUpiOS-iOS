@@ -71,7 +71,7 @@ final class MainHeaderContent: UIView {
     private let subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = .pretendard(.regular, ._13)
-        label.text = "한 주제당 10개의 문제가 준비되어 있어요!"
+        label.text = "한 주제당 5~10개의 문제가 준비되어 있어요!"
         return label
     }()
     
