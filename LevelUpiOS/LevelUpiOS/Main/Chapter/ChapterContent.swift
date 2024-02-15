@@ -40,7 +40,6 @@ final class ChapterContent: UIControl {
         setHirerachy()
         setLayout()
         setAddTarget()
-        backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
@@ -57,18 +56,21 @@ final class ChapterContent: UIControl {
         checkImageView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.equalToSuperview().inset(32)
-            make.size.equalTo(30)
+//            make.size.equalTo(30)
+            make.centerY.equalToSuperview()
         }
         
         chapterTitleLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.equalTo(checkImageView.snp.trailing).offset(10)
+            make.centerY.equalToSuperview()
         }
         
         scoreOrGoQuestionButton.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.greaterThanOrEqualTo(chapterTitleLabel.snp.trailing).offset(10)
             make.trailing.equalToSuperview().inset(10).priority(.high)
+            make.centerY.equalToSuperview()
         }
     }
     

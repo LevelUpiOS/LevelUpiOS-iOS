@@ -31,7 +31,8 @@ struct TopicHeaderComponent: Component {
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        CGSize(width: bounds.width, height: 64)
+        return CGSize(width: bounds.width,
+               height: UIScreen.main.bounds.height * (90/875))
     }
     
 }
