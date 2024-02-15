@@ -29,9 +29,9 @@ final class ExamResultViewController: UIViewController {
     lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.setTitle("홈으로가기", for: .normal)
-        button.addTarget(self, action: #selector(callMethod), for: .touchUpInside)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.tintColor = .designSystem(.black)
         button.sizeToFit()
         return button
     }()
@@ -87,7 +87,7 @@ final class ExamResultViewController: UIViewController {
         }
     }
     
-    @objc func callMethod() {
+    @objc func backButtonTapped() {
         guard let controllers = self.navigationController?.viewControllers else { return }
         for vc in controllers {
             if vc is MainViewController {
