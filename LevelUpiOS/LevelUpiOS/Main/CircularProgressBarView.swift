@@ -13,7 +13,7 @@ final class CircularProgressBarView: UIView {
     private var progressLayer = CAShapeLayer()
     private let percentageLable: UILabel = {
         let label = UILabel()
-        label.font = .pretendard(.semiBold, ._20)
+        label.font = .pretendard(.semiBold, ._18)
         label.textAlignment = .center
         label.textColor = .designSystem(.black)
         return label
