@@ -46,13 +46,16 @@ final class TopicHeaderContent: UIView {
     
     private func setLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().inset(20)
             make.leading.equalToSuperview().inset(33)
+            make.height.equalTo(18)
         }
         
+        subtitleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         subtitleLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(3)
             make.leading.equalTo(titleLabel)
+            make.bottom.equalToSuperview().inset(10)
         }
         
     }

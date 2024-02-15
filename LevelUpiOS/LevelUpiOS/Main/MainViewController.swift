@@ -108,9 +108,6 @@ extension MainViewController {
     
     private func setLayout() {
         collectionView.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide)
-//            make.leading.trailing.equalToSuperview()
-//            make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.edges.equalToSuperview()
         }
     }

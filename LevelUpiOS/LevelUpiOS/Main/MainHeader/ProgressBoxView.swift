@@ -43,8 +43,8 @@ final class ProgressBoxView: UIView {
     private func setLayout() {
         progressBarView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(31)
-            make.top.equalToSuperview().inset(14)
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.top.equalToSuperview().inset(10)
         }
         
         completeCountLabel.snp.makeConstraints { make in
@@ -58,6 +58,6 @@ final class ProgressBoxView: UIView {
         let percent = CGFloat(solvedCount) / CGFloat(totalCount)
         completeCountLabel.text = "\(totalCount)개 중에 \(solvedCount)개 완료"
         progressBarView.createCircularPath()
-        progressBarView.setProgressWithAnimation(duration: 1.5, value: percent)
+        progressBarView.setProgressWithAnimation(duration: 0.5, value: percent)
     }
 }

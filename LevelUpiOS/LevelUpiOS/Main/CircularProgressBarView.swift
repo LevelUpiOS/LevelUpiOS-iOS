@@ -11,10 +11,21 @@ final class CircularProgressBarView: UIView {
     
     private var circleLayer = CAShapeLayer()
     private var progressLayer = CAShapeLayer()
+    private let percentageLable: UILabel = {
+        let label = UILabel()
+        label.font = .pretendard(.semiBold, ._20)
+        label.textAlignment = .center
+        label.textColor = .designSystem(.black)
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.clipsToBounds = true
+        addSubview(percentageLable)
+        percentageLable.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,16 +53,16 @@ final class CircularProgressBarView: UIView {
         circleLayer.lineCap = .round
         circleLayer.lineWidth = 15
         circleLayer.strokeEnd = 1.0
-        circleLayer.strokeColor = UIColor.lightGray.cgColor
+        circleLayer.strokeColor = UIColor.white.cgColor
         layer.addSublayer(circleLayer)
         
         // 프로그레스 레이어 설정
         progressLayer.path = circlePath.cgPath
         progressLayer.fillColor = UIColor.clear.cgColor
         progressLayer.lineCap = .round
-        progressLayer.lineWidth = 15
+        progressLayer.lineWidth = 11
         progressLayer.strokeEnd = 0
-        progressLayer.strokeColor = UIColor.orange.cgColor
+        progressLayer.strokeColor = .designSystem(.mainOrange)
         layer.addSublayer(progressLayer)
     }
     
@@ -62,6 +73,7 @@ final class CircularProgressBarView: UIView {
         animation.fromValue = 0
         animation.toValue = value
         animation.timingFunction = CAMediaTimingFunction(name: .linear)
+        percentageLable.text = "\(Int(value*100))%"
         progressLayer.strokeEnd = value
         progressLayer.add(animation, forKey: "animateprogress")
     }
