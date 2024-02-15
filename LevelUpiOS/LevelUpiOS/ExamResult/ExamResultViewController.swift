@@ -25,6 +25,18 @@ final class ExamResultViewController: UIViewController {
         tb.backgroundColor = .designSystem(.white)
         return tb
     }()
+    
+    lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.setTitle("홈으로가기", for: .normal)
+        button.addTarget(self, action: #selector(callMethod), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        button.sizeToFit()
+        return button
+    }()
+
+    
     let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
     
     let viewModel: ExamResultViewModel
@@ -57,8 +69,12 @@ final class ExamResultViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        let barButton = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = barButton
         self.viewwillAppearSubject.send(())
     }
+    
     
     func render(data: ExamResultDTO) {
         self.renderer.render {
@@ -67,6 +83,15 @@ final class ExamResultViewController: UIViewController {
                 ExamResultItem(questionIndex: index+1, result: result) { questionId in
                     self.bookmarkTap.send((index, questionId))
                 }
+            }
+        }
+    }
+    
+    @objc func callMethod() {
+        guard let controllers = self.navigationController?.viewControllers else { return }
+        for vc in controllers {
+            if vc is MainViewController {
+                self.navigationController?.popToViewController(vc as! MainViewController, animated: true)
             }
         }
     }

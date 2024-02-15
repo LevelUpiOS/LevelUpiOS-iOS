@@ -48,6 +48,7 @@ final class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
         self.viewWillAppear.send(())
     }
     
@@ -79,10 +80,9 @@ final class MainViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] chapterId in
                 guard let self else { return }
-                print(chapterId)
-//                let problemViewController = ProblemSolvingViewController(viewModel: .init(manager: ProblemSolvingManagerImpl()))
-                //TODO: - id넘겨주기
-//                self.navigationController?.pushViewController(problemViewController, animated: true)
+                let viewModel = ProblemSolvingViewModel(id: chapterId)
+                let problemViewController = ProblemSolvingViewController(viewModel: viewModel)
+                self.navigationController?.pushViewController(problemViewController, animated: true)
             }
             .store(in: &cancelBag)
         
@@ -91,7 +91,8 @@ final class MainViewController: UIViewController {
             .sink { [weak self] _ in
                 guard let self else { return }
                 //TODO: - 복습하러가기 로 넘어가기
-                print("Review Button Tapped!")
+                let bookmarkViewController = BookmarkViewController()
+                self.navigationController?.pushViewController(bookmarkViewController, animated: true)
             }
             .store(in: &cancelBag)
     }
@@ -107,9 +108,10 @@ extension MainViewController {
     
     private func setLayout() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+//            make.top.equalTo(view.safeAreaLayoutGuide)
+//            make.leading.trailing.equalToSuperview()
+//            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalToSuperview()
         }
     }
 
