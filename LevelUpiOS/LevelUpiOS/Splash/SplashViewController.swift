@@ -32,7 +32,7 @@ final class SplashViewController: UIViewController {
     }
     
     private func setUI() {
-        view.backgroundColor = .designSystem(.mainBlue)
+        view.backgroundColor = .designSystem(.mainOrange)
     }
     
     private func setHierarchy() {

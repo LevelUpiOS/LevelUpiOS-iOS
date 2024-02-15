@@ -33,7 +33,6 @@ final class MainViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        cv.backgroundColor = .designSystem(.white)
         return cv
     }()
     
@@ -59,6 +58,7 @@ final class MainViewController: UIViewController {
         setHirerachy()
         setLayout()
         bind()
+        render(subject: .init(topics: [], totalCount: 1, solvedCount: 0))
     }
     
     private func bind() {

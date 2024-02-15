@@ -20,7 +20,15 @@ final class BookmarkViewController: UIViewController {
     let bookmarkTap = PassthroughSubject<(index: Int, id: Int), Never>()
     let cellTap = PassthroughSubject<Int, Never>()
     var cancelBag = Set<AnyCancellable>()
-    
+    lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.tintColor = .designSystem(.black)
+        button.sizeToFit()
+        return button
+    }()
     let bookmarkView = UITableView(frame: .zero, style: .grouped)
     let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
     
@@ -30,6 +38,7 @@ final class BookmarkViewController: UIViewController {
         setTableView()
         setHierarchy()
         setLayout()
+        render(datas: [])
         let output = viewModel.transform(from: .init(viewWillAppearSubject: self.viewWillAppearSubject,
                                                      bookmarkTap: self.bookmarkTap,
                                                      cellTap: self.cellTap))
@@ -51,6 +60,8 @@ final class BookmarkViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        let barButton = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = barButton
         self.viewWillAppearSubject.send(())
     }
     
@@ -67,7 +78,6 @@ final class BookmarkViewController: UIViewController {
                     }
                 }
             }
-
         }
     }
     
@@ -104,5 +114,9 @@ private extension BookmarkViewController {
         bookmarkView.backgroundColor = .designSystem(.background)
         bookmarkView.separatorStyle = .none
         renderer.target = bookmarkView
+    }
+    
+    @objc func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

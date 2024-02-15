@@ -55,7 +55,6 @@ final class ExamResultViewController: UIViewController {
         setUI()
         setHierarchy()
         setLayout()
-
         let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap,
                                                      viewWillAppearSubject: self.viewwillAppearSubject))
         

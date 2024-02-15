@@ -26,8 +26,10 @@ final class BookmarkAnswerViewController: UIViewController {
         label.text = "정답 및 해설"
         label.textAlignment = .center
         label.font = .pretendard(.regular, ._15)
-        label.textColor = .designSystem(.white)
-        label.backgroundColor = .designSystem(.gray777)
+        label.textColor = .designSystem(.mainOrange)
+        label.backgroundColor = .designSystem(.subOrange)
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
         return label
     }()
     
@@ -46,12 +48,13 @@ final class BookmarkAnswerViewController: UIViewController {
         return label
     }()
     
-    private let closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let button = UIButton()
         button.setTitle("닫기", for: .normal)
         button.setTitleColor(.designSystem(.white), for: .normal)
         button.backgroundColor = .designSystem(.mainOrange)
         button.titleLabel?.font = .pretendard(.semiBold, ._15)
+        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 25
         return button
     }()
@@ -96,9 +99,9 @@ private extension BookmarkAnswerViewController {
             make.height.equalTo(30)
         }
         isCorrectImage.snp.makeConstraints { make in
-            make.top.equalTo(infoLabel.snp.bottom).offset(10)
+            make.top.equalTo(infoLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
-            make.size.equalTo(35)
+            make.size.equalTo(45)
         }
         answerLabel.snp.makeConstraints { make in
             make.top.equalTo(isCorrectImage.snp.bottom).offset(10)
@@ -110,5 +113,9 @@ private extension BookmarkAnswerViewController {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(50)
         }
+    }
+    
+    @objc func closeButtonTapped() {
+        self.dismiss(animated: true)
     }
 }
