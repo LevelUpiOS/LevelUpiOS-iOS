@@ -22,7 +22,7 @@ final class MainViewController: UIViewController {
     private let reviewButtonDidTap: PassthroughSubject<Void, Never> = .init()
     private let chapterDidTap: PassthroughSubject<Int, Never> = .init()
     
-    private let viewModel: any MainViewModel
+    private let viewModel: MainViewModel
     
     private var cancelBag = Set<AnyCancellable>()
     
@@ -32,11 +32,15 @@ final class MainViewController: UIViewController {
     )
     
     private let collectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let flowlayout = UICollectionViewFlowLayout()
+        flowlayout.minimumLineSpacing = 0
+        flowlayout.minimumInteritemSpacing = 0
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
+        cv.backgroundColor = .designSystem(.white)
         return cv
     }()
     
-    init(viewModel: some MainViewModel) {
+    init(viewModel: MainViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -62,7 +66,7 @@ final class MainViewController: UIViewController {
     }
     
     private func bind() {
-        let input = MainViewModelInput(
+        let input = MainViewModel.Input(
             viewWillAppear: self.viewWillAppear,
             reviewButtonDidTap: self.reviewButtonDidTap,
             chapterDidTap: self.chapterDidTap

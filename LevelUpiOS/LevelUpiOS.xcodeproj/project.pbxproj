@@ -12,8 +12,8 @@
 		B546B5432B6A214E00AFA3EA /* MainHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5422B6A214E00AFA3EA /* MainHeaderComponent.swift */; };
 		B546B5462B6A225000AFA3EA /* ProgressBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5452B6A225000AFA3EA /* ProgressBoxView.swift */; };
 		B546B5482B6A225D00AFA3EA /* ReviewBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5472B6A225D00AFA3EA /* ReviewBoxView.swift */; };
-		B546B5522B6A3AA400AFA3EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5512B6A3AA400AFA3EA /* MainViewModel.swift */; };
-		B546B5572B6A573800AFA3EA /* MainViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5562B6A573800AFA3EA /* MainViewModelImpl.swift */; };
+		B546B5522B6A3AA400AFA3EA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5512B6A3AA400AFA3EA /* ViewModel.swift */; };
+		B546B5572B6A573800AFA3EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5562B6A573800AFA3EA /* MainViewModel.swift */; };
 		B546B5592B6A583300AFA3EA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B5582B6A583300AFA3EA /* MainViewController.swift */; };
 		B546B55B2B747F8D00AFA3EA /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B55A2B747F8D00AFA3EA /* CircularProgressBarView.swift */; };
 		B546B55F2B74914500AFA3EA /* ChapterContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B546B55D2B74914500AFA3EA /* ChapterContent.swift */; };
@@ -111,8 +111,8 @@
 		B546B5422B6A214E00AFA3EA /* MainHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderComponent.swift; sourceTree = "<group>"; };
 		B546B5452B6A225000AFA3EA /* ProgressBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBoxView.swift; sourceTree = "<group>"; };
 		B546B5472B6A225D00AFA3EA /* ReviewBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewBoxView.swift; sourceTree = "<group>"; };
-		B546B5512B6A3AA400AFA3EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		B546B5562B6A573800AFA3EA /* MainViewModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelImpl.swift; sourceTree = "<group>"; };
+		B546B5512B6A3AA400AFA3EA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		B546B5562B6A573800AFA3EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B546B5582B6A583300AFA3EA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B546B55A2B747F8D00AFA3EA /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		B546B55D2B74914500AFA3EA /* ChapterContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChapterContent.swift; sourceTree = "<group>"; };
@@ -224,8 +224,8 @@
 				B546B55C2B74914500AFA3EA /* Chapter */,
 				B546B54B2B6A376100AFA3EA /* TopicSectionHeader */,
 				B546B5442B6A223900AFA3EA /* MainHeader */,
-				B546B5512B6A3AA400AFA3EA /* MainViewModel.swift */,
-				B546B5562B6A573800AFA3EA /* MainViewModelImpl.swift */,
+				B546B5512B6A3AA400AFA3EA /* ViewModel.swift */,
+				B546B5562B6A573800AFA3EA /* MainViewModel.swift */,
 				B546B5582B6A583300AFA3EA /* MainViewController.swift */,
 				B546B55A2B747F8D00AFA3EA /* CircularProgressBarView.swift */,
 				B5D40C4F2B7726DF009684CF /* MainServiceManager.swift */,
@@ -690,7 +690,7 @@
 				C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */,
 				C013E91B2B748FB5003EB996 /* ExamResultComponent.swift in Sources */,
 				B5D40C552B777214009684CF /* UserDefaultsManager.swift in Sources */,
-				C0771C9F2B70C8E800780707 /* Bookmark.swift in Sources */,
+				C0771C9F2B70C8E800780707 /* BookmarkDTO.swift in Sources */,
 				C013E92F2B74EF50003EB996 /* ExamRouter.swift in Sources */,
 				B546B5642B74925D00AFA3EA /* TargetType.swift in Sources */,
 				C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */,
@@ -700,8 +700,8 @@
 				C013E9252B74AF45003EB996 /* BaseInterceptor.swift in Sources */,
 				B5D40C582B7772AC009684CF /* AuthResponse.swift in Sources */,
 				B551B6EF2B5F9A5A009014AA /* ImageLiterals.swift in Sources */,
-				B546B5572B6A573800AFA3EA /* MainViewModelImpl.swift in Sources */,
-				B546B5522B6A3AA400AFA3EA /* MainViewModel.swift in Sources */,
+				B546B5572B6A573800AFA3EA /* MainViewModel.swift in Sources */,
+				B546B5522B6A3AA400AFA3EA /* ViewModel.swift in Sources */,
 				C013E91D2B748FB5003EB996 /* GradingResultComponent.swift in Sources */,
 				C013E9342B74F17B003EB996 /* ExamService.swift in Sources */,
 				B546B56B2B7493E100AFA3EA /* HTTPHeaderField.swift in Sources */,
