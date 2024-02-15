@@ -13,7 +13,7 @@ import Alamofire
 import SnapKit
 
 final class ProblemSolvingViewController: UIViewController {
-    let examService = ExamService(apiService: APIService())
+    
     let viewModel: ProblemSolvingViewModel
     init(viewModel: ProblemSolvingViewModel) {
         self.viewModel = viewModel

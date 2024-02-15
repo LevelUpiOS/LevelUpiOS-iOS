@@ -85,7 +85,7 @@ final class MainViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] chapterId in
                 guard let self else { return }
-                let viewModel = ProblemSolvingViewModel(id: chapterId)
+                let viewModel = ProblemSolvingViewModel(id: chapterId, manager: ProblemSolvingManagerImpl(examService: ExamServiceImpl(apiService: APIService())))
                 let problemViewController = ProblemSolvingViewController(viewModel: viewModel)
                 self.navigationController?.pushViewController(problemViewController, animated: true)
             }

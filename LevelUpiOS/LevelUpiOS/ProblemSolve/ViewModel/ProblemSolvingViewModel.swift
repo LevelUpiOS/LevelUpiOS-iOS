@@ -10,7 +10,7 @@ import Combine
 
 final class ProblemSolvingViewModel {
     
-    var manager = ProblemSolvingManagerImpl()
+    var manager: ProblemSolvingManager
     var cancelBag = Set<AnyCancellable>()
     
     var problemCount = 0
@@ -19,8 +19,9 @@ final class ProblemSolvingViewModel {
     
     var subjectId: Int
     
-    init(id: Int) {
+    init(id: Int, manager: ProblemSolvingManager) {
         self.subjectId = id
+        self.manager = manager
     }
     
     struct Input {
