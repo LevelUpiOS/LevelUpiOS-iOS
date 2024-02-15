@@ -1,5 +1,5 @@
 //
-//  BookmarkService.swift
+//  BookmarkServiceImpl.swift
 //  LevelUpiOS
 //
 //  Created by uiskim on 2/11/24.
@@ -7,8 +7,19 @@
 
 import Foundation
 
-final class BookmarkService {
-    let apiService = APIService()
+protocol BookmarkService {
+    func getBookmakrList(isBookmared: Bool) async throws -> (BookmarkListInquiryResponse, Int)
+    func makeBookmark(id: Int) async throws -> Int
+    func deleteBookmark(id: Int) async throws -> Int
+}
+
+final class BookmarkServiceImpl: BookmarkService {
+    
+    private let apiService: APIService
+    
+    init(apiService: APIService) {
+        self.apiService = apiService
+    }
     
     func getBookmakrList(isBookmared: Bool = true) async throws -> (BookmarkListInquiryResponse, Int) {
         let router = BookmarkRouter.getBookmarks(isBookmared: isBookmared)

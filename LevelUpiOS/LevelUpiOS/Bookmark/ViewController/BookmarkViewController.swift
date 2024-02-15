@@ -14,7 +14,16 @@ import SnapKit
 
 final class BookmarkViewController: UIViewController {
     
-    let viewModel = BookmarkViewModel()
+    let viewModel: BookmarkViewModel
+    
+    init(viewModel: BookmarkViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let viewWillAppearSubject = PassthroughSubject<Void, Never>()
     let bookmarkTap = PassthroughSubject<(index: Int, id: Int), Never>()

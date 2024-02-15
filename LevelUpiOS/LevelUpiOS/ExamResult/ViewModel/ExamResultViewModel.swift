@@ -11,9 +11,11 @@ import Combine
 final class ExamResultViewModel {
     var cancelBag = Set<AnyCancellable>()
     var data: ExamResultDTO
-    let bookmarkService = BookmarkService()
-    init(data: ExamResultDTO) {
+    let examResultManager: ExamResultManager
+    
+    init(data: ExamResultDTO, examResultManager: ExamResultManager) {
         self.data = data
+        self.examResultManager = examResultManager
     }
     
     struct Input {
@@ -30,9 +32,9 @@ final class ExamResultViewModel {
             .requestAPI(failure: .empty) { index, id in
                 guard let id else { return .empty }
                 if self.data.results[index].bookmark {
-                    _ = try await self.bookmarkService.deleteBookmark(id: id)
+                    _ = try await self.examResultManager.deleteBookmark(id: id)
                 } else {
-                    _ = try await self.bookmarkService.makeBookmark(id: id)
+                    _ = try await self.examResultManager.getBookmark(id: id)
                 }
                 self.data.results[index].bookmark.toggle()
                 return self.data

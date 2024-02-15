@@ -13,7 +13,7 @@ import Alamofire
 import SnapKit
 
 final class ProblemSolvingViewController: UIViewController {
-    let examService = ExamService()
+    let examService = ExamService(apiService: APIService())
     let viewModel: ProblemSolvingViewModel
     init(viewModel: ProblemSolvingViewModel) {
         self.viewModel = viewModel
@@ -242,7 +242,7 @@ private extension ProblemSolvingViewController {
         output.resultPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                let resultVC = ExamResultViewController(viewModel: ExamResultViewModel(data: data))
+                let resultVC = ExamResultViewController(viewModel: ExamResultViewModel(data: data, examResultManager: ExamResultManagerImpl(bookmarkService: BookmarkServiceImpl(apiService: APIService()))))
                 self?.navigationController?.pushViewController(resultVC, animated: true)
             }
             .store(in: &cancelBag)

@@ -92,7 +92,7 @@ final class MainViewController: UIViewController {
             .sink { [weak self] _ in
                 guard let self else { return }
                 //TODO: - 복습하러가기 로 넘어가기
-                let bookmarkViewController = BookmarkViewController()
+                let bookmarkViewController = BookmarkViewController(viewModel: BookmarkViewModel(manager: BookmarkMangerImpl(bookmarkService: BookmarkServiceImpl(apiService: APIService()))))
                 self.navigationController?.pushViewController(bookmarkViewController, animated: true)
             }
             .store(in: &cancelBag)

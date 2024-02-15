@@ -7,9 +7,18 @@
 
 import Foundation
 
-final class ProblemSolvingManagerImpl {
+protocol ProblemSolvingManager {
+    func getQuiz(from subjectId: Int) async throws -> ExamQuestionInquiryDTO
+    func solveQuiz(from subjectId: Int, answers: [Bool]) async throws -> ExamResultDTO
+}
+
+final class ProblemSolvingManagerImpl: ProblemSolvingManager {
     
-    let examService = ExamService()
+    let examService: ExamService
+    
+    init(examService: ExamService) {
+        self.examService = examService
+    }
     
     func getQuiz(from subjectId: Int) async throws -> ExamQuestionInquiryDTO {
         return try await examService.getExamQuestions(examID: subjectId).0.toDTO()
