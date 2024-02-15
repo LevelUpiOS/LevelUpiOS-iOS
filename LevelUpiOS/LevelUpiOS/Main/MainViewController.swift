@@ -22,7 +22,7 @@ final class MainViewController: UIViewController {
     private let reviewButtonDidTap: PassthroughSubject<Void, Never> = .init()
     private let chapterDidTap: PassthroughSubject<Int, Never> = .init()
     
-    private let viewModel: any MainViewModel
+    private let viewModel: MainViewModel
     
     private var cancelBag = Set<AnyCancellable>()
     
@@ -32,12 +32,15 @@ final class MainViewController: UIViewController {
     )
     
     private let collectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let flowlayout = UICollectionViewFlowLayout()
+        flowlayout.minimumLineSpacing = 0
+        flowlayout.minimumInteritemSpacing = 0
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         cv.backgroundColor = .designSystem(.white)
         return cv
     }()
     
-    init(viewModel: some MainViewModel) {
+    init(viewModel: MainViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,6 +52,7 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationItem.hidesBackButton = true
         self.viewWillAppear.send(())
     }
     
@@ -58,10 +62,11 @@ final class MainViewController: UIViewController {
         setHirerachy()
         setLayout()
         bind()
+        render(subject: .init(topics: [], totalCount: 1, solvedCount: 0))
     }
     
     private func bind() {
-        let input = MainViewModelInput(
+        let input = MainViewModel.Input(
             viewWillAppear: self.viewWillAppear,
             reviewButtonDidTap: self.reviewButtonDidTap,
             chapterDidTap: self.chapterDidTap
@@ -80,7 +85,7 @@ final class MainViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] chapterId in
                 guard let self else { return }
-                let viewModel = ProblemSolvingViewModel(id: chapterId)
+                let viewModel = ProblemSolvingViewModel(id: chapterId, manager: ProblemSolvingManagerImpl(examService: ExamServiceImpl(apiService: APIService())))
                 let problemViewController = ProblemSolvingViewController(viewModel: viewModel)
                 self.navigationController?.pushViewController(problemViewController, animated: true)
             }
@@ -91,7 +96,7 @@ final class MainViewController: UIViewController {
             .sink { [weak self] _ in
                 guard let self else { return }
                 //TODO: - 복습하러가기 로 넘어가기
-                let bookmarkViewController = BookmarkViewController()
+                let bookmarkViewController = BookmarkViewController(viewModel: BookmarkViewModel(manager: BookmarkMangerImpl(bookmarkService: BookmarkServiceImpl(apiService: APIService()))))
                 self.navigationController?.pushViewController(bookmarkViewController, animated: true)
             }
             .store(in: &cancelBag)
@@ -108,9 +113,6 @@ extension MainViewController {
     
     private func setLayout() {
         collectionView.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide)
-//            make.leading.trailing.equalToSuperview()
-//            make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.edges.equalToSuperview()
         }
     }

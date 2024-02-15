@@ -21,7 +21,7 @@ final class ChapterContent: UIControl {
     let chapterTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .pretendard(.semiBold, ._18)
-        label.textColor = .black
+        label.textColor = .designSystem(.black)
         return label
     }()
     
@@ -54,19 +54,23 @@ final class ChapterContent: UIControl {
     
     private func setLayout() {
         checkImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.bottom.equalToSuperview()
             make.leading.equalToSuperview().inset(32)
+//            make.size.equalTo(30)
+            make.centerY.equalToSuperview()
         }
         
         chapterTitleLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(checkImageView)
+            make.top.bottom.equalToSuperview()
             make.leading.equalTo(checkImageView.snp.trailing).offset(10)
+            make.centerY.equalToSuperview()
         }
         
         scoreOrGoQuestionButton.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
             make.leading.greaterThanOrEqualTo(chapterTitleLabel.snp.trailing).offset(10)
-            make.centerY.equalTo(chapterTitleLabel)
-            make.trailing.equalToSuperview().inset(32).priority(.high)
+            make.trailing.equalToSuperview().inset(10).priority(.high)
+            make.centerY.equalToSuperview()
         }
     }
     

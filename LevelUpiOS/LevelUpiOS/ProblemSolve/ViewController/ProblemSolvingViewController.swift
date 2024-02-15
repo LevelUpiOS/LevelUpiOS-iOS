@@ -13,7 +13,7 @@ import Alamofire
 import SnapKit
 
 final class ProblemSolvingViewController: UIViewController {
-    let examService = ExamService()
+    
     let viewModel: ProblemSolvingViewModel
     init(viewModel: ProblemSolvingViewModel) {
         self.viewModel = viewModel
@@ -28,6 +28,16 @@ final class ProblemSolvingViewController: UIViewController {
     let userAnswerSubject = PassthroughSubject<Bool, Never>()
     let viewwillAppearSubject = PassthroughSubject<Void, Never>()
     let submitAnswerSubject = PassthroughSubject<Void, Never>()
+    
+    lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.tintColor = .designSystem(.black)
+        button.sizeToFit()
+        return button
+    }()
     
     let problemSolvingProgressBar: UIProgressView = {
         let pb = UIProgressView(progressViewStyle: .bar)
@@ -103,12 +113,14 @@ final class ProblemSolvingViewController: UIViewController {
         setHierarchy()
         setLayout()
         setAddTarget()
-        bind()        
+        bind()     
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        let barButton = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = barButton
         self.viewwillAppearSubject.send(())
     }
 }
@@ -190,6 +202,10 @@ private extension ProblemSolvingViewController {
         userAnswerSubject.send(false)
     }
     
+    @objc func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func bind() {
         let output = viewModel.transform(from: .init(userAnswerSubject: userAnswerSubject,
                                                      viewwillAppearSubject: viewwillAppearSubject,
@@ -198,10 +214,7 @@ private extension ProblemSolvingViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] description, title  in
                 self?.quizDescription.text = description
-                print("✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅")
-                print(title)
-                print("✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅")
-                self?.navigationItem.title = "제목을 바꿔요"
+                self?.navigationItem.title = title
                 self?.problemSolvingProgressBar.setProgress(0, animated: true)
             }
             .store(in: &cancelBag)
@@ -229,7 +242,7 @@ private extension ProblemSolvingViewController {
         output.resultPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                let resultVC = ExamResultViewController(viewModel: ExamResultViewModel(data: data))
+                let resultVC = ExamResultViewController(viewModel: ExamResultViewModel(data: data, examResultManager: ExamResultManagerImpl(bookmarkService: BookmarkServiceImpl(apiService: APIService()))))
                 self?.navigationController?.pushViewController(resultVC, animated: true)
             }
             .store(in: &cancelBag)

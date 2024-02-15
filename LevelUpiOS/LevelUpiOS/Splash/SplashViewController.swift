@@ -25,14 +25,14 @@ final class SplashViewController: UIViewController {
                     let cookie = try await self.authService.getCookie().decodedData.cookie
                     UserDefaultsManager.tokenKey = UserDefaultToken(cookie: cookie)
                 }
-                let mainVC = MainViewController(viewModel: MainViewModelImpl(mainServiceManager: MainServiceManager(categoryService: CategoryService(apiService: APIService()), submissionService: SubmissionService(apiService: APIService()))))
+                let mainVC = MainViewController(viewModel: MainViewModel(mainServiceManager: MainServiceManager(categoryService: CategoryService(apiService: APIService()), submissionService: SubmissionService(apiService: APIService()))))
                 self.navigationController?.pushViewController(mainVC, animated: true)
             }
         }
     }
     
     private func setUI() {
-        view.backgroundColor = .designSystem(.mainBlue)
+        view.backgroundColor = .designSystem(.mainOrange)
     }
     
     private func setHierarchy() {

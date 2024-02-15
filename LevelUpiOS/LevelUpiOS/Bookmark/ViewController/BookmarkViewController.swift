@@ -14,15 +14,37 @@ import SnapKit
 
 final class BookmarkViewController: UIViewController {
     
-    let viewModel = BookmarkViewModel()
+    let viewModel: BookmarkViewModel
+    
+    init(viewModel: BookmarkViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let viewWillAppearSubject = PassthroughSubject<Void, Never>()
     let bookmarkTap = PassthroughSubject<(index: Int, id: Int), Never>()
     let cellTap = PassthroughSubject<Int, Never>()
     var cancelBag = Set<AnyCancellable>()
-    
+    lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.tintColor = .designSystem(.black)
+        button.sizeToFit()
+        return button
+    }()
     let bookmarkView = UITableView(frame: .zero, style: .grouped)
-    let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
+    let updater: UITableViewUpdater = {
+        let updater = UITableViewUpdater()
+        updater.isAnimationEnabled = false
+        return updater
+    }()
+    lazy var renderer = Renderer(adapter: UITableViewAdapter(), updater: updater)
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +59,7 @@ final class BookmarkViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] datas in
                 self?.render(datas: datas)
+                self?.updater.isAnimationEnabled = true
             }
             .store(in: &cancelBag)
         
@@ -51,6 +74,8 @@ final class BookmarkViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        let barButton = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = barButton
         self.viewWillAppearSubject.send(())
     }
     
@@ -67,7 +92,6 @@ final class BookmarkViewController: UIViewController {
                     }
                 }
             }
-
         }
     }
     
@@ -104,5 +128,9 @@ private extension BookmarkViewController {
         bookmarkView.backgroundColor = .designSystem(.background)
         bookmarkView.separatorStyle = .none
         renderer.target = bookmarkView
+    }
+    
+    @objc func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

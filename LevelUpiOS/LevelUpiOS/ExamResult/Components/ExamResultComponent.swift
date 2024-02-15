@@ -83,8 +83,8 @@ final class ExamResultComponent: UIView {
         label.padding = .init(top: 5, left: 10, bottom: 5, right: 10)
         label.clipsToBounds = true
         label.layer.cornerRadius = 10
-        label.backgroundColor = .designSystem(.gray777)
-        label.textColor = .designSystem(.black)
+        label.backgroundColor = .designSystem(.subOrange)
+        label.textColor = .designSystem(.mainOrange)
         label.font = .pretendard(.semiBold, ._10)
         label.text = "정답 및 해설"
         return label

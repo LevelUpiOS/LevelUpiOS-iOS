@@ -50,8 +50,12 @@ final class BookmarkComponent: UIView {
     let questionTypeLabel: UILabel = {
         let label = UILabel()
         label.text = "OX퀴즈"
+        label.font = .pretendard(.regular, ._13)
         label.textColor = .designSystem(.mainOrange)
         label.backgroundColor = .designSystem(.subOrange)
+        label.textAlignment = .center
+        label.layer.cornerRadius = 10
+        label.clipsToBounds = true
         return label
     }()
     

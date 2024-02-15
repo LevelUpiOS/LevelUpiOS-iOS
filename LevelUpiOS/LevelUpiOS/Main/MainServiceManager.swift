@@ -53,7 +53,7 @@ final class MainServiceManager {
                         
                         for submission in submissions.submissions {
                             if submission.examId == exam.id {
-                                solveType = .solved(score: submission.score)
+                                solveType = .solved(score: Int(submission.score))
                                 break
                             }
                         }

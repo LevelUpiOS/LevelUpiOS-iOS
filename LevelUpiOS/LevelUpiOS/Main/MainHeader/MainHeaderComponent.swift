@@ -71,7 +71,7 @@ final class MainHeaderContent: UIView {
     private let subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = .pretendard(.regular, ._13)
-        label.text = "한 주제당 10개의 문제가 준비되어 있어요!"
+        label.text = "한 주제당 5~10개의 문제가 준비되어 있어요!"
         return label
     }()
     
@@ -116,7 +116,7 @@ final class MainHeaderContent: UIView {
             make.height.equalTo(Size.backgroundImageheight)
         }
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(32)
+            make.leading.equalToSuperview().inset(25)
             make.top.equalToSuperview().inset(106)
         }
         subtitleLabel.snp.makeConstraints { make in
@@ -127,14 +127,15 @@ final class MainHeaderContent: UIView {
         progressBoxView.snp.makeConstraints { make in
             make.top.equalTo(subtitleLabel.snp.bottom).offset(17)
             make.leading.equalTo(subtitleLabel)
-            make.width.equalTo(147)
+            make.trailing.equalTo(reviewBoxView.snp.leading).offset(-15)
+            make.width.equalTo(reviewBoxView.snp.width)
             make.height.equalTo(progressBoxView.snp.width)
-                .multipliedBy(137.0/147.0)
+                .multipliedBy(130.0/147.0)
         }
         
         reviewBoxView.snp.makeConstraints { make in
-            make.leading.equalTo(progressBoxView.snp.trailing).offset(13)
-            make.trailing.equalToSuperview().inset(32)
+            make.width.equalTo(progressBoxView.snp.width)
+            make.trailing.equalToSuperview().inset(25)
             make.top.equalTo(progressBoxView)
             make.bottom.equalTo(progressBoxView)
         }

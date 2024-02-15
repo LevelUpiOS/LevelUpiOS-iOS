@@ -60,18 +60,20 @@ final class ReviewBoxView: UIView {
     
     private func setLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(21)
-            make.leading.equalToSuperview().inset(21)
+            make.top.equalToSuperview().inset(20)
+            make.height.equalTo(20)
+            make.leading.equalToSuperview().inset(20)
         }
-        
+        subtitleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         subtitleLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.leading.equalTo(titleLabel)
         }
         
         reviewButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(7)
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(15)
+            make.bottom.equalToSuperview().inset(20)
         }
     }
 

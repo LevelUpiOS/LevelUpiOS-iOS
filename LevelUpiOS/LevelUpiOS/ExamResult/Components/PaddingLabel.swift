@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PaddingLabel: UILabel {
+final class PaddingLabel: UILabel {
     var padding: UIEdgeInsets
     
     @IBInspectable

@@ -29,9 +29,9 @@ final class ExamResultViewController: UIViewController {
     lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.setTitle("홈으로가기", for: .normal)
-        button.addTarget(self, action: #selector(callMethod), for: .touchUpInside)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.tintColor = .designSystem(.black)
         button.sizeToFit()
         return button
     }()
@@ -55,9 +55,8 @@ final class ExamResultViewController: UIViewController {
         setUI()
         setHierarchy()
         setLayout()
-
-        let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap,
-                                                     viewWillAppearSubject: self.viewwillAppearSubject))
+        render(data: viewModel.data)
+        let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap))
         
         output.reloadPublisher
             .receive(on: DispatchQueue.main)
@@ -72,7 +71,6 @@ final class ExamResultViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         let barButton = UIBarButtonItem(customView: backButton)
         self.navigationItem.leftBarButtonItem = barButton
-        self.viewwillAppearSubject.send(())
     }
     
     
@@ -87,7 +85,7 @@ final class ExamResultViewController: UIViewController {
         }
     }
     
-    @objc func callMethod() {
+    @objc func backButtonTapped() {
         guard let controllers = self.navigationController?.viewControllers else { return }
         for vc in controllers {
             if vc is MainViewController {
