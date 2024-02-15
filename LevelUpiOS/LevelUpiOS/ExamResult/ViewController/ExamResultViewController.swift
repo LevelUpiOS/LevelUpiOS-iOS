@@ -55,8 +55,8 @@ final class ExamResultViewController: UIViewController {
         setUI()
         setHierarchy()
         setLayout()
-        let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap,
-                                                     viewWillAppearSubject: self.viewwillAppearSubject))
+        render(data: viewModel.data)
+        let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap))
         
         output.reloadPublisher
             .receive(on: DispatchQueue.main)
@@ -71,7 +71,6 @@ final class ExamResultViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         let barButton = UIBarButtonItem(customView: backButton)
         self.navigationItem.leftBarButtonItem = barButton
-        self.viewwillAppearSubject.send(())
     }
     
     

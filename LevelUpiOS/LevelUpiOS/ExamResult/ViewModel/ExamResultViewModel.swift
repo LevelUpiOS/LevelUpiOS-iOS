@@ -20,7 +20,6 @@ final class ExamResultViewModel {
     
     struct Input {
         let bookmarkTap: PassthroughSubject<(Int, Int?), Never>
-        let viewWillAppearSubject: PassthroughSubject<Void, Never>
     }
     
     struct Output {
@@ -28,7 +27,7 @@ final class ExamResultViewModel {
     }
     
     func transform(from input: Input) -> Output {
-        let bookmarkPublisher: AnyPublisher<ExamResultDTO, Never> = input.bookmarkTap
+        let reloadPublisher: AnyPublisher<ExamResultDTO, Never> = input.bookmarkTap
             .requestAPI(failure: .empty) { index, id in
                 guard let id else { return .empty }
                 if self.data.results[index].bookmark {
@@ -43,15 +42,6 @@ final class ExamResultViewModel {
             }
             .eraseToAnyPublisher()
         
-        let viewWillAppearPublisher = input.viewWillAppearSubject
-            .map { _ in
-                return self.data
-            }
-            .eraseToAnyPublisher()
-        
-        
-        let reloadPublisher = viewWillAppearPublisher.merge(with: bookmarkPublisher)
-            .eraseToAnyPublisher()
         return Output(reloadPublisher: reloadPublisher)
     }
 }

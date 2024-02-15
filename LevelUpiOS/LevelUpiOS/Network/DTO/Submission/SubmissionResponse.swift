@@ -15,5 +15,5 @@ struct SubmissionResponse: Decodable {
 struct Submission: Decodable {
     let id: Int
     let examId: Int
-    let score: Int
+    let score: Double
 }

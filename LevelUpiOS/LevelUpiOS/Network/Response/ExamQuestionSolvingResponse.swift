@@ -10,7 +10,7 @@ import Foundation
 struct ExamQuestionSolvingResponse: Decodable {
     var id: Int
     var examId: Int
-    var score: Int
+    var score: Double
     var results: [QuestionResult]
     
     struct QuestionResult: Decodable {

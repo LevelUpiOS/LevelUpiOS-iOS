@@ -27,6 +27,6 @@ final class ProblemSolvingManagerImpl: ProblemSolvingManager {
     func solveQuiz(from subjectId: Int, answers: [Bool]) async throws -> ExamResultDTO {
         let response = try await examService.solveExamQuestions(id: subjectId, answers: answers).0
         let resultDTO = response.results.map { ExamResultDTO.ExamResultPerQuiz(questionId: $0.questionId, description: $0.question, explanation: $0.explanation, userAnswer: $0.guess, answer: $0.answer, isCorrect: $0.isCorrect, bookmark: $0.bookmark) }
-        return .init(id: response.id, examId: response.examId, score: response.score, results: resultDTO)
+        return .init(id: response.id, examId: response.examId, score: Int(response.score), results: resultDTO)
     }
 }

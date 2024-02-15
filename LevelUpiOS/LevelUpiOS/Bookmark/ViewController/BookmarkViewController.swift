@@ -39,7 +39,12 @@ final class BookmarkViewController: UIViewController {
         return button
     }()
     let bookmarkView = UITableView(frame: .zero, style: .grouped)
-    let renderer = Renderer(adapter: UITableViewAdapter(), updater: UITableViewUpdater())
+    let updater: UITableViewUpdater = {
+        let updater = UITableViewUpdater()
+        updater.isAnimationEnabled = false
+        return updater
+    }()
+    lazy var renderer = Renderer(adapter: UITableViewAdapter(), updater: updater)
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +52,6 @@ final class BookmarkViewController: UIViewController {
         setTableView()
         setHierarchy()
         setLayout()
-        render(datas: [])
         let output = viewModel.transform(from: .init(viewWillAppearSubject: self.viewWillAppearSubject,
                                                      bookmarkTap: self.bookmarkTap,
                                                      cellTap: self.cellTap))
@@ -55,6 +59,7 @@ final class BookmarkViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] datas in
                 self?.render(datas: datas)
+                self?.updater.isAnimationEnabled = true
             }
             .store(in: &cancelBag)
         
