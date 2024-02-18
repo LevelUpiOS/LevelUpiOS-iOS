@@ -71,6 +71,7 @@
 		C0C63FBB2B6A16DE00771E55 /* ProblemSolvingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C63FBA2B6A16DE00771E55 /* ProblemSolvingViewModel.swift */; };
 		C0DCA61F2B7DDF8000A622F4 /* ExamResultManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCA61E2B7DDF8000A622F4 /* ExamResultManagerImpl.swift */; };
 		C0DCA6282B7DE08900A622F4 /* BookmarkMangerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCA6272B7DE08900A622F4 /* BookmarkMangerImpl.swift */; };
+		C0DCA6312B81C58100A622F4 /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0DCA6302B81C58100A622F4 /* Pretendard-Light.ttf */; };
 		C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */; };
 		C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */; };
 		C0EA8F002B5F996C0073C1D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0EA8EFF2B5F996C0073C1D4 /* Assets.xcassets */; };
@@ -173,6 +174,7 @@
 		C0C63FC12B6A351900771E55 /* LevelUpiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LevelUpiOS.xctestplan; sourceTree = "<group>"; };
 		C0DCA61E2B7DDF8000A622F4 /* ExamResultManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultManagerImpl.swift; sourceTree = "<group>"; };
 		C0DCA6272B7DE08900A622F4 /* BookmarkMangerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkMangerImpl.swift; sourceTree = "<group>"; };
+		C0DCA6302B81C58100A622F4 /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
 		C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LevelUpiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -600,6 +602,7 @@
 		C0EA8F2D2B5F9C2C0073C1D4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				C0DCA6302B81C58100A622F4 /* Pretendard-Light.ttf */,
 				C0EA8F302B5F9C450073C1D4 /* Pretendard-Bold.ttf */,
 				C0EA8F2F2B5F9C450073C1D4 /* Pretendard-Regular.ttf */,
 				C0EA8F2E2B5F9C450073C1D4 /* Pretendard-SemiBold.ttf */,
@@ -723,6 +726,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0DCA6312B81C58100A622F4 /* Pretendard-Light.ttf in Resources */,
 				C0EA8F312B5F9C450073C1D4 /* Pretendard-SemiBold.ttf in Resources */,
 				C0EA8F332B5F9C450073C1D4 /* Pretendard-Bold.ttf in Resources */,
 				C0EA8F032B5F996C0073C1D4 /* LaunchScreen.storyboard in Resources */,

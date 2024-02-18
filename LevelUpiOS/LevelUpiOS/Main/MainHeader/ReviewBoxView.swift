@@ -18,18 +18,17 @@ final class ReviewBoxView: UIView {
     
     private let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "틀린 문제만 모아놨어요"
+        label.text = "북마크를 모아놨어요"
         label.font = .pretendard(.regular, ._13)
         return label
     }()
     
     let reviewButton: UIButton = {
-        var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = .mainOrange
-        config.baseForegroundColor = .white
-        config.title = "복습하러가기"
-        config.titlePadding = 14
-        let button = UIButton(configuration: config)
+        let button = UIButton()
+        button.titleLabel?.font = .pretendard(.semiBold, ._15)
+        button.backgroundColor = .designSystem(.mainOrange)
+        button.setTitleColor(.designSystem(.white), for: .normal)
+        button.setTitle("복습하러가기", for: .normal)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         return button
@@ -68,6 +67,7 @@ final class ReviewBoxView: UIView {
         subtitleLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.leading.equalTo(titleLabel)
+            make.trailing.equalToSuperview().inset(10)
         }
         
         reviewButton.snp.makeConstraints { make in

@@ -37,6 +37,7 @@ final class MainViewController: UIViewController {
         flowlayout.minimumInteritemSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         cv.backgroundColor = .designSystem(.white)
+        cv.showsVerticalScrollIndicator = false
         return cv
     }()
     
