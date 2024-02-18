@@ -20,7 +20,7 @@ final class ChapterContent: UIControl {
     
     let chapterTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .pretendard(.semiBold, ._18)
+        label.font = .pretendard(.regular, ._18)
         label.textColor = .designSystem(.black)
         return label
     }()

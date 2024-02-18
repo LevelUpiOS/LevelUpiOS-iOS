@@ -20,12 +20,14 @@ public enum Font {
         case _18 = 18
         case _20 = 20
         case _30 = 30
+        case _45 = 45
     }
 
     public enum Weight: String {
         case regular = "Regular"
         case semiBold = "SemiBold"
         case bold = "Bold"
+        case light = "Light"
     }
 
     public struct PretendardFont {
@@ -59,7 +61,8 @@ extension Font {
         [
             PretendardFont(name: .pretendard, weight: .regular),
             PretendardFont(name: .pretendard, weight: .semiBold),
-            PretendardFont(name: .pretendard, weight: .bold)
+            PretendardFont(name: .pretendard, weight: .bold),
+            PretendardFont(name: .pretendard, weight: .light)
         ]
     }
 
