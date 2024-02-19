@@ -95,7 +95,7 @@ final class MainViewController: UIViewController {
         output.reviewButtonDidTap
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                LUAmplitude.track(eventType: "goToBookmarkView")
+                LUAmplitude.track(eventType: "북마크뷰로이동합니다")
                 guard let self else { return }
                 //TODO: - 복습하러가기 로 넘어가기
                 let bookmarkViewController = BookmarkViewController(viewModel: BookmarkViewModel(manager: BookmarkMangerImpl(bookmarkService: BookmarkServiceImpl(apiService: APIService()))))
