@@ -72,6 +72,8 @@
 		C0DCA61F2B7DDF8000A622F4 /* ExamResultManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCA61E2B7DDF8000A622F4 /* ExamResultManagerImpl.swift */; };
 		C0DCA6282B7DE08900A622F4 /* BookmarkMangerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCA6272B7DE08900A622F4 /* BookmarkMangerImpl.swift */; };
 		C0DCA6312B81C58100A622F4 /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0DCA6302B81C58100A622F4 /* Pretendard-Light.ttf */; };
+		C0DCA6BC2B833E0B00A622F4 /* AmplitudeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0DCA6BB2B833E0B00A622F4 /* AmplitudeSwift */; };
+		C0DCA6BF2B833F7900A622F4 /* LUAmplitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCA6BE2B833F7900A622F4 /* LUAmplitude.swift */; };
 		C0EA8EF72B5F996B0073C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */; };
 		C0EA8EF92B5F996B0073C1D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */; };
 		C0EA8F002B5F996C0073C1D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0EA8EFF2B5F996C0073C1D4 /* Assets.xcassets */; };
@@ -175,6 +177,7 @@
 		C0DCA61E2B7DDF8000A622F4 /* ExamResultManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultManagerImpl.swift; sourceTree = "<group>"; };
 		C0DCA6272B7DE08900A622F4 /* BookmarkMangerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkMangerImpl.swift; sourceTree = "<group>"; };
 		C0DCA6302B81C58100A622F4 /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
+		C0DCA6BE2B833F7900A622F4 /* LUAmplitude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUAmplitude.swift; sourceTree = "<group>"; };
 		C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LevelUpiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EA8EF62B5F996B0073C1D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0EA8EF82B5F996B0073C1D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0DCA6BC2B833E0B00A622F4 /* AmplitudeSwift in Frameworks */,
 				C0C63FB22B69FDFC00771E55 /* Alamofire in Frameworks */,
 				C0EA8F3A2B5F9D570073C1D4 /* Carbon in Frameworks */,
 				C0EA8F3D2B5F9D620073C1D4 /* SnapKit in Frameworks */,
@@ -524,6 +528,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C0DCA6BD2B833F5F00A622F4 /* Amplitude */ = {
+			isa = PBXGroup;
+			children = (
+				C0DCA6BE2B833F7900A622F4 /* LUAmplitude.swift */,
+			);
+			path = Amplitude;
+			sourceTree = "<group>";
+		};
 		C0EA8EEA2B5F996B0073C1D4 = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +560,7 @@
 		C0EA8EF52B5F996B0073C1D4 /* LevelUpiOS */ = {
 			isa = PBXGroup;
 			children = (
+				C0DCA6BD2B833F5F00A622F4 /* Amplitude */,
 				B5D40C512B7764AE009684CF /* Splash */,
 				C013E9262B74E6D2003EB996 /* Extension */,
 				B546B5612B7491F600AFA3EA /* Network */,
@@ -632,6 +645,7 @@
 				C0EA8F392B5F9D570073C1D4 /* Carbon */,
 				C0EA8F3C2B5F9D620073C1D4 /* SnapKit */,
 				C0C63FB12B69FDFC00771E55 /* Alamofire */,
+				C0DCA6BB2B833E0B00A622F4 /* AmplitudeSwift */,
 			);
 			productName = LevelUpiOS;
 			productReference = C0EA8EF32B5F996B0073C1D4 /* LevelUpiOS.app */;
@@ -709,6 +723,7 @@
 				C0EA8F382B5F9D570073C1D4 /* XCRemoteSwiftPackageReference "Carbon" */,
 				C0EA8F3B2B5F9D620073C1D4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C0C63FB02B69FDFC00771E55 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C0DCA6BA2B833E0B00A622F4 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
 			);
 			productRefGroup = C0EA8EF42B5F996B0073C1D4 /* Products */;
 			projectDirPath = "";
@@ -782,6 +797,7 @@
 				B546B55F2B74914500AFA3EA /* ChapterContent.swift in Sources */,
 				C013E93C2B785E28003EB996 /* ExamQuestionInquiryResponse.swift in Sources */,
 				B546B53B2B6A034B00AFA3EA /* TopicHeaderContent.swift in Sources */,
+				C0DCA6BF2B833F7900A622F4 /* LUAmplitude.swift in Sources */,
 				C0DCA6282B7DE08900A622F4 /* BookmarkMangerImpl.swift in Sources */,
 				B546B5462B6A225000AFA3EA /* ProgressBoxView.swift in Sources */,
 				B5D40C5A2B7772C1009684CF /* AuthService.swift in Sources */,
@@ -1188,6 +1204,14 @@
 				minimumVersion = 5.8.1;
 			};
 		};
+		C0DCA6BA2B833E0B00A622F4 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		C0EA8F382B5F9D570073C1D4 /* XCRemoteSwiftPackageReference "Carbon" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ra1028/Carbon";
@@ -1211,6 +1235,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0C63FB02B69FDFC00771E55 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		C0DCA6BB2B833E0B00A622F4 /* AmplitudeSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0DCA6BA2B833E0B00A622F4 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
+			productName = AmplitudeSwift;
 		};
 		C0EA8F392B5F9D570073C1D4 /* Carbon */ = {
 			isa = XCSwiftPackageProductDependency;
