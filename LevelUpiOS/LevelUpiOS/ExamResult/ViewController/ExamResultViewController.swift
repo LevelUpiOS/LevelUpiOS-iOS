@@ -79,6 +79,7 @@ final class ExamResultViewController: UIViewController {
             GradingResultItem(grade: data.score)
             Group(of: data.results.enumerated()) { index, result in
                 ExamResultItem(questionIndex: index+1, result: result) { questionId in
+                    LUAmplitude.track(eventType: "북마크누름", eventProperties: ["문제정보":"\(result.questionId)"])
                     self.bookmarkTap.send((index, questionId))
                 }
             }

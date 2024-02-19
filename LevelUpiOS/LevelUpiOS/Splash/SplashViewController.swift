@@ -58,9 +58,9 @@ final class SplashViewController: UIViewController {
                 if UserDefaultsManager.tokenKey == nil {
                     let cookie = try await self.authService.getCookie().decodedData.cookie
                     UserDefaultsManager.tokenKey = UserDefaultToken(cookie: cookie)
-                    LUAmplitude.track(eventType: "NewUserLogin")
+                    LUAmplitude.track(eventType: "신규유저유입")
                 } else {
-                    LUAmplitude.track(eventType: "ExistingUserLogin")
+                    LUAmplitude.track(eventType: "기존유저재방문")
                 }
                 let mainVC = MainViewController(viewModel: MainViewModel(mainServiceManager: MainServiceManager(categoryService: CategoryService(apiService: APIService()), submissionService: SubmissionService(apiService: APIService()))))
                 self.navigationController?.pushViewController(mainVC, animated: true)
