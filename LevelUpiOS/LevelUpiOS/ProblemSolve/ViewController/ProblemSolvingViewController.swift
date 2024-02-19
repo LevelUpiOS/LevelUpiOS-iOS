@@ -203,6 +203,9 @@ private extension ProblemSolvingViewController {
     }
     
     @objc func backButtonTapped() {
+        let percentage = (Double(self.viewModel.problemCount) / Double(self.viewModel.descriptions.count))*100
+        LUAmplitude.track(eventType: "문제풀다중간에나감", eventProperties: ["비율(몇퍼센트쯤풀었을때나가는지)": Int(percentage)])
+        LUAmplitude.track(eventType: "몇문제짜리를포기하는가", eventProperties: ["문제수":self.viewModel.descriptions.count])
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -232,6 +235,7 @@ private extension ProblemSolvingViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 let alert = UIAlertController.subminQuizAlert { 
+                    LUAmplitude.track(eventType: "문제다품", eventProperties: ["몇문제짜리시험": self!.viewModel.descriptions.count])
                     self?.view.isUserInteractionEnabled = false
                     self?.submitAnswerSubject.send(())
                 }

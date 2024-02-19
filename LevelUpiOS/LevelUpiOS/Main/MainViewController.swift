@@ -95,6 +95,7 @@ final class MainViewController: UIViewController {
         output.reviewButtonDidTap
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
+                LUAmplitude.track(eventType: "북마크뷰로이동합니다")
                 guard let self else { return }
                 //TODO: - 복습하러가기 로 넘어가기
                 let bookmarkViewController = BookmarkViewController(viewModel: BookmarkViewModel(manager: BookmarkMangerImpl(bookmarkService: BookmarkServiceImpl(apiService: APIService()))))
@@ -136,6 +137,7 @@ extension MainViewController {
                     )) {
                         Group(of: topic.chapters) { chapter in
                             ChapterComponent(chapter: chapter) {
+                                LUAmplitude.track(eventType: "시험시작", eventProperties: ["시험보는챕터ID": chapter.id])
                                 self.chapterDidTap.send(chapter.id)
                             }
                         }
