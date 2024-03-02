@@ -20,9 +20,11 @@ final class ExamResultViewModel {
     
     struct Input {
         let bookmarkTap: PassthroughSubject<(Int, Int?), Never>
+        let reportTap: PassthroughSubject<Int, Never>
     }
     
     struct Output {
+        let reportAlertPublisher: AnyPublisher<Int, Never>
         let reloadPublisher: AnyPublisher<ExamResultDTO, Never>
     }
     
@@ -42,6 +44,6 @@ final class ExamResultViewModel {
             }
             .eraseToAnyPublisher()
         
-        return Output(reloadPublisher: reloadPublisher)
+        return Output(reportAlertPublisher: input.reportTap.eraseToAnyPublisher(), reloadPublisher: reloadPublisher)
     }
 }

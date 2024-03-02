@@ -253,15 +253,4 @@ private extension ProblemSolvingViewController {
     }
 }
 
-extension UIAlertController {
-    static func subminQuizAlert(completionHandler: @escaping () -> Void) -> UIAlertController {
-        let alert = UIAlertController(title: "답안제출",
-                                      message: "답안 내용은 분석을 위해 저장됩니다, 결과를 확인하세요",
-                                      preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "결과보러가기", style: .default) { _ in
-            completionHandler()
-        }
-        alert.addAction(confirm)
-        return alert
-    }
-}
+

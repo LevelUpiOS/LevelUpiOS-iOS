@@ -9,7 +9,7 @@ import Foundation
 
 import AmplitudeSwift
 
-let LUAmplitude = Amplitude(configuration: Configuration(apiKey: "fa9a721843210407da742ca3dac31213"))
+let LUAmplitude = Amplitude(configuration: Configuration(apiKey: "9c4392f841b51333441bc80b223af1b6"))
 
 
 
