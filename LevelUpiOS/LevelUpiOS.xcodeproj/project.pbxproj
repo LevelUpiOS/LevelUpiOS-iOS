@@ -62,6 +62,7 @@
 		C013E9502B7A16FA003EB996 /* ExamResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E94F2B7A16FA003EB996 /* ExamResultViewModel.swift */; };
 		C013E9522B7AEBCC003EB996 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9512B7AEBCC003EB996 /* BookmarkViewModel.swift */; };
 		C013E9542B7AF7C8003EB996 /* BookmarkEmptyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013E9532B7AF7C8003EB996 /* BookmarkEmptyItem.swift */; };
+		C02D05222B92E44200077546 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D05212B92E44200077546 /* UIAlertController+.swift */; };
 		C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C962B70B6A100780707 /* BookmarkViewController.swift */; };
 		C0771C992B70B77D00780707 /* BookmarkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C982B70B77D00780707 /* BookmarkItem.swift */; };
 		C0771C9F2B70C8E800780707 /* BookmarkDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0771C9E2B70C8E800780707 /* BookmarkDTO.swift */; };
@@ -167,6 +168,7 @@
 		C013E94F2B7A16FA003EB996 /* ExamResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultViewModel.swift; sourceTree = "<group>"; };
 		C013E9512B7AEBCC003EB996 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
 		C013E9532B7AF7C8003EB996 /* BookmarkEmptyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEmptyItem.swift; sourceTree = "<group>"; };
+		C02D05212B92E44200077546 /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
 		C0771C962B70B6A100780707 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		C0771C982B70B77D00780707 /* BookmarkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkItem.swift; sourceTree = "<group>"; };
 		C0771C9E2B70C8E800780707 /* BookmarkDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkDTO.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				C013E9272B74E6DE003EB996 /* Publisher+.swift */,
+				C02D05212B92E44200077546 /* UIAlertController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				C0DCA6BF2B833F7900A622F4 /* LUAmplitude.swift in Sources */,
 				C0DCA6282B7DE08900A622F4 /* BookmarkMangerImpl.swift in Sources */,
 				B546B5462B6A225000AFA3EA /* ProgressBoxView.swift in Sources */,
+				C02D05222B92E44200077546 /* UIAlertController+.swift in Sources */,
 				B5D40C5A2B7772C1009684CF /* AuthService.swift in Sources */,
 				B546B5642B74925D00AFA3EA /* TargetType.swift in Sources */,
 				C0771C972B70B6A100780707 /* BookmarkViewController.swift in Sources */,

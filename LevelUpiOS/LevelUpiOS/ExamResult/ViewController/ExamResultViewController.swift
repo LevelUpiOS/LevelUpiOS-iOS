@@ -11,10 +11,12 @@ import Combine
 
 import Carbon
 import SnapKit
+import AmplitudeSwift
 
 final class ExamResultViewController: UIViewController {
     
     let bookmarkTap = PassthroughSubject<(Int, Int?), Never>()
+    let reportTap = PassthroughSubject<Int, Never>()
     let viewwillAppearSubject = PassthroughSubject<Void, Never>()
     var cancelBag = Set<AnyCancellable>()
     
@@ -56,12 +58,24 @@ final class ExamResultViewController: UIViewController {
         setHierarchy()
         setLayout()
         render(data: viewModel.data)
-        let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap))
+        let output = viewModel.transform(from: .init(bookmarkTap: self.bookmarkTap, reportTap: self.reportTap))
         
         output.reloadPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 self?.render(data: data)
+            }
+            .store(in: &cancelBag)
+        
+        output.reportAlertPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { id in
+                let alert = UIAlertController.reportAlert { opinion in
+                    guard let opinion = opinion else { return }
+                    LUAmplitude.track(eventType: "문제신고", eventProperties: ["content": "\(id) : \(opinion)"])
+                }
+
+                self.present(alert, animated: true)
             }
             .store(in: &cancelBag)
     }
@@ -81,7 +95,7 @@ final class ExamResultViewController: UIViewController {
                 ExamResultItem(questionIndex: index+1, result: result) { questionId in
                     LUAmplitude.track(eventType: "북마크누름", eventProperties: ["문제정보":"\(result.questionId)"])
                     self.bookmarkTap.send((index, questionId))
-                }
+                } reportTapped: { self.reportTap.send($0!) }
             }
         }
     }

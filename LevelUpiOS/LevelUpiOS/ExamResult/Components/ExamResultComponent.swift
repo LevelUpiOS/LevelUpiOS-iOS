@@ -15,6 +15,8 @@ struct ExamResultItem: IdentifiableComponent {
     var questionIndex: Int
     var result: ExamResultDTO.ExamResultPerQuiz
     var bookmarkTapped: (Int?) -> Void
+    var reportTapped: (Int?) -> Void
+    
     var id: Int {
         return questionIndex
     }
@@ -32,12 +34,14 @@ struct ExamResultItem: IdentifiableComponent {
         content.bookmarkButton.setImage(.init(systemName: result.bookmark ? "bookmark.fill" : "bookmark"), for: .normal)
         content.questionId = result.questionId
         content.bookmarkTapped = bookmarkTapped
+        content.reportTapped = reportTapped
     }
 }
 
 final class ExamResultComponent: UIView {
     
     var bookmarkTapped: ((Int?) -> Void)?
+    var reportTapped: ((Int?) -> Void)?
     
     var questionId: Int?
     
@@ -66,6 +70,14 @@ final class ExamResultComponent: UIView {
         let button = UIButton()
         button.tintColor = .designSystem(.mainOrange)
         button.addTarget(self, action: #selector(bookmarkButtonTap), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var reportButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .designSystem(.mainOrange)
+        button.setImage(UIImage(systemName: "light.beacon.max"), for: .normal)
+        button.addTarget(self, action: #selector(reportButtonTap), for: .touchUpInside)
         return button
     }()
     
@@ -119,6 +131,10 @@ final class ExamResultComponent: UIView {
     @objc func bookmarkButtonTap() {
         self.bookmarkTapped?(self.questionId)
     }
+    
+    @objc func reportButtonTap() {
+        self.reportTapped?(self.questionId)
+    }
 
 }
 
@@ -134,6 +150,7 @@ private extension ExamResultComponent {
         container.addSubview(questionNumberLabel)
         container.addSubview(checkImage)
         container.addSubview(bookmarkButton)
+        container.addSubview(reportButton)
         container.addSubview(questionLabel)
         container.addSubview(infoLabel)
         container.addSubview(answerImageView)
@@ -161,6 +178,12 @@ private extension ExamResultComponent {
         bookmarkButton.snp.makeConstraints { make in
             make.top.trailing.equalToSuperview().inset(20)
             make.size.equalTo(30)
+        }
+        
+        reportButton.snp.makeConstraints { make in
+            make.top.equalTo(bookmarkButton.snp.top)
+            make.size.equalTo(30)
+            make.trailing.equalTo(bookmarkButton.snp.leading)
         }
         
         questionLabel.snp.makeConstraints { make in
