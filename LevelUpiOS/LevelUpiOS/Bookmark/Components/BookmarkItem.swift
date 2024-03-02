@@ -15,6 +15,7 @@ struct BookmarkItem: IdentifiableComponent {
     var source: String
     var tap: (()->Void)
     var bookmarkTap: (()-> Void)
+    var reportTap: (() -> Void)
     
     var id: String {
         return question
@@ -29,6 +30,7 @@ struct BookmarkItem: IdentifiableComponent {
         content.sourceLabel.text = source
         content.tapped = tap
         content.bookmarkTapped = bookmarkTap
+        content.reportTapped = reportTap
     }
 }
 
@@ -36,6 +38,7 @@ final class BookmarkComponent: UIView {
     
     var tapped: (() -> Void)?
     var bookmarkTapped: (() -> Void)?
+    var reportTapped: (() -> Void)?
     
     let containerView: UIView = {
         let view = UIView()
@@ -64,6 +67,14 @@ final class BookmarkComponent: UIView {
         button.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
         button.tintColor = .designSystem(.mainOrange)
         button.addTarget(self, action: #selector(bookmarkButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var reportButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .designSystem(.mainOrange)
+        button.setImage(UIImage(systemName: "light.beacon.max"), for: .normal)
+        button.addTarget(self, action: #selector(reportButtonTap), for: .touchUpInside)
         return button
     }()
     
@@ -98,6 +109,7 @@ final class BookmarkComponent: UIView {
         containerView.addSubview(questionLabel)
         containerView.addSubview(sourceLabel)
         containerView.addSubview(bookmarkButton)
+        containerView.addSubview(reportButton)
 
 
         questionTypeLabel.snp.makeConstraints { make in
@@ -110,6 +122,13 @@ final class BookmarkComponent: UIView {
             make.top.equalToSuperview().inset(10)
             make.trailing.equalTo(sideDecoratedView.snp.leading).offset(-10)
             make.size.equalTo(30)
+        }
+
+        
+        reportButton.snp.makeConstraints { make in
+            make.top.equalTo(bookmarkButton.snp.top)
+            make.size.equalTo(30)
+            make.trailing.equalTo(bookmarkButton.snp.leading)
         }
 
         questionLabel.snp.makeConstraints { make in
@@ -146,6 +165,10 @@ final class BookmarkComponent: UIView {
     
     @objc func bookmarkButtonTapped() {
         self.bookmarkTapped?()
+    }
+    
+    @objc func reportButtonTap() {
+        self.reportTapped?()
     }
     
     required init?(coder: NSCoder) {

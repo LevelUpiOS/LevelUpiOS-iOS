@@ -23,11 +23,13 @@ final class BookmarkViewModel {
         let viewWillAppearSubject: PassthroughSubject<Void, Never>
         let bookmarkTap: PassthroughSubject<(index: Int, id: Int), Never>
         let cellTap: PassthroughSubject<Int, Never>
+        let reportTap: PassthroughSubject<Int, Never>
     }
     
     struct Output {
         let reloadPublisher: AnyPublisher<[BookmarkDTO], Never>
         let presentDetailSheetPublisher: AnyPublisher<ProblemDetail, Never>
+        let reportPublisher: AnyPublisher<Int, Never>
     }
     
     struct ProblemDetail {
@@ -69,7 +71,7 @@ final class BookmarkViewModel {
             }
             .eraseToAnyPublisher()
 
-        return Output(reloadPublisher: reloadPublisher, presentDetailSheetPublisher: presentDetailSheetPublisher)
+        return Output(reloadPublisher: reloadPublisher, presentDetailSheetPublisher: presentDetailSheetPublisher, reportPublisher: input.reportTap.eraseToAnyPublisher())
     }
     
 }

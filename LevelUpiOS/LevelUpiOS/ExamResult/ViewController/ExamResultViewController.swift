@@ -72,7 +72,7 @@ final class ExamResultViewController: UIViewController {
             .sink { id in
                 let alert = UIAlertController.reportAlert { opinion in
                     guard let opinion = opinion else { return }
-                    LUAmplitude.track(eventType: "문제신고", eventProperties: ["신고":opinion])
+                    LUAmplitude.track(eventType: "문제신고", eventProperties: ["content": "\(id) : \(opinion)"])
                 }
 
                 self.present(alert, animated: true)

@@ -14,6 +14,13 @@ import SnapKit
 
 final class BookmarkViewController: UIViewController {
     
+    let viewWillAppearSubject = PassthroughSubject<Void, Never>()
+    let bookmarkTap = PassthroughSubject<(index: Int, id: Int), Never>()
+    let reportTap = PassthroughSubject<Int, Never>()
+    let cellTap = PassthroughSubject<Int, Never>()
+    
+    var cancelBag = Set<AnyCancellable>()
+    
     let viewModel: BookmarkViewModel
     
     init(viewModel: BookmarkViewModel) {
@@ -25,10 +32,6 @@ final class BookmarkViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let viewWillAppearSubject = PassthroughSubject<Void, Never>()
-    let bookmarkTap = PassthroughSubject<(index: Int, id: Int), Never>()
-    let cellTap = PassthroughSubject<Int, Never>()
-    var cancelBag = Set<AnyCancellable>()
     lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
@@ -54,7 +57,7 @@ final class BookmarkViewController: UIViewController {
         setLayout()
         let output = viewModel.transform(from: .init(viewWillAppearSubject: self.viewWillAppearSubject,
                                                      bookmarkTap: self.bookmarkTap,
-                                                     cellTap: self.cellTap))
+                                                     cellTap: self.cellTap, reportTap: self.reportTap))
         output.reloadPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] datas in
@@ -67,6 +70,18 @@ final class BookmarkViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 self?.presentDetail(data: data)
+            }
+            .store(in: &cancelBag)
+        
+        output.reportPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { id in
+                let alert = UIAlertController.reportAlert { opinion in
+                    guard let opinion = opinion else { return }
+                    LUAmplitude.track(eventType: "문제신고", eventProperties: ["content": "\(id) : \(opinion)"])
+                }
+
+                self.present(alert, animated: true)
             }
             .store(in: &cancelBag)
     }
@@ -89,6 +104,8 @@ final class BookmarkViewController: UIViewController {
                         self.cellTap.send(index)
                     } bookmarkTap: {
                         self.bookmarkTap.send((index, bookmark.id))
+                    } reportTap: {
+                        self.reportTap.send(bookmark.id)
                     }
                 }
             }
