@@ -81,5 +81,6 @@ final class CircularProgressBarView: UIView {
         progressLayer.add(animation, forKey: "animateprogress")
         print("업데이트111111")
         print("업데이트12313")
+        print("업데이트111111")
     }
 }
