@@ -79,5 +79,6 @@ final class CircularProgressBarView: UIView {
         progressLayer.strokeEnd = value
         progressLayer.add(animation, forKey: "animateprogress")
         print("업데이트12313")
+        print("업데이트111111")
     }
 }
