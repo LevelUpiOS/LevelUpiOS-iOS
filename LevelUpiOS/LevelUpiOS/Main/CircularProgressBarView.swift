@@ -65,6 +65,8 @@ final class CircularProgressBarView: UIView {
         progressLayer.strokeColor = .designSystem(.mainOrange)
         layer.addSublayer(progressLayer)
         print("ofwjefowjefo")
+        print("업데이트12313")
+        print("wjefowjeofjwo")
     }
     
     // 프로그레스 바 업데이트 함수
@@ -78,5 +80,6 @@ final class CircularProgressBarView: UIView {
         progressLayer.strokeEnd = value
         progressLayer.add(animation, forKey: "animateprogress")
         print("업데이트111111")
+        print("업데이트12313")
     }
 }
