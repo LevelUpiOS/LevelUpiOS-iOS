@@ -76,6 +76,6 @@ final class CircularProgressBarView: UIView {
         percentageLable.text = "\(Int(value*100))%"
         progressLayer.strokeEnd = value
         progressLayer.add(animation, forKey: "animateprogress")
-        print("업데이트")
+        print("업데이트111111")
     }
 }
