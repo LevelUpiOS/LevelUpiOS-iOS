@@ -67,6 +67,8 @@ final class CircularProgressBarView: UIView {
         print("업데이트12313")
         print("wjefowjeofjwo")
         print("ofwjefowjefo")
+        print("업데이트12313")
+        print("wjefowjeofjwo")
     }
     
     // 프로그레스 바 업데이트 함수
@@ -81,5 +83,6 @@ final class CircularProgressBarView: UIView {
         progressLayer.add(animation, forKey: "animateprogress")
         print("업데이트12313")
         print("업데이트111111")
+        print("업데이트12313")
     }
 }
