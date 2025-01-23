@@ -64,7 +64,6 @@ final class CircularProgressBarView: UIView {
         progressLayer.strokeEnd = 0
         progressLayer.strokeColor = .designSystem(.mainOrange)
         layer.addSublayer(progressLayer)
-        print("ofwjefowjefo")
         print("업데이트12313")
         print("wjefowjeofjwo")
         print("ofwjefowjefo")
