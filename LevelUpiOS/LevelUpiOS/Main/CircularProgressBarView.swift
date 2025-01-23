@@ -67,6 +67,7 @@ final class CircularProgressBarView: UIView {
         print("ofwjefowjefo")
         print("업데이트12313")
         print("wjefowjeofjwo")
+        print("ofwjefowjefo")
     }
     
     // 프로그레스 바 업데이트 함수
