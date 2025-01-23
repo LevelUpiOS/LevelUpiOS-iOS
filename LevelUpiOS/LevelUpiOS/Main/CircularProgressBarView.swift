@@ -66,6 +66,7 @@ final class CircularProgressBarView: UIView {
         layer.addSublayer(progressLayer)
         print("업데이트12313")
         print("wjefowjeofjwo")
+        print("ofwjefowjefo")
     }
     
     // 프로그레스 바 업데이트 함수
