@@ -66,6 +66,11 @@ final class MainViewController: UIViewController {
         render(subject: .init(topics: [], totalCount: 1, solvedCount: 0))
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        print("✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅")
+    }
+    
     private func bind() {
         let input = MainViewModel.Input(
             viewWillAppear: self.viewWillAppear,

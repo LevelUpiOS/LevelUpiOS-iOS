@@ -20,7 +20,8 @@ extension Publisher {
                             let output = try await handler(input)
                             promise(.success(output))
                         } catch {
-                            let networkError = error as! LevelUpError
+                            guard let error = error as? LevelUpError else { return }
+                            let networkError = error
                             errorHandler(networkError)
                             promise(.failure(networkError))
                         }
